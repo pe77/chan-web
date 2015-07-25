@@ -1,0 +1,1 @@
+var chan_url = "[URL_ABSOLUTA_DA_API]";
