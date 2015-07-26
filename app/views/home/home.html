@@ -1,5 +1,13 @@
+<div class="jumbotron bg-transparent text-center margin-none">
+	<h1>Home</h1>
+	<p>Get full control of the layout of your pages and easily create layouts from the most simple - fluid or boxed layouts - to the most advanced layouts with up to 6 sidebars on the same page and specially crafted layouts for complex web apps.</p>
+</div>
+
+
 <div>
-	HOME
+	HOME {{signedIn ? 'Logado' : 'Deslogado'}} 
+
+    <google-plus-signin ng-if="!signedIn" language="pt-BR" clientid="{{parameters.google_api_key}}"></google-plus-signin>
 
 	<button ng-click="Save()">Salvar</button>
 </div>

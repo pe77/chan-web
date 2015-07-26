@@ -1,10 +1,14 @@
 var app = angular.module('chan', 
 	[
-		'genericService',
-		'ui.router'
+		'chan.controllers',
+		'chan.services',
+		'ui.router',
+		'directive.g+signin'
 	]
 );
 
 app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);
+
+angular.module('chan.controllers', []);

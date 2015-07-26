@@ -1,11 +1,12 @@
-function PostController($scope, $rootScope, $filter, $stateParams, GenericService)
+angular.module('chan.controllers')
+
+.controller('PostController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
 {
 	$scope.post = {};
 	
 	// atualiza
 	$scope.Update = function(reset)
 	{
-		
 		GenericService.get({
 			route:'post',
 			action:'get',
@@ -37,9 +38,9 @@ function PostController($scope, $rootScope, $filter, $stateParams, GenericServic
 				alert('foi');
 		}, $rootScope.ResponseFail);
 	}
-}
+})
 
-
+/*
 function SignInController($scope) {
     // This flag we use to show or hide the button in our HTML.
     $scope.signedIn = false;
@@ -54,7 +55,7 @@ function SignInController($scope) {
             // Successful sign in.
             $scope.signedIn = true;
 
-            alert('foi');
+            // alert('foi');
 
             $scope.getUserInfo();
 
@@ -66,7 +67,7 @@ function SignInController($scope) {
             // Error while signing in.
             $scope.signedIn = false;
 
-            alert('não foi');
+            // alert('não foi');
  
             // Report error.
         }
@@ -84,7 +85,7 @@ function SignInController($scope) {
         gapi.signin.render('signInButton',
             {
                 'callback': $scope.signInCallback, // Function handling the callback.
-                'clientid': '[KEY]', // CLIENT_ID from developer console which has been explained earlier.
+                'clientid': parameters.google_api_key, // CLIENT_ID from developer console which has been explained earlier.
                 'requestvisibleactions': 'http://schemas.google.com/AddActivity', // Visible actions, scope and cookie policy wont be described now,
                                                                                   // as their explanation is available in Google+ API Documentation.
                 'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email',
@@ -102,8 +103,7 @@ function SignInController($scope) {
     // Process user info.
 	// userInfo is a JSON object.
 	$scope.processUserInfo = function(userInfo) {
-	    
-	    alert('user info');
+
 	    console.log(userInfo);
 	 
 	}
@@ -131,4 +131,4 @@ function SignInController($scope) {
 
     // Call start function on load.
     
-}
+};*/

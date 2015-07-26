@@ -1,8 +1,16 @@
-function GlobalController($scope, $rootScope, $templateCache)
+angular.module('chan.controllers')
+
+.controller('GlobalController', function($scope, $filter, $rootScope, $localstorage) 
 {
 
 	$rootScope.base_url 	      = base_url;
+	$rootScope.parameters 	      = parameters;
 	$rootScope.loading			  = false;
+	$rootScope.signedIn		  	  = false;
+
+	if($localstorage.get('access_token', false))
+		$rootScope.signedIn = true;
+	//
 
 	$rootScope.Alert = function(message, type, autoHide, hideDelay)
 	{
@@ -49,4 +57,32 @@ function GlobalController($scope, $rootScope, $templateCache)
 
 		return variavel;
 	}
+
+	$scope.$on('event:google-plus-signin-success', function (event,authResult) {
+
+	    // salva a chave	    
+	    $localstorage.set('access_token', authResult['access_token']);
+	    $rootScope.signedIn = true;
+
+	    $rootScope.$apply();
+	  });
+
+	$scope.$on('event:google-plus-signin-failure', function (event,authResult) {
+		$rootScope.logout();
+	});
+	
+
+	$rootScope.logout = function()
+	{
+		// remove a chave e desloga
+		$localstorage.del('access_token');
+
+		$rootScope.signedIn = false;
+	    $rootScope.$apply();
+	}
+});
+
+// bypass pro controller
+function handleClientLoad() {
+    angular.element(document.getElementById('bbodyy')).scope().handleClientLoad();
 }
