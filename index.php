@@ -55,7 +55,9 @@
 
 	<!-- Controles -->
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
+	<script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
 
 
 </head>
@@ -68,7 +70,7 @@
         <a href="#" data-toggle="sidebar-menu" class="toggle pull-left visible-xs">
           <i class="fa fa-bars"></i>
         </a>
-        <a class="navbar-brand" href="index.html">Layout Kit</a>
+        <a class="navbar-brand" href="index.html">77Chan</a>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -78,12 +80,12 @@
       </div>
       <div class="navbar-collapse collapse" id="collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../../../index.html">Themes</a></li>
+          <li><a href="../../../index.html">--</a></li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
+  <div ng-controller="MenuController" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
     <div data-scrollable>
       <ul class="sidebar-menu sm-icons-block sm-icons-right">
         <li class="active"><a href=""><i class="fa fa-home"></i> <span>Sample Menu</span></a></li>

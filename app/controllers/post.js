@@ -8,10 +8,8 @@ angular.module('chan.controllers')
 	$scope.Update = function(reset)
 	{
 		GenericService.get({
-			route:'post',
-			action:'get',
-			token:'--',
-			id:151
+			route:'board',
+			action:'b'
 		}, function(response){
 
 			if(response.status == 1)

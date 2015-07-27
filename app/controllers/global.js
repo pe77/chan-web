@@ -7,7 +7,8 @@ angular.module('chan.controllers')
 	$rootScope.parameters 	      = parameters;
 	$rootScope.loading			  = false;
 	$rootScope.signedIn		  	  = false;
-
+ 	$rootScope.boards			  = [];
+ 	
 	if($localstorage.get('access_token', false))
 		$rootScope.signedIn = true;
 	//
@@ -81,8 +82,3 @@ angular.module('chan.controllers')
 	    $rootScope.$apply();
 	}
 });
-
-// bypass pro controller
-function handleClientLoad() {
-    angular.element(document.getElementById('bbodyy')).scope().handleClientLoad();
-}
