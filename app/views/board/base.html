@@ -1,0 +1,77 @@
+<h1 class="text-headline page-section-heading">{{board.title}}/{{board.shortcut_name}} - {{board.description}}</h1>
+
+<div class="panel-body">
+    <div class="row text-right">
+
+      <div class="col-md-12 text-left">
+        <div class="form-group form-control-default">
+          <label for="exampleInputFirstName">Mensagem</label>
+          <textarea class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button class="btn btn-default"><i class="fa fa-picture-o"></i> Adcionar Imagem </button> 
+        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submeter</button>
+      </div>
+
+    </div>
+    
+</div>
+
+<hr/>
+
+<div ng-repeat="post in posts" class="item col-md-12 col-xs-12">
+	<div class="panel panel-default timeline-block">
+
+	    <div class="panel-heading">
+	          <div class="media" style="cursor: pointer">
+	            <div class="media-body">
+	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+	              	<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
+	            </div>
+	          </div>
+        </div>
+
+		<div class="panel-body">
+
+			<div class="media-left">
+				<img ng-if="post.files.length" class="media-object" width="230" ng-src="{{parameters.file_path +'/'+ post.files[0].image_path_preview}}" alt="cover">
+			</div>
+			
+
+			<div class="media-body">
+				<expandable post="post"></expandable>
+			</div>   
+		</div>
+
+
+		<div class="view-all-comments">
+          <a href="#">
+            <i class="fa fa-comments-o"></i> Ver tudo
+          </a>
+          <span>(7 respostas)</span>
+
+          
+          <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
+        </div>
+
+		<ul class="comments">
+			<li class="comment-form">
+				<div class="input-group">
+
+					<input type="text" class="form-control" placeholder="Resposta Rapida">
+
+					<span class="input-group-btn">
+						<a href="" class="btn btn-default"><i class="fa fa-photo"></i></a>
+					</span>
+
+				</div>
+			</li>
+		</ul>
+
+	</div>
+</div>
+
+
+</div>
