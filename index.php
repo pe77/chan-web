@@ -66,8 +66,8 @@
 
 
 
-  <!-- Fluid navbar -->
-  <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+  <!-- MENU DE TOPO -->
+  <div ng-controller="MenuControllerTop" class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="#" data-toggle="sidebar-menu" class="toggle pull-left visible-xs">
@@ -103,54 +103,20 @@
             <li class="dropdown notifications updates">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
-                        <span class="badge badge-primary">4</span>
+                        <span ng-if="messages.length" class="badge badge-primary">{{messages.length}}</span>
                       </a>
                       
-                      <ul class="dropdown-menu" role="notification">
-                        <li class="dropdown-header">Notifications</li>
-                        <li class="media">
-                          <div class="pull-right">
-                            <span class="label label-success">New</span>
-                          </div>
-                          <div class="media-left">
-                            <img src="images/people/50/guy-2.jpg" alt="people" class="img-circle" width="30" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-                          </div>
+                      <ul ng-if="messages.length" class="dropdown-menu" role="notification">
+                        <li class="dropdown-header">Notificações</li>
+
+                        <li class="media" ng-repeat="message in messages">
                           <div class="media-body">
-                            <a href="#">Adrian D.</a> posted <a href="#">a photo</a> on his timeline.
+                            {{message.message}}
                             <br>
-                            <span class="text-caption text-muted">5 mins ago</span>
+                            <span class="text-caption text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
                           </div>
                         </li>
-                        <li class="media">
-                          <div class="pull-right">
-                            <span class="label label-success">New</span>
-                          </div>
-                          <div class="media-left">
-                            <img src="images/people/50/guy-6.jpg" alt="people" class="img-circle" width="30" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-                          </div>
-                          <div class="media-body">
-                            <a href="#">Bill</a> posted <a href="#">a comment</a> on Adrian's recent <a href="#">post</a>.
-                            <br>
-                            <span class="text-caption text-muted">3 hrs ago</span>
-                          </div>
-                        </li>
-                        <li class="media">
-                          <div class="media-left">
-                            <span class="icon-block s30 bg-grey-200"><i class="fa fa-plus"></i></span>
-                          </div>
-                          <div class="media-body">
-                            <a href="#">Mary D.</a> and <a href="#">Michelle</a> are now friends.
-                            <p>
-                              <span class="text-caption text-muted">1 day ago</span>
-                            </p>
-                            <a href="">
-                              <img class="width-30 img-circle" src="images/people/50/woman-6.jpg" alt="people" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-                            </a>
-                            <a href="">
-                              <img class="width-30 img-circle" src="images/people/50/woman-3.jpg" alt="people" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-                            </a>
-                          </div>
-                        </li>
+
                       </ul>
             </li>
 
@@ -159,9 +125,9 @@
                 <img ng-src="{{user.picture_link}}?sz=50" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
-                <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+                <li><a href="#"><i class="fa fa-user"></i>Perfil</a></li>
+                <li><a href="#"><i class="fa fa-wrench"></i>Config</a></li>
+                <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
               </ul>
             </li>
 
@@ -173,7 +139,7 @@
 
 
   <!-- MENU LATERAL -->
-  <div ng-controller="MenuController" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
+  <div ng-controller="MenuControllerSide" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
     <div data-scrollable>
 
       <ul class="sidebar-menu sm-icons-block sm-icons-right">

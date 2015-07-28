@@ -193,3 +193,34 @@ app.directive('a', function() {
         }
    };
 });
+
+
+
+app.directive('timeago', function() {
+    return {
+        restrict: 'E',
+        link: function(scope, elem, attrs) {
+
+            // foda-se a tradução, sem tempo pra essa merda agora
+            moment.locale('en', {
+                relativeTime : {
+                    future: "em %s",
+                    past:   "%s atras",
+                    s:  "um segundo",
+                    m:  "um minuto",
+                    mm: "%d minutos",
+                    h:  "uma hora",
+                    hh: "%d horas",
+                    d:  "um dia",
+                    dd: "%d dias",
+                    M:  "um mês",
+                    MM: "%d mêses",
+                    y:  "um ano",
+                    yy: "%d anos"
+                }
+            });
+            // */
+            elem.html(moment(attrs.date*1000).from());
+        }
+   };
+});
