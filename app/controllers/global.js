@@ -8,12 +8,14 @@ angular.module('chan.controllers')
 	$rootScope.loading			  = false;
 	$rootScope.signedIn		  	  = false;
  	$rootScope.boards			  = [];
- 	$rootScope.user				  = {};
+ 	$rootScope.user				  = $localstorage.getObject('user');
  	
 
 	if($localstorage.get('access_token', false))
 		$rootScope.signedIn = true;
 	//
+
+	console.log($rootScope.user);
 
 	$rootScope.Alert = function(message, type, autoHide, hideDelay)
 	{
@@ -68,7 +70,7 @@ angular.module('chan.controllers')
 	  });
 
 	$scope.$on('event:google-plus-signin-failure', function (event,authResult) {
-		
+
 	});
 	
 
@@ -92,6 +94,7 @@ angular.module('chan.controllers')
 
     			case 0:
     				$rootScope.Alert(response.message);
+    				$rootScope.Logout();
     				break;
 	    	}
 			
@@ -101,7 +104,7 @@ angular.module('chan.controllers')
 	$rootScope.Logout = function()
 	{
 		// desloga api
-	    GenericService.get({route:'user', action:'logout', token:$localstorage.get('access_token', '-')}, function(response){
+	    GenericService.get({route:'auth', action:'logout', token:$localstorage.get('access_token', '-')}, function(response){
 	    	// remove a chave
 			$localstorage.del('access_token');
 			$localstorage.del('user');

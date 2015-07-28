@@ -63,6 +63,9 @@
 </head>
 
 <body id="bbodyy" ng-app="chan" ng-controller="GlobalController">
+
+
+
   <!-- Fluid navbar -->
   <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -79,6 +82,8 @@
         </button>
       </div>
       <div class="navbar-collapse collapse" id="collapse">
+
+
         <ul class="nav navbar-nav">
           <li>
             <form class="navbar-form margin-none navbar-left">
@@ -92,12 +97,15 @@
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right hidden-xs">
+
+        <ul class="nav navbar-nav navbar-right">
+
             <li class="dropdown notifications updates">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
                         <span class="badge badge-primary">4</span>
                       </a>
+                      
                       <ul class="dropdown-menu" role="notification">
                         <li class="dropdown-header">Notifications</li>
                         <li class="media">
@@ -144,13 +152,30 @@
                           </div>
                         </li>
                       </ul>
-                    </li>
+            </li>
+
+            <li class="dropdown user" ng-if="user.name">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img ng-src="{{user.picture_link}}?sz=50" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
+                <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+              </ul>
+            </li>
+
+            
           </ul>
       </div>
     </div>
   </div>
+
+
+  <!-- MENU LATERAL -->
   <div ng-controller="MenuController" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
     <div data-scrollable>
+
       <ul class="sidebar-menu sm-icons-block sm-icons-right">
         <li class="active"><a href=""><i class="fa fa-home"></i> <span>Sample Menu</span></a></li>
         <li class="hasSubmenu">
