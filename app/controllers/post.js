@@ -7,18 +7,7 @@ angular.module('chan.controllers')
 	// atualiza
 	$scope.Update = function(reset)
 	{
-		GenericService.get({
-			route:'board',
-			action:'b'
-		}, function(response){
-
-			if(response.status == 1)
-				$scope.post = response.data;
-			//
-
-			console.log($scope.post);
-
-		}, $rootScope.ResponseFail);
+		
 	}
 
 	// atualiza a pagina TODA
