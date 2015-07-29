@@ -2,17 +2,13 @@ angular.module('chan.controllers')
 
 .controller('MenuControllerTop', function($scope, $rootScope, $filter, $stateParams, $interval, GenericService) 
 {
-	
-
-
-
 	$scope.messages = [];
 
 
 	$scope.UpdateMessages = function()
 	{
 		// caso não esteja logado
-		if(isEmpty($rootScope.user))
+		if(!$rootScope.signedIn)
 			return;
 		//
 
@@ -22,24 +18,28 @@ angular.module('chan.controllers')
 			action:'get'
 		}, function(response){
 
+		if(response.status == 1)
+			$scope.messages = response.data;
+		//
 
-
-			if(response.status == 1)
-				$scope.messages = response.data;
-			//
-
-
-			console.log($scope.messages);
+		console.log($scope.messages);
 
 		}, $rootScope.ResponseFail);
 	}
-
 	// atualiza
 	intervalId = $interval(function() {
 		$scope.UpdateMessages();
 	}, $rootScope.parameters.messages_update_interval);
 
 	$scope.UpdateMessages();
+
+
+	$rootScope.$watch('signedIn', function(value){
+
+		if(value)
+			$scope.UpdateMessages();
+		//
+	});
 })
 
 .controller('MenuControllerSide', function($scope, $rootScope, $filter, $stateParams, GenericService) 

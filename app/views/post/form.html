@@ -1,0 +1,21 @@
+<div class="panel-body" ng-if="user.name">
+    <div class="row text-right">
+
+      <div class="col-md-12 text-left">
+        <div class="form-group form-control-default">
+          <label for="exampleInputFirstName">Mensagem</label>
+          <textarea class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button class="btn btn-default"><i class="fa fa-picture-o"></i> Adcionar Imagem </button> 
+        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submeter</button>
+      </div>
+
+    </div>
+</div>
+
+<div class="panel-body text-center" ng-if="!user.name">
+	<google-plus-signin ng-if="!signedIn" language="pt-BR" clientid="{{parameters.google_api_key}}"></google-plus-signin>
+</div>

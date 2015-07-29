@@ -1,23 +1,8 @@
 <h1 class="text-headline page-section-heading">{{board.title}}/{{board.shortcut_name}} - {{board.description}}</h1>
 
-<div class="panel-body">
-    <div class="row text-right">
 
-      <div class="col-md-12 text-left">
-        <div class="form-group form-control-default">
-          <label for="exampleInputFirstName">Mensagem</label>
-          <textarea class="form-control" rows="5"></textarea>
-        </div>
-      </div>
 
-      <div class="col-md-12">
-        <button class="btn btn-default"><i class="fa fa-picture-o"></i> Adcionar Imagem </button> 
-        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submeter</button>
-      </div>
-
-    </div>
-    
-</div>
+<div ng-include="base_url + '/app/views/post/form.html'"></div>
 
 <hr/>
 

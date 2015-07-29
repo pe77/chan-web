@@ -100,7 +100,7 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-            <li class="dropdown notifications updates">
+            <li class="dropdown notifications updates" ng-if="user.name">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
                         <span ng-if="messages.length" class="badge badge-primary">{{messages.length}}</span>
@@ -130,9 +130,10 @@
                 <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
               </ul>
             </li>
-
-            
           </ul>
+
+
+          
       </div>
     </div>
   </div>

@@ -7,15 +7,10 @@ angular.module('chan.controllers')
 	$rootScope.parameters 	      = parameters;
 	$rootScope.loading			  = false;
 	$rootScope.signedIn		  	  = false;
+	$rootScope.errorMessageSend	  = false;
  	$rootScope.boards			  = [];
  	$rootScope.user				  = $localstorage.getObject('user');
  	
-
-	if($localstorage.get('access_token', false))
-		$rootScope.signedIn = true;
-	//
-
-	console.log($rootScope.user);
 
 	$rootScope.Alert = function(message, type, autoHide, hideDelay)
 	{
@@ -25,8 +20,16 @@ angular.module('chan.controllers')
 
 	$rootScope.ResponseFail = function(response)
 	{
+		console.log(response);
+
+		if($rootScope.errorMessageSend)
+			return;
+		//
+
 		// mensagem de erro de conexção generica
 		alert('Erro ao tentar se conectar, tente novamente.');
+
+		$rootScope.errorMessageSend = true;
 	}
 
 	$rootScope.ResponseErrorHandler = function(response, status, autoHide)	
@@ -67,14 +70,7 @@ angular.module('chan.controllers')
 
 	    $rootScope.Login(authResult['access_token']);
 	    $rootScope.$apply();
-	  });
-
-	$scope.$on('event:google-plus-signin-failure', function (event,authResult) {
-
 	});
-	
-
-
 
 
 	$rootScope.Login = function(token)
@@ -90,6 +86,7 @@ angular.module('chan.controllers')
 
 	    			$rootScope.user = response.data;
 	    			$rootScope.signedIn = true;
+
 	    			break;
 
     			case 0:
@@ -115,4 +112,10 @@ angular.module('chan.controllers')
 
 	    }, $rootScope.ResponseFail);
 	}
+
+
+	// verifica o token
+	if($localstorage.get('access_token', false))
+		$rootScope.Login($localstorage.get('access_token'));
+	//
 });
