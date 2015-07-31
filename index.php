@@ -36,7 +36,8 @@
 
 <!-- Bibliotecas -->
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-file-upload.js"></script>
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
 	
@@ -57,7 +58,8 @@
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
   	<script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
   	<script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
+	<script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $timestamp?>"></script>
 
 
 </head>
