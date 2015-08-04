@@ -19,6 +19,9 @@ angular.module('chan.controllers')
 	// atualiza
 	$scope.Update = function(reset)
 	{
+
+		reset = reset || false;
+
 		// pega os posts
 		GenericService.get({
 			route:'post',
@@ -27,10 +30,8 @@ angular.module('chan.controllers')
 		}, function(response){
 
 			if(response.status == 1)
-				$scope.posts = response.data;
+				$scope.posts = reset ? response.data : $scope.posts.concat(response.data);
 			//
-
-			console.log($scope.posts);
 
 		}, $rootScope.ResponseFail);
 	}
@@ -43,5 +44,11 @@ angular.module('chan.controllers')
 
 	// atualiza a pagina TODA
 	$scope.Update();
+
+
+	// se algum post for criado, recarrega a pagina
+	$rootScope.$on("onPostCreate", function () {
+		$scope.Update(true);
+	});
 
 })

@@ -6,7 +6,7 @@
 
 <hr/>
 
-<div ng-repeat="post in posts" class="item col-md-12 col-xs-12">
+<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item">
 	<div class="panel panel-default timeline-block">
 
 	    <div class="panel-heading">
@@ -20,8 +20,13 @@
 
 		<div class="panel-body">
 
-			<div class="media-left">
-				<img ng-if="post.files.length" class="media-object" width="230" ng-src="{{parameters.file_path +'/'+ post.files[0].image_path_preview}}" alt="cover">
+			<div class="media-left" ng-if="post.files.length" >
+				
+				<carousel interval="999915000" no-wrap="false" >
+				<slide ng-repeat="file in post.files" active="slide.active">
+						<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+					</slide>
+				</carousel>
 			</div>
 			
 

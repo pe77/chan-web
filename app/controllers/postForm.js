@@ -5,7 +5,9 @@ angular.module('chan.controllers')
     $scope.post = {
         content:''
     };
+    
     $scope.files = [];
+    $scope.filesPreview = [];
 
     $rootScope.$watch('boards', function(){
 
@@ -19,11 +21,47 @@ angular.module('chan.controllers')
     var url = parameters.api_url + '/api/post/new';
 
     $scope.$on("fileSelected", function (event, args) {
-        $scope.$apply(function () {            
+
+        var exist = false;
+
+        // verifica se já não foi add a imagem
+        for (var i = $scope.files.length - 1; i >= 0; i--) 
+            if(
+                $scope.files[i].lastModified == args.file.lastModified
+                &&
+                $scope.files[i].name == args.file.name
+                &&
+                $scope.files[i].size == args.file.size
+
+            )
+                exist = true;
+        //
+
+        if(!exist)
+        {
+            // add
             $scope.files.push(args.file);
-        });
+
+            // add preview
+            var reader = new FileReader();
+            reader.onload = function (e) 
+            {
+                
+                $scope.filesPreview.push(e.target.result);
+                $scope.$apply();
+            }
+
+            reader.readAsDataURL(args.file);
+        }
     });
 
+
+
+    $scope.ImageSelect = function()
+    {
+        // bypass
+        $("#file-select-input").trigger('click');
+    }
 
     $scope.Send = function()
     {
@@ -45,10 +83,15 @@ angular.module('chan.controllers')
             data: { data: $scope.post, files: $scope.files }
         }).
         success(function (data, status, headers, config) {
+            
+            $rootScope.Alert(data.message);
+            $rootScope.$emit('onPostCreate');
 
+            // reseta as variavais
+            $scope.files = [];
+            $scope.filesPreview = [];
+            $scope.post.content = '';
         }).
-        error(function (data, status, headers, config) {
-
-        });
+        error($rootScope.ResponseFail);
     }
 })

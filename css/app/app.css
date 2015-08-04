@@ -29803,3 +29803,20 @@ fieldset[disabled] .sidebar.sidebar-skin-white-brown .btn-default.active {
 {
   white-space: pre-line;
 }
+
+.carousel-caption
+{
+  /* display:none; */
+}
+
+.post-item .carousel {
+    width: 200px;
+    margin-top: -15px;
+    margin-left: -15px;
+    margin-bottom: -15px;
+}
+
+.post-item .carousel-indicators 
+{
+    display: none;
+}
