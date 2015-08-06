@@ -60,7 +60,8 @@
 	<!-- Controles -->
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
   	<script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
-  	<script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
+    <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
+  	<script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
 	<script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $timestamp?>"></script>
 
@@ -69,6 +70,27 @@
 
 <body id="bbodyy" ng-app="chan" ng-controller="GlobalController">
 
+
+  <div class="loading-box" ng-if="loading">
+    <div class="cssload-loader-inner">
+      <div class="cssload-cssload-loader-line-wrap-wrap">
+        <div class="cssload-loader-line-wrap"></div>
+      </div>
+      <div class="cssload-cssload-loader-line-wrap-wrap">
+        <div class="cssload-loader-line-wrap"></div>
+      </div>
+      <div class="cssload-cssload-loader-line-wrap-wrap">
+        <div class="cssload-loader-line-wrap"></div>
+      </div>
+      <div class="cssload-cssload-loader-line-wrap-wrap">
+        <div class="cssload-loader-line-wrap"></div>
+      </div>
+      <div class="cssload-cssload-loader-line-wrap-wrap">
+        <div class="cssload-loader-line-wrap"></div>
+      </div>
+    </div>
+  </div>
+  
 
 
   <!-- MENU DE TOPO -->

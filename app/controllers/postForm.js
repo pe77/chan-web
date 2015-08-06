@@ -70,6 +70,8 @@ angular.module('chan.controllers')
 
     $scope.Send = function()
     {
+        $rootScope.loading = true;
+
         $http({
             method: 'POST',
             url: url,
@@ -89,6 +91,8 @@ angular.module('chan.controllers')
         }).
         success(function (data, status, headers, config) {
             
+            $rootScope.loading = false;
+
             $rootScope.Alert(data.message);
             $rootScope.$emit('onPostCreate');
 

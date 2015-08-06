@@ -1,0 +1,65 @@
+<h1 class="text-headline page-section-heading">{{board.title}}/{{board.shortcut_name}} - {{board.description}}</h1>
+
+
+
+<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply)"></div>
+
+<hr/>
+
+<div class="item col-md-12 col-xs-12 post-item post-page post-id-{{post.id}}">
+
+	<div class="panel panel-default timeline-block">
+
+	    <div class="panel-heading">
+	          <div class="media">
+	            <div class="media-body">
+	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+	              	<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
+	            </div>
+	          </div>
+	    </div>
+
+		<div class="panel-body">
+			<div class="media-left" ng-if="post.files.length" >
+				<carousel interval="999915000" no-wrap="false" >
+				<slide ng-repeat="file in post.files" active="slide.active">
+						<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+					</slide>
+				</carousel>
+			</div>
+			
+
+			<div class="media-body">
+				<expandable post="post"></expandable>
+			</div>   
+		</div>
+
+
+		<div class="view-all-comments">
+	      <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
+	    </div>
+
+		<ul class="comments replies">
+			<li ng-repeat="reply in post.replies_from" class="comment-form reply">
+				<div class="media-left" ng-if="reply.r_from.files.length" >
+				
+					<carousel interval="999915000" no-wrap="false" >
+					<slide ng-repeat="file in reply.r_from.files" active="slide.active">
+							<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						</slide>
+					</carousel>
+				</div>
+					
+
+				<div class="media-body">
+					<expandable post="reply.r_from"></expandable>
+				</div>   
+
+			</li>
+
+		</ul>
+
+	</div>
+
+
+</div>

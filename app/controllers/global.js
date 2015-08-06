@@ -26,6 +26,8 @@ angular.module('chan.controllers')
 			return;
 		//
 
+		$rootScope.errorMessageSend = false;
+
 		// mensagem de erro de conexção generica
 		alert('Erro ao tentar se conectar, tente novamente.');
 
@@ -75,8 +77,12 @@ angular.module('chan.controllers')
 
 	$rootScope.Login = function(token)
 	{
+		$rootScope.loading = true;
+
 		// loga e carrega usuario
 	    GenericService.get({route:'user', action:'get', token:token}, function(response){
+
+	    	$rootScope.loading = false;
 	    	
 	    	switch(response.status)
 	    	{
@@ -100,6 +106,8 @@ angular.module('chan.controllers')
 
 	$rootScope.Logout = function()
 	{
+		$rootScope.loading = true;
+
 		// desloga api
 	    GenericService.get({route:'auth', action:'logout', token:$localstorage.get('access_token', '-')}, function(response){
 	    	// remove a chave
@@ -109,6 +117,8 @@ angular.module('chan.controllers')
 			// limpa vars
 			$rootScope.signedIn = false;
 			$rootScope.user 	= {};
+
+			$rootScope.loading = false;
 
 	    }, $rootScope.ResponseFail);
 	}

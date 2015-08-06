@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $state, $filter, $stateParams, GenericService) 
 {
 
 	$scope.posts = [];
@@ -19,6 +19,7 @@ angular.module('chan.controllers')
 	// atualiza
 	$scope.Update = function(reset)
 	{
+		$rootScope.loading = true;
 
 		reset = reset || false;
 
@@ -29,6 +30,8 @@ angular.module('chan.controllers')
 			id:$stateParams.board
 		}, function(response){
 
+			$rootScope.loading = false;
+
 			if(response.status == 1)
 				$scope.posts = reset ? response.data : $scope.posts.concat(response.data);
 			//
@@ -37,9 +40,10 @@ angular.module('chan.controllers')
 	}
 
 
-	$scope.Open = function(board)
+	$scope.OpenPost = function(post)
 	{
-		alert('Open board:' + board);
+		$state.go('post', {board:$stateParams.board, post:post.id});
+
 	}
 
 	// atualiza a pagina TODA

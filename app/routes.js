@@ -10,7 +10,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('home', {
       url: "/",
       templateUrl: base_url + '/app/views/home/home.html',
-      controller: 'PostController'
+      controller: 'HomeController'
     })
 	
 
@@ -19,17 +19,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	.state('board', {
         url: '/board/:board',
 		controller: 'BoardController',
-        templateUrl: base_url + '/app/views/board/base.html'
+        templateUrl: base_url + '/app/views/board/page.html'
     })
 
-	.state('board.details', { 
-		url:'/:board',
-		cache: false,
-	  	templateUrl: base_url + '/app/views/board/detail.html',
-	  	controller: function($scope, $stateParams){
-          $scope.Open($stateParams.board);
-        }
-	})
+    .state('post', {
+        url: '/board/:board/:post',
+		controller: 'PostController',
+        templateUrl: base_url + '/app/views/board/post.html'
+    })
+
 
 	;
 });

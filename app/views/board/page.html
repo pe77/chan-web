@@ -2,7 +2,7 @@
 
 
 
-<div ng-include="base_url + '/app/views/post/form.html'"></div>
+<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController"></div>
 
 <hr/>
 
@@ -10,7 +10,7 @@
 	<div class="panel panel-default timeline-block">
 
 	    <div class="panel-heading">
-	          <div class="media" style="cursor: pointer">
+	          <div class="media" style="cursor: pointer" ng-click="OpenPost(post)">
 	            <div class="media-body">
 	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
 	              	<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
@@ -31,6 +31,7 @@
 			
 
 			<div class="media-body">
+
 				<expandable post="post"></expandable>
 			</div>   
 		</div>
@@ -40,7 +41,7 @@
           	<a href="#" ng-if="post.replies_from.length">
             	<i class="fa fa-comments-o"></i> Ver todas
           	</a>
-        	<span ng-if="post.replies_from.length">({{post.replies_from.length}} respostas)</span>
+        	<span ng-if="post.replies_from.length">(total de {{post.replies_from.length}} respostas)</span>
 
           
           <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
