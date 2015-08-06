@@ -1,0 +1,122 @@
+.post-direct-content p
+{
+  white-space: pre-line;
+}
+
+.carousel-indicators,
+.carousel-caption
+{
+  display:none; 
+}
+
+.post-item
+{
+	margin-bottom: 50px;
+}
+
+.post-item .carousel {
+    width: 200px;
+    margin-top: -15px;
+    margin-left: -15px;
+    margin-bottom: -15px;
+}
+
+.post-item .reply .carousel {
+    width: 148px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+.post-item .panel-body
+{
+    background-color: rgba(255, 255, 255, 0.41);
+}
+
+
+.panel.panel-default ul.comments li {
+    border-bottom: none; 
+    background-color: rgba(255, 255, 255, 0.41);
+    padding:0;
+}
+
+.panel.panel-default ul.comments {
+	border-top: none;
+	margin-left: 50px;
+}
+
+.comment-form .reply
+{
+	padding: 0px;
+    margin-left: 25px;
+}
+
+body {
+    background-image: url(images/bg.jpg);
+}
+
+.post-item .panel {
+	background-color: rgba(255, 255, 255, 0);;
+}
+
+.panel,
+.panel-default {
+    border: none;
+}
+
+.form-control-default {
+	background-color: rgba(255, 255, 255, 0.28);
+	border-style:none;
+}
+
+.view-all-comments,
+.timeline-block .panel-heading {
+	background: rgb(123, 165, 128);
+}
+
+.view-all-comments
+{
+	color:#576F52;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    background-color: rgba(95, 128, 99, 0.46);
+}
+
+.media-left, .media > .pull-left {
+    padding-right: 0px;
+}
+
+.media-body
+{
+	padding-left: 10px;
+}
+
+
+.panel.panel-default ul.comments li.reply
+{
+	border-bottom: 2px solid rgba(116, 148, 106, 0.51);
+}
+
+
+.btn-primary
+{
+	background-color: #7BA580;
+    border-color: #7BA580;
+}
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}

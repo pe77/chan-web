@@ -1,10 +1,10 @@
-<div ng-controller="PostFormController" class="panel-body" ng-if="user.name">
+<div ng-controller="PostFormController" class="panel-body main-post-box" ng-if="user.name">
     <div class="row text-right">
 
       <div class="col-md-12 text-left">
         <div class="form-group form-control-default">
           <label for="exampleInputFirstName">Mensagem</label>
-          <textarea ng-model="post.content" class="form-control" rows="5"></textarea>
+          <textarea ng-model="postForm.content" class="form-control" rows="5"></textarea>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-6 text-right">
-          <button class="btn btn-default" ng-click="ImageSelect()"><i class="fa fa-picture-o"></i> Adcionar Imagem {{ (files.length ? '('+files.length+')' : '') }} </button> 
+          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> Adicionar Imagem {{ (files.length ? '('+files.length+')' : '') }} </button> 
           <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Submeter</button>
         </div>
 
@@ -30,7 +30,7 @@
       </div>
 
 
-      <input style="display:none" id="file-select-input" type="file" file-upload multiple/>
+      <input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
 
     </div>
 </div>

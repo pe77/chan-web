@@ -16547,7 +16547,7 @@ ul.timeline-list .media-body.fixed {
   color: #c2c2c2;
 }
 .view-all-comments a {
-  color: #424242;
+  color: black;
   padding: 0 5px;
 }
 .view-all-comments a:hover {
@@ -29799,24 +29799,3 @@ fieldset[disabled] .sidebar.sidebar-skin-white-brown .btn-default.active {
   top: 0;
 }
 
-.post-direct-content p
-{
-  white-space: pre-line;
-}
-
-.carousel-caption
-{
-  /* display:none; */
-}
-
-.post-item .carousel {
-    width: 200px;
-    margin-top: -15px;
-    margin-left: -15px;
-    margin-bottom: -15px;
-}
-
-.post-item .carousel-indicators 
-{
-    display: none;
-}

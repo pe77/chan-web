@@ -2,7 +2,7 @@ angular.module('chan.controllers')
 
 .controller('PostFormController', function($scope, $http, $rootScope, $filter, $stateParams, GenericService) 
 {
-    $scope.post = {
+    $scope.postForm = {
         content:''
     };
     
@@ -15,8 +15,13 @@ angular.module('chan.controllers')
             return;
         //
 
-        $scope.post.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
+        $scope.postForm.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
     });
+
+    $scope.setReply = function(post)
+    {
+        $scope.postForm.reply = post.id;
+    }
 
     var url = parameters.api_url + '/api/post/new';
 
@@ -57,10 +62,10 @@ angular.module('chan.controllers')
 
 
 
-    $scope.ImageSelect = function()
+    $scope.ImageSelect = function(selector)
     {
         // bypass
-        $("#file-select-input").trigger('click');
+        $(selector).trigger('click');
     }
 
     $scope.Send = function()
@@ -80,7 +85,7 @@ angular.module('chan.controllers')
 
                 return formData;
             },
-            data: { data: $scope.post, files: $scope.files }
+            data: { data: $scope.postForm, files: $scope.files }
         }).
         success(function (data, status, headers, config) {
             
@@ -90,7 +95,7 @@ angular.module('chan.controllers')
             // reseta as variavais
             $scope.files = [];
             $scope.filesPreview = [];
-            $scope.post.content = '';
+            $scope.postForm.content = '';
         }).
         error($rootScope.ResponseFail);
     }

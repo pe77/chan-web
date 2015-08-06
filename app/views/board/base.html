@@ -6,7 +6,7 @@
 
 <hr/>
 
-<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item">
+<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}">
 	<div class="panel panel-default timeline-block">
 
 	    <div class="panel-heading">
@@ -37,27 +37,47 @@
 
 
 		<div class="view-all-comments">
-          <a href="#">
-            <i class="fa fa-comments-o"></i> Ver tudo
-          </a>
-          <span>(7 respostas)</span>
+          	<a href="#" ng-if="post.replies_from.length">
+            	<i class="fa fa-comments-o"></i> Ver todas
+          	</a>
+        	<span ng-if="post.replies_from.length">({{post.replies_from.length}} respostas)</span>
 
           
           <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
         </div>
 
-		<ul class="comments">
-			<li class="comment-form">
-				<div class="input-group">
-
-					<input type="text" class="form-control" placeholder="Resposta Rapida">
-
-					<span class="input-group-btn">
-						<a href="" class="btn btn-default"><i class="fa fa-photo"></i></a>
-					</span>
-
+		<ul class="comments replies">
+			<li ng-repeat="reply in post.replies_from" class="comment-form reply">
+				<div class="media-left" ng-if="reply.r_from.files.length" >
+				
+					<carousel interval="999915000" no-wrap="false" >
+					<slide ng-repeat="file in reply.r_from.files" active="slide.active">
+							<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						</slide>
+					</carousel>
 				</div>
+					
+
+				<div class="media-body">
+					<expandable post="reply.r_from"></expandable>
+				</div>   
+
 			</li>
+
+			<li class="comment-form reply-dae" ng-controller="PostFormController" class="panel-body" ng-if="user.name" ng-init="setReply(post)">
+				<input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
+                <div class="input-group">
+                	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
+                    <span class="input-group-btn" ng-click="ImageSelect('.post-id-' + post.id + ' .reply-dae .image-input')">
+                   		<a href="" class="btn btn-default">{{ (files.length ? '('+files.length+')' : '') }}<i class="fa fa-photo"></i></a>
+                	</span>
+ 
+	            	<span class="input-group-btn" ng-click="Send()">
+	               		<a href="" class="btn btn-primary"><i class="fa fa-check"></i></a>
+	            	</span>
+               </div>
+            </li>
+
 		</ul>
 
 	</div>
