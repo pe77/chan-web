@@ -27,6 +27,7 @@ angular.module('chan.controllers')
 		//
 
 		$rootScope.errorMessageSend = false;
+		$rootScope.loading			  = false;
 
 		// mensagem de erro de conexção generica
 		alert('Erro ao tentar se conectar, tente novamente.');

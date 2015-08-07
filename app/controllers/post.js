@@ -42,8 +42,6 @@ angular.module('chan.controllers')
 
             $scope.setReply($scope.post);
 
-            console.log($scope.posts);
-
         }, $rootScope.ResponseFail);
     }
 

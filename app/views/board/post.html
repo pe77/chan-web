@@ -23,7 +23,8 @@
 			<div class="media-left" ng-if="post.files.length" >
 				<carousel interval="999915000" no-wrap="false" >
 				<slide ng-repeat="file in post.files" active="slide.active">
-						<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						</a>
 					</slide>
 				</carousel>
 			</div>
@@ -45,7 +46,8 @@
 				
 					<carousel interval="999915000" no-wrap="false" >
 					<slide ng-repeat="file in reply.r_from.files" active="slide.active">
-							<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+							<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+							</a>
 						</slide>
 					</carousel>
 				</div>
