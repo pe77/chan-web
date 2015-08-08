@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $state, $filter, $stateParams, GenericService) 
 {
 
 	$scope.posts = [];
@@ -19,6 +19,10 @@ angular.module('chan.controllers')
 	// atualiza
 	$scope.Update = function(reset)
 	{
+		$rootScope.loading = true;
+
+		reset = reset || false;
+
 		// pega os posts
 		GenericService.get({
 			route:'post',
@@ -26,22 +30,29 @@ angular.module('chan.controllers')
 			id:$stateParams.board
 		}, function(response){
 
-			if(response.status == 1)
-				$scope.posts = response.data;
-			//
+			$rootScope.loading = false;
 
-			console.log($scope.posts);
+			if(response.status == 1)
+				$scope.posts = reset ? response.data : $scope.posts.concat(response.data);
+			//
 
 		}, $rootScope.ResponseFail);
 	}
 
 
-	$scope.Open = function(board)
+	$scope.OpenPost = function(post)
 	{
-		alert('Open board:' + board);
+		$state.go('post', {board:$stateParams.board, post:post.id});
+
 	}
 
 	// atualiza a pagina TODA
 	$scope.Update();
+
+
+	// se algum post for criado, recarrega a pagina
+	$rootScope.$on("onPostCreate", function () {
+		$scope.Update(true);
+	});
 
 })

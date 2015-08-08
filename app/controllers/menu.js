@@ -1,12 +1,53 @@
 angular.module('chan.controllers')
 
-.controller('MenuController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('MenuControllerTop', function($scope, $rootScope, $filter, $stateParams, $interval, GenericService) 
 {
-	
-	// atualiza
-	$scope.Update = function(reset)
+	$scope.messages = [];
+
+
+	$scope.UpdateMessages = function()
 	{
-		// pega os posts
+		// caso não esteja logado
+		if(!$rootScope.signedIn)
+			return;
+		//
+
+		// pega as mensagens não visualizadas
+		GenericService.get({
+			route:'message',
+			action:'get'
+		}, function(response){
+
+		if(response.status == 1)
+			$scope.messages = response.data;
+		//
+
+		console.log($scope.messages);
+
+		}, $rootScope.ResponseFail);
+	}
+	// atualiza
+	intervalId = $interval(function() {
+		$scope.UpdateMessages();
+	}, $rootScope.parameters.messages_update_interval);
+
+	$scope.UpdateMessages();
+
+
+	$rootScope.$watch('signedIn', function(value){
+
+		if(value)
+			$scope.UpdateMessages();
+		//
+	});
+})
+
+.controller('MenuControllerSide', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+{
+	// atualiza
+	$scope.Update = function()
+	{
+		// pega as boards
 		GenericService.get({
 			route:'board',
 			action:'all'
@@ -16,15 +57,7 @@ angular.module('chan.controllers')
 				$rootScope.boards = response.data;
 			//
 
-			// console.log($rootScope.boards);
-
 		}, $rootScope.ResponseFail);
-	}
-
-
-	$scope.Open = function(board)
-	{
-		alert('Open board:' + board);
 	}
 
 	// atualiza o menu

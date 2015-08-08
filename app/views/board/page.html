@@ -1,0 +1,90 @@
+<h1 class="text-headline page-section-heading">{{board.title}}/{{board.shortcut_name}} - {{board.description}}</h1>
+
+
+
+<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController"></div>
+
+<hr/>
+
+<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}">
+	<div class="panel panel-default timeline-block">
+
+	    <div class="panel-heading">
+	          <div class="media" style="cursor: pointer" ng-click="OpenPost(post)">
+	            <div class="media-body">
+	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+	              	<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
+	            </div>
+	          </div>
+        </div>
+
+		<div class="panel-body">
+
+			<div class="media-left" ng-if="post.files.length" >
+				
+				<carousel interval="999915000" no-wrap="false" >
+				<slide ng-repeat="file in post.files" active="slide.active">
+						<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						</a>
+					</slide>
+				</carousel>
+			</div>
+			
+
+			<div class="media-body">
+
+				<expandable post="post"></expandable>
+			</div>   
+		</div>
+
+
+		<div class="view-all-comments">
+          	<a href="#" ng-if="post.replies_from.length">
+            	<i class="fa fa-comments-o"></i> Ver todas
+          	</a>
+        	<span ng-if="post.replies_from.length">(total de {{post.replies_from.length}} respostas)</span>
+
+          
+          <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
+        </div>
+
+		<ul class="comments replies">
+			<li ng-repeat="reply in post.replies_from" class="comment-form reply">
+				<div class="media-left" ng-if="reply.r_from.files.length" >
+				
+					<carousel interval="999915000" no-wrap="false" >
+					<slide ng-repeat="file in reply.r_from.files" active="slide.active">
+							<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+							</a>
+						</slide>
+					</carousel>
+				</div>
+					
+
+				<div class="media-body">
+					<expandable post="reply.r_from"></expandable>
+				</div>   
+
+			</li>
+
+			<li class="comment-form reply-dae" ng-controller="PostFormController" class="panel-body" ng-if="user.name" ng-init="setReply(post)">
+				<input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
+                <div class="input-group">
+                	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
+                    <span class="input-group-btn" ng-click="ImageSelect('.post-id-' + post.id + ' .reply-dae .image-input')">
+                   		<a href="" class="btn btn-default">{{ (files.length ? '('+files.length+')' : '') }}<i class="fa fa-photo"></i></a>
+                	</span>
+ 
+	            	<span class="input-group-btn" ng-click="Send()">
+	               		<a href="" class="btn btn-primary"><i class="fa fa-check"></i></a>
+	            	</span>
+               </div>
+            </li>
+
+		</ul>
+
+	</div>
+</div>
+
+
+</div>

@@ -1,0 +1,40 @@
+<div class="panel-body main-post-box" ng-if="user.name">
+    <div class="row text-right">
+
+      <div class="col-md-12 text-left">
+        <div class="form-group form-control-default">
+          <label for="exampleInputFirstName">Mensagem</label>
+          <textarea ng-model="postForm.content" class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+
+        <div class="col-md-6 text-left">
+          <img ng-repeat="filedata in filesPreview" src="{{filedata}}" style="
+    height: 50px;
+    margin-right: 5px;
+        max-width: 50px;
+">
+        </div>
+
+        <div class="col-md-6 text-right">
+          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> Adicionar Imagem {{ (files.length ? '('+files.length+')' : '') }} </button> 
+          <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Submeter</button>
+        </div>
+
+
+        
+
+
+      </div>
+
+
+      <input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
+
+    </div>
+</div>
+
+<div class="panel-body text-center" ng-if="!user.name">
+	<google-plus-signin ng-if="!signedIn" language="pt-BR" clientid="{{parameters.google_api_key}}"></google-plus-signin>
+</div>
