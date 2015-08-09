@@ -154,7 +154,7 @@ app.directive('mask', ['$interval', 'dateFilter', function($interval, dateFilter
 }]);
 
 
-app.directive('expandable', ['$timeout',function($timeout) {
+app.directive('expandable', ['$timeout',function($timeout, $sce) {
   return {
     restrict: 'E',
     terminal : true,
@@ -174,7 +174,11 @@ app.directive('expandable', ['$timeout',function($timeout) {
             $(element).find('.post-direct-content > div').append('<div class="expandable-indicator"><i></i></div>');
           }
 
+
+
+
       }, 10);
+
     },
     templateUrl: base_url + '/app/views/post/content.html'
   };

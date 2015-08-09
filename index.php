@@ -36,11 +36,17 @@
 
 
 <!-- Bibliotecas -->
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/ckeditor/ckeditor.js"></script>
+
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-file-upload.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
+	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/ng-ckeditor.min.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
+
+
+	
 	
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
   

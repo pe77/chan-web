@@ -93,7 +93,7 @@ angular.module('chan.controllers')
             
             $rootScope.loading = false;
 
-            $rootScope.Alert(data.message);
+            // $rootScope.Alert(data.message);
             $rootScope.$emit('onPostCreate');
 
             // reseta as variavais

@@ -4,7 +4,9 @@ var app = angular.module('chan',
 		'chan.services',
 		'ui.router',
 		'ui.bootstrap',
-		'directive.g+signin'
+		'directive.g+signin',
+		'ngSanitize',
+		'ngCkeditor'
 	]
 );
 
