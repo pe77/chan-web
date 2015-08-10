@@ -134,7 +134,7 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li class="dropdown notifications updates" ng-if="user.name">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                      <a href="#" class="dropdown-toggle" ng-click="Mark()" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o"></i>
                         <span ng-if="messages.length" class="badge badge-primary">{{messages.length}}</span>
                       </a>
@@ -165,7 +165,6 @@
             </li>
           </ul>
 
-
           
       </div>
     </div>
@@ -173,66 +172,53 @@
 
 
   <!-- MENU LATERAL -->
-  <div ng-controller="MenuControllerSide" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id=sidebar-menu data-type=dropdown>
+  <div ng-controller="MenuControllerSide" class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop sidebar-visible-mobile" id="sidebar-menu" data-type="collapse">
     <div data-scrollable>
 
-      <ul class="sidebar-menu sm-icons-block sm-icons-right">
-        <li class="active"><a href=""><i class="fa fa-home"></i> <span>Sample Menu</span></a></li>
+      <ul class="sidebar-menu sm-icons-right">
+        <li><a href=""><i class="fa fa-home"></i> <span>Home</span></a></li>
+        
         <li class="hasSubmenu">
-          <a href="#submenu"><i class="fa fa-bar-chart-o"></i> <span>Submenu</span></a>
+          <a href="#submenu"><i class="fa fa-list"></i><span>Boards</span></a>
           <ul id="submenu">
-            <li><a href=""><span>Sample Menu</span></a></li>
-            <li><a href=""><span>Sample Menu</span></a></li>
+            <li ng-repeat="board in boards"><a href="#/board/{{board.shortcut_name}}"><i class="fa {{board.icon}}"></i><span>{{board.title}}</span></a></li>
           </ul>
         </li>
-        <li><a href=""><i class="fa fa-star"></i> <span>Sample Menu</span></a></li>
-        <li><a href=""><i class="fa fa-sliders"></i> <span>Sample Menu</span></a></li>
+
+        <li class=""><a href="#"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
+
       </ul>
-      <h4 class="category">Sample Heading</h4>
-      <div class="sidebar-block">
-        <p>To see all the various sidebar content elements, including submenu types</p>
-        <p><a href="../sidebar/index.html" class="btn btn-default btn-block">see the Sidebar Kit</a></p>
-        <p>Also, check out these awesome</p>
-        <a href="../sidebar/transitions.html" class="btn btn-default btn-block">Sidebar Transitions</a>
+
+
+
+
+
+
+      <h4 class="category border top" ng-if="user.name">Últimas Mensagens</h4>
+      <div class="sidebar-block" ng-if="user.name">
+        <ul class="sidebar-feed">
+          
+          <li class="media" ng-repeat="message in lastMessages">
+            <div class="media-left">
+              <span class="media-object">
+                          <i class="fa fa-fw fa-bell"></i>
+                      </span>
+            </div>
+            <div class="media-body">
+              {{message.message}}
+              <span class="text-caption time text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
+            </div>
+          </li>
+
+
+
+        </ul>
       </div>
-      <h4 class="category">Scrollable</h4>
-      <div class="sidebar-block">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus facilis quia voluptates! Iure, quibusdam ratione sunt unde ut vero voluptatibus.</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>Bottom of scrollable content</p>
-      </div>
+
+
+
+
+
     </div>
   </div>
 

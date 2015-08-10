@@ -4,6 +4,7 @@ angular.module('chan.controllers')
 {
 	$scope.messages = [];
 
+	$scope.mark = true;
 
 	$scope.UpdateMessages = function()
 	{
@@ -18,14 +19,32 @@ angular.module('chan.controllers')
 			action:'get'
 		}, function(response){
 
-		if(response.status == 1)
-			$scope.messages = response.data;
+			if(response.status == 1)
+				$scope.messages = response.data;
+			//
+
+			$scope.mark = false;
+
+		}); // se der erro foda-se
+	}
+
+	$scope.Mark = function()
+	{
+		if(!$scope.messages.length || $scope.mark)
+			return;
 		//
 
-		console.log($scope.messages);
+		// marca as mensagens como visualizadas
+		GenericService.get({
+			route:'message',
+			action:'mark'
+		}, function(response){
 
-		}, $rootScope.ResponseFail);
+			$scope.mark = true;
+
+		}); // se der erro foda-se
 	}
+
 	// atualiza
 	intervalId = $interval(function() {
 		$scope.UpdateMessages();
@@ -44,6 +63,8 @@ angular.module('chan.controllers')
 
 .controller('MenuControllerSide', function($scope, $rootScope, $filter, $stateParams, GenericService) 
 {
+	$scope.lastMessages = [];
+
 	// atualiza
 	$scope.Update = function()
 	{
@@ -60,7 +81,42 @@ angular.module('chan.controllers')
 		}, $rootScope.ResponseFail);
 	}
 
+
+	$scope.UpdateLastMessages = function()
+	{
+		// caso não esteja logado
+		if(!$rootScope.signedIn)
+			return;
+		//
+
+		// pega as ultimas 15
+		GenericService.get({
+			route:'message',
+			action:'all'
+		}, function(response){
+
+			if(response.status == 1)
+				$scope.lastMessages = response.data;
+			//
+
+			console.log($scope.lastMessages);
+
+		}); // se der erro foda-se
+
+	}
+
 	// atualiza o menu
 	$scope.Update();
+
+	// ultimas mensagens
+	$scope.UpdateLastMessages();
+
+
+	$rootScope.$watch('signedIn', function(value){
+
+		if(value)
+			$scope.UpdateLastMessages();
+		//
+	});
 
 })
