@@ -177,6 +177,11 @@
 
       <ul class="sidebar-menu sm-icons-right">
         <li><a href=""><i class="fa fa-home"></i> <span>Home</span></a></li>
+
+        
+
+        <li><a href=""><i class="fa fa-newspaper-o"></i> <span>Notícias</span></a></li>
+
         
         <li class="hasSubmenu">
           <a href="#submenu"><i class="fa fa-list"></i><span>Boards</span></a>
@@ -185,7 +190,8 @@
           </ul>
         </li>
 
-        <li class=""><a href="#"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
+        <li ng-if="user.name"><a href="#"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
+        <li><a href=""><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
 
       </ul>
 

@@ -7,6 +7,7 @@ angular.module('chan.controllers')
     $scope.board = {};
 
     $scope.setReply = Function;
+    $scope.addReply = Function;
 
     $rootScope.$watch('boards', function(){
 
@@ -46,9 +47,16 @@ angular.module('chan.controllers')
     }
 
 
-    $scope.onLoadPostForm = function(setReply)
+    $scope.OpenQuote = function(id)
+    {
+        alert('OpenQuote: ' + id)
+    }
+
+    // bypass
+    $scope.onLoadPostForm = function(setReply, AddReply)
     {
         $scope.setReply = setReply;
+        $scope.addReply = AddReply;
     }
 
 

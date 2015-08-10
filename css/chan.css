@@ -315,3 +315,22 @@ body {
 {
         margin-left: 15px;
 }
+
+.replies .media-body .info
+{
+    float: right;
+    position: relative;
+    /* top: -10px; */
+    /* bottom: 50px; */
+    z-index: 10;
+    padding: 10px;
+    color: white;
+    background-color: #7BA580;
+    cursor:pointer;
+}
+
+.replies .media-body .info .text-title
+{
+    font-size: 1.00rem;
+    font-weight: 800;
+}

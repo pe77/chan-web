@@ -2,7 +2,7 @@
 
 
 
-<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply)"></div>
+<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
 
 <hr/>
 
@@ -31,7 +31,7 @@
 			
 
 			<div class="media-body">
-				<expandable post="post"></expandable>
+				<postcontent post="post"></postcontent>
 			</div>   
 		</div>
 
@@ -55,7 +55,12 @@
 					
 
 				<div class="media-body">
-					<expandable post="reply.r_from"></expandable>
+					
+					<div class="info" ng-click="addReply(reply)">
+						<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.id}}</span>
+					</div>
+
+					<postcontent post="reply.r_from"></postcontent>
 				</div>   
 
 			</li>

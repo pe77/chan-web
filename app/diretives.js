@@ -154,7 +154,7 @@ app.directive('mask', ['$interval', 'dateFilter', function($interval, dateFilter
 }]);
 
 
-app.directive('expandable', ['$timeout',function($timeout, $sce) {
+app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
   return {
     restrict: 'E',
     terminal : true,
@@ -163,6 +163,9 @@ app.directive('expandable', ['$timeout',function($timeout, $sce) {
     },
     link: function(scope, element)
     {
+
+
+      // paradinha de recolher textos grandes
       $timeout(function () {
           // console.log($(element).find('.post-direct-content > div').height() + ' :: ' + scope.post.id);
           var h = $(element).find('.post-direct-content > div').height();
@@ -173,14 +176,74 @@ app.directive('expandable', ['$timeout',function($timeout, $sce) {
             $(element).find('.post-direct-content > div').addClass('expandable-content expandable-content-large');
             $(element).find('.post-direct-content > div').append('<div class="expandable-indicator"><i></i></div>');
           }
+      }, 10); // so idh  -9as8 as98d
 
+      /// console.log(scope);
 
+      // marca quotes
+      scope.$watch('post', function(post){
+        
 
+        if(post.content && post.content.indexOf('#') > -1)
+        {
+          // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
+          var matches = post.content.match(/^#(\d+)/mg);
 
-      }, 10);
+          for (var i = matches.length - 1; i >= 0; i--) 
+          {
+            var content = 
+              post.content.replace(
+                new RegExp(matches[i],"g"), 
+                '<span class="post-content-quote" ng-click="OpenQuote(5)">' + matches[i] + '</span>'
+              );
+            
+              post.content = content;
+              
+            // $sce.trustAsHtml();
+            // console.log($sce.trustAsHtml(content));
+          };
+
+          post.content = $sce.trustAsHtml(content)
+
+          $timeout(function () {
+
+            $('.post-content-quote').each(function(){
+                var hashId = $(this).text();
+                // $(this).replaceWith('<quote>'+hashId+'</quote>');
+
+                // scope.$apply()
+            });
+
+            
+
+            /*
+            $('.post-content-quote').click(function(){
+                // scope.OpenQuote(30)
+                // console.log(scope);
+                $(this).html('------')
+            });
+*/
+          }, 10);
+
+          // post.content = $sce.trustAsHtml(post.content);
+        }
+      });
 
     },
     templateUrl: base_url + '/app/views/post/content.html'
+  };
+}]);
+
+
+
+app.directive('quote', ['$timeout', '$sce',function($timeout, $sce) {
+  
+  return {
+    restrict: 'E',
+    link: function(scope, elem, attrs){
+      console.log('find');
+
+    }
   };
 }]);
 

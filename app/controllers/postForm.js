@@ -23,6 +23,14 @@ angular.module('chan.controllers')
         $scope.postForm.reply = post.id;
     }
 
+
+    $scope.addReply = function(post)
+    {
+        $scope.postForm.content += ($scope.postForm.content == "" ? "#" : "\n#") + post.id;
+        // console.log($scope.postForm);
+        // $scope.$apply();
+    }
+
     var url = parameters.api_url + '/api/post/new';
 
     $scope.$on("fileSelected", function (event, args) {
