@@ -6,7 +6,7 @@
 
 <hr/>
 
-<div class="item col-md-12 col-xs-12 post-item post-page post-id-{{post.id}}">
+<div class="item col-md-12 col-xs-12 post-item post-page post-id-{{post.id}}" >
 
 	<div class="panel panel-default timeline-block">
 
@@ -56,12 +56,22 @@
 
 				<div class="media-body">
 					
-					<div class="info" ng-click="addReply(reply)">
-						<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.id}}</span>
+					<div class="info">
+
+						<div class="quotes" ng-if="reply.r_from.quotes">
+							<span class="quote" ng-repeat="quote in reply.r_from.quotes" quotepreview><i class="fa fa-reply"></i>{{quote}}</span>
+						</div>
+
+						<span ng-click="addReply(reply.r_from)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.r_from.id}}</span>
+
+						
 					</div>
 
 					<postcontent post="reply.r_from"></postcontent>
+
 				</div>   
+
+				
 
 			</li>
 

@@ -3,10 +3,12 @@ var app = angular.module('chan',
 		'chan.controllers',
 		'chan.services',
 		'ui.router',
-		'ui.bootstrap',
+		"ui.bootstrap.tpls",
+		'ui.bootstrap.carousel',
 		'directive.g+signin',
 		'ngSanitize',
-		'ngCkeditor'
+		'ngAnimate',
+		'mgcrea.ngStrap'
 	]
 );
 

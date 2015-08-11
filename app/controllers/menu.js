@@ -99,8 +99,6 @@ angular.module('chan.controllers')
 				$scope.lastMessages = response.data;
 			//
 
-			console.log($scope.lastMessages);
-
 		}); // se der erro foda-se
 
 	}

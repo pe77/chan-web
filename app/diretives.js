@@ -159,76 +159,61 @@ app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
     restrict: 'E',
     terminal : true,
     scope: {
-      post: '=post'
+      post: '='
     },
-    link: function(scope, element)
-    {
-
-
-      // paradinha de recolher textos grandes
-      $timeout(function () {
-          // console.log($(element).find('.post-direct-content > div').height() + ' :: ' + scope.post.id);
-          var h = $(element).find('.post-direct-content > div').height();
-      
-          if(h > 300)
-          {
-            $(element).find('.post-direct-content').addClass('expandable expandable-trigger');
-            $(element).find('.post-direct-content > div').addClass('expandable-content expandable-content-large');
-            $(element).find('.post-direct-content > div').append('<div class="expandable-indicator"><i></i></div>');
-          }
-      }, 10); // so idh  -9as8 as98d
-
-      /// console.log(scope);
-
-      // marca quotes
-      scope.$watch('post', function(post){
+    link: {
+      pre:function(scope, element)
+      {
+        // paradinha de recolher textos grandes
+        $timeout(function () {
+            var h = $(element).find('.post-direct-content > div').height();
         
+            if(h > 300)
+            {
+              $(element).find('.post-direct-content').addClass('expandable expandable-trigger');
+              $(element).find('.post-direct-content > div').addClass('expandable-content expandable-content-large');
+              $(element).find('.post-direct-content > div').append('<div class="expandable-indicator"><i></i></div>');
+            }
+        }, 10); // so idh  -9as8 as98d
 
-        if(post.content && post.content.indexOf('#') > -1)
-        {
-          // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
-          var matches = post.content.match(/^#(\d+)/mg);
+        // marca quotes
+        scope.$watch('post', function(post){
 
-          for (var i = matches.length - 1; i >= 0; i--) 
+          if(post.content && post.content.indexOf('#') > -1)
           {
-            var content = 
-              post.content.replace(
-                new RegExp(matches[i],"g"), 
-                '<span class="post-content-quote" ng-click="OpenQuote(5)">' + matches[i] + '</span>'
-              );
-            
-              post.content = content;
+            // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
+            var matches = post.content.match(/^#(\d+)/mg);
+
+            for (var i = matches.length - 1; i >= 0; i--) 
+            {
+              var postId = matches[i].replace(/#/g, "");
+              var content = 
+                post.content.replace(
+                  new RegExp(matches[i],"g"), 
+                  '<span class="post-content-quote">' + matches[i] + '</span>'
+                );
+
+                scope.$parent.$parent.AddQuoteReply(post.id, postId);
               
-            // $sce.trustAsHtml();
-            // console.log($sce.trustAsHtml(content));
-          };
+                post.content = content;
+            };
 
-          post.content = $sce.trustAsHtml(content)
+            post.content = $sce.trustAsHtml(content)
 
-          $timeout(function () {
+            // click pra abrir o preview do post
+            $timeout(function () {
 
-            $('.post-content-quote').each(function(){
-                var hashId = $(this).text();
-                // $(this).replaceWith('<quote>'+hashId+'</quote>');
+              $('.post-content-quote').click(function(){
+                  var postId = $(this).html().replace(/#/g, "");
+                  scope.$parent.$parent.OpenQuote(postId);
+              });
 
-                // scope.$apply()
-            });
+            }, 10);
 
-            
+          }
+        });
 
-            /*
-            $('.post-content-quote').click(function(){
-                // scope.OpenQuote(30)
-                // console.log(scope);
-                $(this).html('------')
-            });
-*/
-          }, 10);
-
-          // post.content = $sce.trustAsHtml(post.content);
-        }
-      });
-
+      }
     },
     templateUrl: base_url + '/app/views/post/content.html'
   };
@@ -236,13 +221,22 @@ app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
 
 
 
-app.directive('quote', ['$timeout', '$sce',function($timeout, $sce) {
+app.directive('quotepreview', ['$popover',function($popover) {
   
   return {
-    restrict: 'E',
+    restrict: 'A',
     link: function(scope, elem, attrs){
-      console.log('find');
+      // console.log('find');
 
+      // console.log(elem)
+      var myPopover = $popover(elem, {
+          title: 'My Title', 
+          content: 'My Content', 
+          trigger: 'hover', 
+          animation:'am-fade',
+          placement:'auto'
+      });
+      // myPopover.show();
     }
   };
 }]);

@@ -323,14 +323,31 @@ body {
     /* top: -10px; */
     /* bottom: 50px; */
     z-index: 10;
-    padding: 10px;
-    color: white;
-    background-color: #7BA580;
-    cursor:pointer;
 }
 
 .replies .media-body .info .text-title
 {
     font-size: 1.00rem;
     font-weight: 800;
+    cursor:pointer;
+    color: white;
+    background-color: #7BA580;
+    padding: 6px;
+}
+
+
+.replies .media-body .info .quotes
+{
+    float: left;
+    margin-right: 10px;
+    margin-top: -6px;
+}
+
+.replies .media-body .info .quotes .quote
+{
+    padding: 3px;
+    margin-right: 5px;
+    background-color: rgb(123, 165, 128);
+    color: white;
+    font-size: 0.9rem;
 }

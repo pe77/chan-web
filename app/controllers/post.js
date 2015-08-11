@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('PostController', function($scope, $rootScope, $filter, $stateParams, $popover, GenericService) 
 {
 
     $scope.post = [];
@@ -17,7 +17,13 @@ angular.module('chan.controllers')
 
         $scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
     });
+
+
+    // console.log($popover);
+
     
+
+
     // atualiza
     $scope.Update = function()
     {
@@ -29,8 +35,6 @@ angular.module('chan.controllers')
             id:$stateParams.post,
             scope:'PostPage'
         };
-
-        console.log(data);
 
         // pega os posts
         GenericService.get(data, function(response){
@@ -46,10 +50,25 @@ angular.module('chan.controllers')
         }, $rootScope.ResponseFail);
     }
 
+    $scope.AddQuoteReply = function(from, to)
+    {
+        for (var i = $scope.post.replies_from.length - 1; i >= 0; i--) {
+            var post = $scope.post.replies_from[i].r_from;
+            if(post.id == to)
+            {
+                post.quotes = post.quotes == undefined ? [] : post.quotes;
+                post.quotes.push(from);
+            }
+        };
+    }
 
-    $scope.OpenQuote = function(id)
+    $scope.OpenQuote = function(id, $event)
     {
         alert('OpenQuote: ' + id)
+        
+        console.log($event);
+        // var myPopover = $popover($event.target, {title: 'My Title', content: 'My Content', trigger: 'manual'});
+        // myPopover.show();
     }
 
     // bypass

@@ -36,19 +36,20 @@
 
 
 <!-- Bibliotecas -->
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/ckeditor/ckeditor.js"></script>
-
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/ng-ckeditor.min.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
-
+  <script src="//cdn.jsdelivr.net/angularjs/1.4.2/angular-animate.min.js" data-semver="1.4.2"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
 
 	
 	
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
+  
   
 	<script type="text/javascript">
     	var base_url = '<?php echo $baseUrl?>';
@@ -62,6 +63,7 @@
 	<script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js"></script>
 	<script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js"></script>
 	<script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js"></script>
+
 
 	<!-- Controles -->
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
