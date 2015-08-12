@@ -351,3 +351,9 @@ body {
     color: white;
     font-size: 0.9rem;
 }
+
+.replies .media-body .info .quotes .quote .fa
+{
+    padding-right: 5px;
+}
+}

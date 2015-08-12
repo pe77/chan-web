@@ -19,11 +19,6 @@ angular.module('chan.controllers')
     });
 
 
-    // console.log($popover);
-
-    
-
-
     // atualiza
     $scope.Update = function()
     {
@@ -47,9 +42,13 @@ angular.module('chan.controllers')
 
             $scope.setReply($scope.post);
 
+
+            console.log($scope.post);
+
         }, $rootScope.ResponseFail);
     }
 
+    // marca o post 'to' com oo quotados
     $scope.AddQuoteReply = function(from, to)
     {
         for (var i = $scope.post.replies_from.length - 1; i >= 0; i--) {
@@ -62,11 +61,29 @@ angular.module('chan.controllers')
         };
     }
 
-    $scope.OpenQuote = function(id, $event)
+
+    // preview do quote quando passa o dedinho e/ou clica, retorna o post, se houver
+    $scope.SearchPost = function(id)
     {
-        alert('OpenQuote: ' + id)
+        // verifica se é o post principal
+        if($scope.post.id == id)
+            return $scope.post;
+        //
+
+        // procura nas respostas
+        for (var i = $scope.post.replies_from.length - 1; i >= 0; i--) 
+        {
+            // console.log('=');
+            if($scope.post.replies_from[i].r_from.id == id)
+                return $scope.post.replies_from[i].r_from;
+            //
+        };
+
+        return false;
+
+        // tenta achar o post
         
-        console.log($event);
+        // console.log($event);
         // var myPopover = $popover($event.target, {title: 'My Title', content: 'My Content', trigger: 'manual'});
         // myPopover.show();
     }

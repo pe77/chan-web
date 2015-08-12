@@ -44,4 +44,48 @@ angular.module('chan.services', ['ngResource'])
 
     return data;
 })
+
+.factory('$createPopover', ['$popover', function($popover) {
+  return {
+    create: function(post, elem, trigger, placement) {
+
+      
+      trigger = trigger || 'hover'; // ativador
+      placement = placement || 'auto'; // onde vai abrir
+
+      // conteudo do post
+      var content = post.content;
+      var image = false;
+
+      // verifica se tem image, se houver, mostra o preview da primeira
+      if(post.files.length)
+      {
+        // procura uma imagem entre os arquivos
+        for (var i = 0; i < post.files.length; i++) {
+
+          if(post.files[i].is_image)
+          {
+            
+            image = parameters.file_path + '/' + post.files[i].image_path_preview;
+            break;
+          }
+        };
+      }
+
+      if(image)
+        content = '<img src="' + image + '">' + content;
+      // 
+      
+      var popOver = $popover(elem, {
+          content: content, 
+          html:true,
+          trigger: trigger, 
+          animation:'am-flip-x',
+          placement:placement
+      });
+
+    }
+  }
+}])
+
 ;

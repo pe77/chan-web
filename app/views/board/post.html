@@ -59,15 +59,15 @@
 					<div class="info">
 
 						<div class="quotes" ng-if="reply.r_from.quotes">
-							<span class="quote" ng-repeat="quote in reply.r_from.quotes" quotepreview><i class="fa fa-reply"></i>{{quote}}</span>
+							<span class="quote" ng-repeat="quote in reply.r_from.quotes" quotepreview quote="quote" search-post="SearchPost(id)"><i class="fa fa-reply"></i>{{quote}}</span>
 						</div>
 
 						<span ng-click="addReply(reply.r_from)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.r_from.id}}</span>
-
 						
 					</div>
 
-					<postcontent post="reply.r_from"></postcontent>
+
+					<postcontent post="reply.r_from" on-back-quote="AddQuoteReply(from, to)" search-post="SearchPost(id)"></postcontent>
 
 				</div>   
 

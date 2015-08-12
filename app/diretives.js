@@ -154,15 +154,17 @@ app.directive('mask', ['$interval', 'dateFilter', function($interval, dateFilter
 }]);
 
 
-app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
+app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($timeout, $createPopover, $sce) {
   return {
     restrict: 'E',
     terminal : true,
-    scope: {
-      post: '='
+    scope: { 
+      post: '=',
+      searchPost: '&',
+      onBackQuote: '&'
     },
     link: {
-      pre:function(scope, element)
+      pre:function(scope, element, isolatedScope)
       {
         // paradinha de recolher textos grandes
         $timeout(function () {
@@ -176,7 +178,7 @@ app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
             }
         }, 10); // so idh  -9as8 as98d
 
-        // marca quotes
+        // add os backquotes
         scope.$watch('post', function(post){
 
           if(post.content && post.content.indexOf('#') > -1)
@@ -190,28 +192,42 @@ app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
               var content = 
                 post.content.replace(
                   new RegExp(matches[i],"g"), 
-                  '<span class="post-content-quote">' + matches[i] + '</span>'
+                  '<span class="post-content-quote quote-post-' + postId + '">' + matches[i] + '</span>'
                 );
 
-                scope.$parent.$parent.AddQuoteReply(post.id, postId);
+                scope.onBackQuote({from:post.id, to:postId});
               
                 post.content = content;
+
             };
 
-            post.content = $sce.trustAsHtml(content)
-
-            // click pra abrir o preview do post
-            $timeout(function () {
-
-              $('.post-content-quote').click(function(){
-                  var postId = $(this).html().replace(/#/g, "");
-                  scope.$parent.$parent.OpenQuote(postId);
-              });
-
-            }, 10);
-
+            post.content = $sce.trustAsHtml(content);
           }
         });
+
+        $timeout(function () {
+
+          // popver dos quotes dentro do post
+          $('.post-content-quote').each(function(){
+
+
+              if($(this).data('hasquote')) // bugfix | multiplos popovers
+                return
+              // 
+
+              var postId = $(this).html().replace(/#/g, "");
+
+              var postQuote = scope.searchPost({id:postId});
+              var elem = angular.element(this);
+
+              if(postQuote)
+                $createPopover.create(postQuote, elem, false, 'right');
+              //
+
+              $(this).data('hasquote', true);
+          });
+        }, 100); // so idh  -21d6q daq66fj
+
 
       }
     },
@@ -221,22 +237,23 @@ app.directive('postcontent', ['$timeout', '$sce',function($timeout, $sce) {
 
 
 
-app.directive('quotepreview', ['$popover',function($popover) {
+app.directive('quotepreview', ['$createPopover',function($createPopover) {
   
   return {
     restrict: 'A',
+    scope: {
+      searchPost: '&',
+      quote:'='
+    },
     link: function(scope, elem, attrs){
-      // console.log('find');
 
-      // console.log(elem)
-      var myPopover = $popover(elem, {
-          title: 'My Title', 
-          content: 'My Content', 
-          trigger: 'hover', 
-          animation:'am-fade',
-          placement:'auto'
-      });
-      // myPopover.show();
+      // procura os posts quotados
+      var post = scope.searchPost({id:scope.quote});
+      
+      // se o post existir, cria o popover
+      if(post)
+        $createPopover.create(post, elem, false, 'left')
+      // 
     }
   };
 }]);
