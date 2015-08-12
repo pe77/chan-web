@@ -192,7 +192,7 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
               var content = 
                 post.content.replace(
                   new RegExp(matches[i],"g"), 
-                  '<span class="post-content-quote quote-post-' + postId + '">' + matches[i] + '</span>'
+                  '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"> <i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
                 );
 
                 scope.onBackQuote({from:post.id, to:postId});
@@ -201,7 +201,7 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
 
             };
 
-            post.content = $sce.trustAsHtml(content);
+            // post.content = $sce.trustAsHtml(content);
           }
         });
 
@@ -215,7 +215,8 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
                 return
               // 
 
-              var postId = $(this).html().replace(/#/g, "");
+              // remove os não numericos e extrai o ID
+              var postId = $(this).html().replace(/\D/g, "");
 
               var postQuote = scope.searchPost({id:postId});
               var elem = angular.element(this);

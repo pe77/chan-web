@@ -356,4 +356,14 @@ body {
 {
     padding-right: 5px;
 }
+
+.post-content-quote
+{
+    color: #884C13;
+    font-weight: 600;
+}
+
+.post-content-quote .fa
+{
+    color:red;
 }
