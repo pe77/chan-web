@@ -20,8 +20,6 @@ angular.module('chan.controllers')
 
 	$rootScope.ResponseFail = function(response)
 	{
-		console.log(response);
-
 		if($rootScope.errorMessageSend)
 			return;
 		//
