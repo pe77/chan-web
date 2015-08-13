@@ -186,20 +186,26 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
             // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
             var matches = post.content.match(/^#(\d+)/mg);
 
-            for (var i = matches.length - 1; i >= 0; i--) 
+            if(matches)
             {
-              var postId = matches[i].replace(/#/g, "");
-              var content = 
-                post.content.replace(
-                  new RegExp(matches[i],"g"), 
-                  '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"> <i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
-                );
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+                var postId = matches[i].replace(/#/g, "");
+                var content = 
+                  post.content.replace(
+                    new RegExp(matches[i],"g"), 
+                    '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"> <i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
+                  );
 
-                scope.onBackQuote({from:post.id, to:postId});
+                  scope.onBackQuote({from:post.id, to:postId});
+                
+                  post.content = content;
+
+              };
+            }else{
+              // se não achar, tenta procurar na api
               
-                post.content = content;
-
-            };
+            }
 
             // post.content = $sce.trustAsHtml(content);
           }
