@@ -154,7 +154,7 @@ app.directive('mask', ['$interval', 'dateFilter', function($interval, dateFilter
 }]);
 
 
-app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($timeout, $createPopover, $sce) {
+app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',function($timeout, $createPopover, $rootScope) {
   return {
     restrict: 'E',
     terminal : true,
@@ -166,6 +166,7 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
     link: {
       pre:function(scope, element, isolatedScope)
       {
+        var tagRegex = /(.?|^|\s)#([A-Za-z_]+)([A-Za-z_0-9]*)/mg;
         // paradinha de recolher textos grandes
         $timeout(function () {
             var h = $(element).find('.post-direct-content > div').height();
@@ -183,22 +184,21 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
 
           if(post.content && post.content.indexOf('#') > -1)
           {
-            // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
-            var matches = post.content.match(/(.?|^|\s)#(\d+)/mg);
 
+
+            // quotes
+            var matches = post.content.match(/(.?|^|\s)#(\d+)/mg);
             if(matches)
             {
-              console.log(matches);
               for (var i = matches.length - 1; i >= 0; i--) 
               {
                 var postId = matches[i].replace(/#/g, "");
                 postId = matches[i].replace(/\D/g,'');
 
-                console.log(postId)
                 var content = 
                   post.content.replace(
                     new RegExp('#'+postId,"g"), 
-                    '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"> <i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
+                    '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"><i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
                   );
 
                   scope.onBackQuote({from:post.id, to:postId});
@@ -206,12 +206,29 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
                   post.content = content;
 
               };
-            }else{
-              // se não achar, tenta procurar na api
-              
             }
 
-            // post.content = $sce.trustAsHtml(content);
+            // tags
+            var matches = post.content.match(tagRegex);
+            if(matches)
+            {
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+                var tag = matches[i].replace(/#/g, "");
+                tag     = tag.replace(/[^\w_]/gi, ''); // remove tudo que não for alphanumerico e underline
+
+                var content = 
+                  post.content.replace(
+                    new RegExp('#'+tag,"g"), 
+                    '<span class="post-content-tag"><i class="fa fa-fw fa-slack"></i>' + tag + '</span>'
+                  );
+                
+                  post.content = content;
+
+              };
+
+            }
+
           }
         });
 
@@ -237,6 +254,18 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
 
               $(this).data('hasquote', true);
           });
+
+          // popver dos quotes dentro do post
+          $('.post-content-tag').unbind().click(function(){
+
+
+              // remove os não numericos e extrai o ID
+              var tag = $(this).text();
+              
+              $rootScope.$emit('onSearchTag', tag, true); // true == dispara procura
+          });
+
+
         }, 100); // so idh  -21d6q daq66fj
 
 

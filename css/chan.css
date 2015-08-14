@@ -363,7 +363,9 @@ body {
     font-weight: 600;
 }
 
-.post-content-quote .fa
+.post-content-tag
 {
-    /* color:red; */
+    color: #5026A2;
+    font-weight: 600;
+    cursor:pointer;
 }

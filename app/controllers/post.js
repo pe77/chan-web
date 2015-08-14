@@ -60,6 +60,7 @@ angular.module('chan.controllers')
                 // garante que não add duplicados
                 if(post.quotes.indexOf(from) < 0)
                     post.quotes.push(from);
+                //
             }
         };
     }
@@ -107,5 +108,14 @@ angular.module('chan.controllers')
     $rootScope.$on("onPostCreate", function () {
         $scope.Update();
     });
+
+    // testando o evento de procura por tags
+    /*
+    $rootScope.$on("onSearchTag", function (event, tag, search) {
+        search = search || false;
+        
+        console.log('onSearchTag: '+ tag+ '|' + search);
+    }); 
+    */
 
 })
