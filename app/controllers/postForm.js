@@ -101,6 +101,15 @@ angular.module('chan.controllers')
             
             $rootScope.loading = false;
 
+            // exibe erro se houver
+            if(!$rootScope.ResponseErrorHandler(data, [0], false))
+            {
+                // exibe os erros
+                $rootScope.Alert(data.data.toString());
+                return;
+            }
+            //
+
             // $rootScope.Alert(data.message);
             $rootScope.$emit('onPostCreate');
 

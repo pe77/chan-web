@@ -14,6 +14,7 @@ angular.module('chan.controllers')
 
 	$rootScope.Alert = function(message, type, autoHide, hideDelay)
 	{
+
 		alert(message);
 		return;
 	}
@@ -33,12 +34,12 @@ angular.module('chan.controllers')
 		$rootScope.errorMessageSend = true;
 	}
 
-	$rootScope.ResponseErrorHandler = function(response, status, autoHide)	
+	$rootScope.ResponseErrorHandler = function(response, status, showError)	
 	{
 
 		// status de erro padrão 0' zero
-		status 		= status || [0];
-		autoHide	= autoHide == undefined ? true : autoHide;
+		status 			= status || [0];
+		showError 		= (typeof showError !== 'undefined') ? showError : true;
 
 		if(status.contains(response.status))
 		{
@@ -50,7 +51,10 @@ angular.module('chan.controllers')
 			}
 
 			// exibe a mensagem  de erro
-			$rootScope.Alert(response.message, 'warning', autoHide);
+			if(showError)
+				$rootScope.Alert(response.message, 'warning');
+			//
+
 			return false;
 		}
 
