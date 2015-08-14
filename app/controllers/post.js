@@ -56,7 +56,10 @@ angular.module('chan.controllers')
             if(post.id == to)
             {
                 post.quotes = post.quotes == undefined ? [] : post.quotes;
-                post.quotes.push(from);
+
+                // garante que não add duplicados
+                if(post.quotes.indexOf(from) < 0)
+                    post.quotes.push(from);
             }
         };
     }

@@ -184,16 +184,20 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$sce',function($tim
           if(post.content && post.content.indexOf('#') > -1)
           {
             // var matches = post.content.match(/(^|\s)#(\d+?)([\s,.)?]|$)/mg);
-            var matches = post.content.match(/^#(\d+)/mg);
+            var matches = post.content.match(/(.?|^|\s)#(\d+)/mg);
 
             if(matches)
             {
+              console.log(matches);
               for (var i = matches.length - 1; i >= 0; i--) 
               {
                 var postId = matches[i].replace(/#/g, "");
+                postId = matches[i].replace(/\D/g,'');
+
+                console.log(postId)
                 var content = 
                   post.content.replace(
-                    new RegExp(matches[i],"g"), 
+                    new RegExp('#'+postId,"g"), 
                     '<span class="post-content-quote quote-post-' + postId + '" data-id="' + postId + '"> <i class="fa fa-fw fa-slack"></i>' + postId + '</span>'
                   );
 
