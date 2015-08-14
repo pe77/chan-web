@@ -27,6 +27,7 @@
 
 
   <link href="css/vendor/all.css" rel="stylesheet">
+  <link href="css/vendor/angular-carousel.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
   <link href="css/chan.css" rel="stylesheet">
   <!--[if lt IE 9]>
@@ -38,6 +39,9 @@
 <!-- Bibliotecas -->
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
+  
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-carousel.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>

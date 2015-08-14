@@ -21,12 +21,28 @@
 
 		<div class="panel-body">
 			<div class="media-left" ng-if="post.files.length" >
+
+				<ul rn-carousel class="image">
+				  <li ng-repeat="file in post.files">
+				    <div class="layer">
+
+				    <a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank">
+				    	<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+					</a>
+
+					</div>
+				  </li>
+				</ul>
+
+				<!--
 				<carousel interval="999915000" no-wrap="false" >
 				<slide ng-repeat="file in post.files" active="slide.active">
 						<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
 						</a>
 					</slide>
 				</carousel>
+
+				-->
 			</div>
 			
 
@@ -44,6 +60,20 @@
 			<li ng-repeat="reply in post.replies_from" class="comment-form reply">
 
 				<div class="media-left" ng-if="reply.r_from.files.length" >
+
+					<ul rn-carousel rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered style="width: 250px; height: 250px;">
+					  <li ng-repeat="file in reply.r_from.files">
+					    <div class="layer">
+
+					    <a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank">
+					    	<img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						</a>
+
+						</div>
+					  </li>
+					</ul>
+
+					<!--
 				
 					<carousel interval="999915000" no-wrap="false" >
 					<slide ng-repeat="file in reply.r_from.files" active="slide.active">
@@ -51,6 +81,7 @@
 							</a>
 						</slide>
 					</carousel>
+					-->
 				</div>
 					
 
