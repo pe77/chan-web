@@ -45,7 +45,7 @@ angular.module('chan.controllers')
 			//
 
 			if(!response.data.length)
-				$rootScope.Alert('Não existem mais posts para essa seleção.');
+				$rootScope.Alert('Não existem mais posts para essa board / seleção.');
 			//
 
 		}, $rootScope.ResponseFail);
