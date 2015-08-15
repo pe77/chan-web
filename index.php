@@ -39,6 +39,7 @@
 <!-- Bibliotecas -->
 	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+  
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
   
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-carousel.js"></script>

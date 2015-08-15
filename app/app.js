@@ -5,10 +5,9 @@ var app = angular.module('chan',
 		'ui.router',
 		"ui.bootstrap.tpls",
 		'ui.bootstrap.carousel',
-		'angular-carousel',
 		'directive.g+signin',
 		'ngSanitize',
-		'ngAnimate',
+		// 'ngAnimate',
 		'mgcrea.ngStrap'
 	]
 );

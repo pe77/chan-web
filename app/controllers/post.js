@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $stateParams, $popover, GenericService) 
+.controller('PostController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
 {
 
     $scope.post = [];
@@ -84,12 +84,6 @@ angular.module('chan.controllers')
         };
 
         return false;
-
-        // tenta achar o post
-        
-        // console.log($event);
-        // var myPopover = $popover($event.target, {title: 'My Title', content: 'My Content', trigger: 'manual'});
-        // myPopover.show();
     }
 
     // bypass
