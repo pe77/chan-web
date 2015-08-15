@@ -42,7 +42,6 @@
   
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
   
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-carousel.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>

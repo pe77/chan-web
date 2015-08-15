@@ -6,6 +6,8 @@ angular.module('chan.controllers')
 	$scope.posts = [];
 	$scope.board = {};
 
+	$scope.page 		= 1;
+	$scope.pageLimit 	= $rootScope.parameters.page_limit;
 
 	$rootScope.$watch('boards', function(){
 
@@ -23,22 +25,38 @@ angular.module('chan.controllers')
 
 		reset = reset || false;
 
+		if(reset)
+			$scope.page = 1;
+		//
+
 		// pega os posts
 		GenericService.get({
 			route:'post',
 			action:'getByBoard',
-			id:$stateParams.board
+			id:$stateParams.board,
+			page:$scope.page,
+			pageLimit:$scope.pageLimit
 		}, function(response){
 
 			$rootScope.loading = false;
 
-			if(response.status == 1)
+			if(response.status == 1 && response.data.length)
 				$scope.posts = reset ? response.data : $scope.posts.concat(response.data);
+			//
+
+			if(!response.data.length)
+				$rootScope.Alert('Não existem mais posts para essa seleção.');
 			//
 
 		}, $rootScope.ResponseFail);
 	}
 
+	// carrega mais
+	$scope.LoadMore = function()
+	{
+		$scope.page++;
+		$scope.Update();
+	}
 
 	$scope.OpenPost = function(post)
 	{

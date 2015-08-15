@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $filter, $rootScope, $localstorage, GenericService) 
+.controller('GlobalController', function($scope, $filter, $rootScope, $alert, $localstorage, GenericService) 
 {
 
 	$rootScope.base_url 	      = base_url;
@@ -14,8 +14,24 @@ angular.module('chan.controllers')
 
 	$rootScope.Alert = function(message, type, autoHide, hideDelay)
 	{
+		type 		= type || 'info';
+		autoHide 	= (typeof autoHide !== 'undefined') ? autoHide : true;
+		hideDelay	= hideDelay || 5;
 
-		alert(message);
+		hideDelay = autoHide ? hideDelay : false;
+
+		var myAlert = $alert(
+			{
+				title: '', 
+				container:'body', 
+				content: message, 
+				placement: 'top-right', 
+				type: type, 
+				duration:hideDelay, 
+				show: true
+			}
+		);
+
 		return;
 	}
 

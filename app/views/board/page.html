@@ -40,9 +40,7 @@
 
 		<div class="view-all-comments">
         	<span ng-if="post.replies_from.length">(total de {{post.replies_from.length}} respostas)</span>
-
-          
-          <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-tag"></i> {{tag.name}} </a>
+			<a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
         </div>
 
 		<ul class="comments replies">
@@ -77,11 +75,9 @@
 	            	</span>
                </div>
             </li>
-
 		</ul>
 
 	</div>
 </div>
 
-
-</div>
+<button class="btn btn-primary load-more-button" ng-click="LoadMore()"> <i class="fa fa-plus"></i> Carregar mais</button>

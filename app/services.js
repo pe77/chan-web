@@ -49,7 +49,6 @@ angular.module('chan.services', ['ngResource'])
   return {
     create: function(post, elem, trigger, placement) {
 
-      
       trigger = trigger || 'hover'; // ativador
       placement = placement || 'auto'; // onde vai abrir
 
