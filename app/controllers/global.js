@@ -118,6 +118,10 @@ angular.module('chan.controllers')
     				$rootScope.Alert(response.message);
     				$rootScope.Logout();
     				break;
+
+				case -1: // token vencido
+    				$rootScope.Logout(); // desloga
+    				break;
 	    	}
 			
 	    }, $rootScope.ResponseFail);
