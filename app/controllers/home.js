@@ -1,8 +1,8 @@
 angular.module('chan.controllers')
 
-.controller('HomeController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('HomeController', function($scope, $state, $rootScope, $filter, $stateParams, GenericService) 
 {
 
-    alert('Home');
+    $state.go('board', {'board':'b'});
 
 })

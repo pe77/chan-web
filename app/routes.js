@@ -2,7 +2,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	
 	// rota padrão
-  	$urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/");
 
 
 	$stateProvider
