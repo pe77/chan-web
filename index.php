@@ -242,7 +242,7 @@
 
   <div id="content">
     <div class="container-fluid">
-		<div ui-view></div>
+		  <div ui-view></div>
     </div>
   </div>
 

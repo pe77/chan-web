@@ -28,8 +28,7 @@ angular.module('chan.controllers')
         $rootScope.loading = true;
 
         // limpa
-        $location.hash();
-        $anchorScroll();
+        $scope.ScrollReset(true);
 
         var data = 
         {
@@ -55,24 +54,29 @@ angular.module('chan.controllers')
                 // se houver ancora/fasttravel, move, caso não, mantem no topo
                 if($stateParams.scrollto)
                     $scope.ScrollTo($stateParams.scrollto);
-                else
-                    $scope.ScrollReset();
                 //
             }, 100); // mais eficiente que o apply
 
         }, $rootScope.ResponseFail);
     }
 
-    $scope.ScrollReset = function()
+    $scope.ScrollReset = function(toBot)
     {
-        console.log('ScrollReset');
         $location.hash('');
         $anchorScroll();
+
+        toBot       = (typeof toBot !== 'undefined') ? toBot : false;
+
+        if(toBot)
+        {
+            $timeout(function () {
+                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+            }, 1000); // mais eficiente que o apply
+        }
     }
 
     $scope.ScrollTo = function(id)
     {
-        console.log('ScrollTo');
         var anchor = 'post-' + id;
         $location.hash(anchor);
         $anchorScroll();
