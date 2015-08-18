@@ -9,6 +9,8 @@ angular.module('chan.controllers')
     $scope.setReply = false;
     $scope.addReply = Function;
 
+    var newPost = false;
+
     $rootScope.$watch('boards', function(){
 
         if(!$rootScope.boards.length)
@@ -23,12 +25,20 @@ angular.module('chan.controllers')
 
 
     // atualiza
-    $scope.Update = function()
+    $scope.Update = function(reset)
     {
         $rootScope.loading = true;
+        reset       = (typeof reset !== 'undefined') ? reset : false;
 
-        // limpa
-        $scope.setReply ? $scope.ScrollReset(true) : $scope.ScrollReset();
+        if(reset)
+        {
+            $stateParams.scrollto = false;
+            $scope.ScrollReset();
+        }
+
+
+        // limpa se for um novo post
+        newPost ? $scope.ScrollReset(true) : $scope.ScrollReset();
         
 
         var data = 
@@ -60,11 +70,19 @@ angular.module('chan.controllers')
                 //
             }, 100); // mais eficiente que o apply
 
+            newPost = false;
+            
+
         }, $rootScope.ResponseFail);
+
+
+
     }
 
     $scope.ScrollReset = function(toBot)
     {
+        console.log('ScrollReset: ' + toBot);
+
         $location.hash('');
         $anchorScroll();
 
@@ -80,6 +98,7 @@ angular.module('chan.controllers')
 
     $scope.ScrollTo = function(id)
     {
+        console.log('ScrollTo: ' + id)
         var anchor = 'post-' + id;
         $location.hash(anchor);
         $anchorScroll();
@@ -138,7 +157,9 @@ angular.module('chan.controllers')
     // se algum post for criado, recarrega a pagina
     $rootScope.$on("onPostCreate", function (event, id) {
         $stateParams.scrollto = false; // reseta o scroll
+        newPost = true;
         $scope.Update();
+        
     });
 
     // testando o evento de procura por tags

@@ -4,7 +4,12 @@
 
 <div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController"></div>
 
+
 <hr/>
+
+<div class="item col-md-12 col-xs-12 text-right page-utils">
+	<button type="submit" class="btn btn-primary" ng-click="Update(true)"><i class="fa fa-refresh"></i> Recarregar (mais rápido que F5)</button>	
+</div>
 
 <div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}">
 	<div class="panel panel-default timeline-block">
