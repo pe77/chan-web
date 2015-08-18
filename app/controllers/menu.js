@@ -22,7 +22,11 @@ angular.module('chan.controllers')
 
 			// marca todas as novas como não vistas
 			for (var i = response.data.length - 1; i >= 0; i--)
+			{
 				response.data[i].seen = false;
+			}
+
+			response.data = checkLinks(response.data);
 			//
 
 			if(response.status == 1)
@@ -85,6 +89,7 @@ angular.module('chan.controllers')
 
 .controller('MenuControllerSide', function($scope, $rootScope, $filter, $stateParams, GenericService) 
 {
+
 	$scope.lastMessages = [];
 
 	// atualiza
@@ -106,7 +111,7 @@ angular.module('chan.controllers')
 
 	$scope.UpdateLastMessages = function()
 	{
-		// caso não esteja logado
+		// caso não esteja logado 
 		if(!$rootScope.signedIn)
 			return;
 		//
@@ -116,6 +121,9 @@ angular.module('chan.controllers')
 			route:'message',
 			action:'all'
 		}, function(response){
+	
+			// da uma tratada no s links
+			response.data = checkLinks(response.data);
 
 			if(response.status == 1)
 				$scope.lastMessages = response.data;
@@ -140,3 +148,36 @@ angular.module('chan.controllers')
 	});
 
 })
+
+
+function checkLinks(messages)
+{
+	for (var i = messages.length - 1; i >= 0; i--)
+	{
+		switch(messages[i].type)
+		{
+			case 1: // link pra post
+				messages[i].link = messages[i].link != undefined ? '#/board/post/' + messages[i].link : '#';
+			break;
+
+			case 2: // link pra post
+				var link = messages[i].link == undefined ? false : messages[i].link;
+
+				if(link)
+				{
+					link = link.split('|');
+					messages[i].link = '#/board/post/' + link[0] + '/' + link[1];
+				}else{
+					messages[i].link = '#'
+				}
+				// messages[i].link = messages[i].link != undefined ? '#/board/post/' + messages[i].link : '#';
+			break;
+
+			default:
+				messages[i].link = "#";
+		}
+
+	}
+
+	return messages;
+}

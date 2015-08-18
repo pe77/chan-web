@@ -10,7 +10,7 @@
 
 	<div class="panel panel-default timeline-block">
 
-	    <div class="panel-heading">
+	    <div class="panel-heading" id="post-{{post.id}}">
 	          <div class="media">
 	            <div class="media-body">
 	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
@@ -44,7 +44,7 @@
 	    </div>
 
 		<ul class="comments replies">
-			<li ng-repeat="reply in post.replies_from" class="comment-form reply">
+			<li ng-repeat="reply in post.replies_from" class="comment-form reply" id="post-{{reply.r_from.id}}">
 
 				<div class="media-left" ng-if="reply.r_from.files.length" >
 
@@ -70,7 +70,7 @@
 					</div>
 
 
-					<postcontent post="reply.r_from" on-back-quote="AddQuoteReply(from, to)" search-post="SearchPost(id)"></postcontent>
+					<postcontent post="reply.r_from" on-back-quote="AddQuoteReply(from, to)" search-post="SearchPost(id)" quote-click="ScrollTo(id)"></postcontent>
 
 				</div>   
 

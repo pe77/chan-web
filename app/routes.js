@@ -23,7 +23,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
 
     .state('post', {
-        url: '/board/:board/:post',
+        url: '/board/:board/:post/:scrollto',
 		controller: 'PostController',
         templateUrl: base_url + '/app/views/board/post.html'
     })

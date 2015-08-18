@@ -149,11 +149,14 @@
                         <li class="dropdown-header">Notificações</li>
 
                         <li class="media" ng-repeat="message in messages">
-                          <div class="media-body">
-                            {{message.message}}
-                            <br>
-                            <span class="text-caption text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
-                          </div>
+
+                          <a href="{{message.link}}">
+                            <div class="media-body">
+                              {{message.message}}
+                              <br>
+                              <span class="text-caption text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
+                            </div>
+                          </a>
                         </li>
 
                       </ul>
@@ -216,10 +219,13 @@
                           <i class="fa fa-fw fa-bell"></i>
                       </span>
             </div>
-            <div class="media-body">
-              {{message.message}}
-              <span class="text-caption time text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
-            </div>
+
+            <a href="{{message.link}}">
+              <div class="media-body">
+                {{message.message}}
+                <span class="text-caption time text-muted"><i><timeago date="{{message.date_timestamp}}"></timeago></i></span>
+              </div>
+            </a>
           </li>
 
 

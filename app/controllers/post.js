@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $stateParams, GenericService) 
+.controller('PostController', function($scope, $rootScope, $filter, $timeout, $anchorScroll, $stateParams, $location, GenericService) 
 {
 
     $scope.post = [];
@@ -19,10 +19,17 @@ angular.module('chan.controllers')
     });
 
 
+    $anchorScroll.yOffset = 75;
+
+
     // atualiza
     $scope.Update = function()
     {
         $rootScope.loading = true;
+
+        // limpa
+        $location.hash();
+        $anchorScroll();
 
         var data = 
         {
@@ -42,10 +49,33 @@ angular.module('chan.controllers')
 
             $scope.setReply($scope.post);
 
+            
+            $timeout(function () {
 
-            console.log($scope.post);
+                // se houver ancora/fasttravel, move, caso não, mantem no topo
+                if($stateParams.scrollto)
+                    $scope.ScrollTo($stateParams.scrollto);
+                else
+                    $scope.ScrollReset();
+                //
+            }, 100); // mais eficiente que o apply
 
         }, $rootScope.ResponseFail);
+    }
+
+    $scope.ScrollReset = function()
+    {
+        console.log('ScrollReset');
+        $location.hash('');
+        $anchorScroll();
+    }
+
+    $scope.ScrollTo = function(id)
+    {
+        console.log('ScrollTo');
+        var anchor = 'post-' + id;
+        $location.hash(anchor);
+        $anchorScroll();
     }
 
     // marca o post 'to' com oo quotados
@@ -99,7 +129,8 @@ angular.module('chan.controllers')
 
 
     // se algum post for criado, recarrega a pagina
-    $rootScope.$on("onPostCreate", function () {
+    $rootScope.$on("onPostCreate", function (event, id) {
+        $stateParams.scrollto = false; // reseta o scroll
         $scope.Update();
     });
 

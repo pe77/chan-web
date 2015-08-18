@@ -161,7 +161,8 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
     scope: { 
       post: '=',
       searchPost: '&',
-      onBackQuote: '&'
+      onBackQuote: '&',
+      quoteClick: '&'
     },
     link: {
       pre:function(scope, element, isolatedScope)
@@ -253,6 +254,17 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
               //
 
               $(this).data('hasquote', true);
+          });
+
+          
+
+
+          // quando clica no quote
+          $('.post-content-quote').unbind().click(function(){
+
+              var postId = $(this).html().replace(/\D/g, "");
+
+              scope.quoteClick({id:postId});
           });
 
           // popver dos quotes dentro do post

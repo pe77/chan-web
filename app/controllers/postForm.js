@@ -105,7 +105,10 @@ angular.module('chan.controllers')
             if(!$rootScope.ResponseErrorHandler(data, [0], false))
             {
                 // exibe os erros
-                $rootScope.Alert(data.data.toString(), 'warning', false);
+                var  message = data.message;
+
+                $rootScope.Alert(message, 'warning', true);
+                // $rootScope.Alert(data.data.toString(), 'warning', false);
                 return;
             }
             //
