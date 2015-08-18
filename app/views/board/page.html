@@ -37,15 +37,14 @@
 			
 
 			<div class="media-body">
-
 				<postcontent post="post"></postcontent>
 			</div>   
 		</div>
 
 
 		<div class="view-all-comments">
-        	<span ng-if="post.replies_from.length">(total de {{post.replies_from.length}} respostas)</span>
 			<a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
+			<span style="cursor: pointer" ng-click="OpenPost(post)" ng-if="post.replies_from.length">Últimas respostas:</span>
         </div>
 
 		<ul class="comments replies">
@@ -62,6 +61,17 @@
 					
 
 				<div class="media-body">
+
+					<div class="info">
+
+						<div class="quotes" ng-if="reply.r_from.quotes">
+							<span class="quote" ng-repeat="quote in reply.r_from.quotes track by $index" ><i class="fa fa-reply"></i>{{quote}}</span>
+						</div>
+
+						<span ng-click="addReply(reply.r_from)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.r_from.id}}</span>
+						
+					</div>
+
 					<postcontent post="reply.r_from"></postcontent>
 				</div>   
 

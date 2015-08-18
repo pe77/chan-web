@@ -280,6 +280,7 @@ body {
 .panel.panel-default ul.comments li.reply
 {
 	border-bottom: 2px solid rgba(116, 148, 106, 0.51);
+    margin-top: 3px;
 }
 
 
@@ -392,3 +393,4 @@ body {
 {
     margin-bottom:15px;
 }
+
