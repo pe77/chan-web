@@ -5,6 +5,7 @@ angular.module('chan.controllers')
 	$scope.messages = [];
 
 	$scope.mark = true;
+	$scope.seen = false;
 
 	$scope.UpdateMessages = function()
 	{
@@ -19,11 +20,24 @@ angular.module('chan.controllers')
 			action:'get'
 		}, function(response){
 
+			// marca todas as novas como não vistas
+			for (var i = response.data.length - 1; i >= 0; i--)
+				response.data[i].seen = false;
+			//
+
 			if(response.status == 1)
-				$scope.messages = response.data;
+			{
+				$scope.messages = $scope.messages.concat(response.data);
+				$scope.messages.reverse();
+			}
 			//
 
 			$scope.mark = false;
+
+			// se veio alguma mensagem 
+			if(response.data.length)
+				$scope.seen = false;
+			//
 
 		}); // se der erro foda-se
 	}
@@ -33,6 +47,14 @@ angular.module('chan.controllers')
 		if(!$scope.messages.length || $scope.mark)
 			return;
 		//
+
+		$scope.seen = true;
+
+
+		// pega todas as mensagens e marca como visto
+		for (var i = $scope.messages.length - 1; i >= 0; i--) 
+			$scope.messages[i].seen = true;
+		// 
 
 		// marca as mensagens como visualizadas
 		GenericService.get({
