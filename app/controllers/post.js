@@ -6,7 +6,7 @@ angular.module('chan.controllers')
     $scope.post = [];
     $scope.board = {};
 
-    $scope.setReply = Function;
+    $scope.setReply = false;
     $scope.addReply = Function;
 
     $rootScope.$watch('boards', function(){
@@ -28,7 +28,8 @@ angular.module('chan.controllers')
         $rootScope.loading = true;
 
         // limpa
-        $scope.ScrollReset(true);
+        $scope.setReply ? $scope.ScrollReset(true) : $scope.ScrollReset();
+        
 
         var data = 
         {
@@ -46,7 +47,9 @@ angular.module('chan.controllers')
                 $scope.post = response.data;
             //
 
-            $scope.setReply($scope.post);
+            if($scope.setReply)
+                $scope.setReply($scope.post);
+            //
 
             
             $timeout(function () {
