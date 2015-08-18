@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $timeout, $anchorScroll, $stateParams, $location, GenericService) 
+.controller('PostController', function($scope, $rootScope, $filter, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
 {
 
     $scope.post = [];
@@ -81,7 +81,7 @@ angular.module('chan.controllers')
 
     $scope.ScrollReset = function(toBot)
     {
-        console.log('ScrollReset: ' + toBot);
+        // console.log('ScrollReset: ' + toBot);
 
         $location.hash('');
         $anchorScroll();
@@ -98,7 +98,7 @@ angular.module('chan.controllers')
 
     $scope.ScrollTo = function(id)
     {
-        console.log('ScrollTo: ' + id)
+        // console.log('ScrollTo: ' + id)
         var anchor = 'post-' + id;
         $location.hash(anchor);
         $anchorScroll();
@@ -156,6 +156,14 @@ angular.module('chan.controllers')
 
     // se algum post for criado, recarrega a pagina
     $rootScope.$on("onPostCreate", function (event, id) {
+
+
+        // bugfix: se não for a pagina do post, não recarrega e nem joga pro final
+        if($state.current.name != 'post')
+            return;
+        //
+
+
         $stateParams.scrollto = false; // reseta o scroll
         newPost = true;
         $scope.Update();
