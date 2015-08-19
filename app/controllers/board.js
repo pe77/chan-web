@@ -19,11 +19,14 @@ angular.module('chan.controllers')
 	});
 	
 	// atualiza
-	$scope.Update = function(reset)
+	$scope.Update = function(reset, clearCache)
 	{
 		$rootScope.loading = true;
 
-		reset = reset || false;
+		reset 	= (typeof reset !== 'undefined') ? reset : false;
+		clearCache 	= (typeof clearCache !== 'undefined') ? clearCache : false;
+
+		clearCache = clearCache ? '?c=' + Math.random() : '';
 
 		if(reset)
 			$scope.page = 1;
@@ -36,6 +39,7 @@ angular.module('chan.controllers')
 			id:$stateParams.board,
 			page:$scope.page,
 			pageLimit:$scope.pageLimit
+			// cache:clearCache
 		}, function(response){
 
 			$rootScope.loading = false;
@@ -70,7 +74,7 @@ angular.module('chan.controllers')
 
 	// se algum post for criado, recarrega a pagina
 	$rootScope.$on("onPostCreate", function () {
-		$scope.Update(true);
+		$scope.Update(true, true);
 	});
 
 })

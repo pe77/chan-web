@@ -185,6 +185,7 @@
 .post-direct-content p
 {
   white-space: pre-line;
+    margin-top: 10px;
 }
 
 .carousel-indicators,
@@ -393,4 +394,3 @@ body {
 {
     margin-bottom:15px;
 }
-

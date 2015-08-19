@@ -80,6 +80,8 @@ angular.module('chan.controllers')
     {
         $rootScope.loading = true;
 
+        console.log($scope.postForm);
+
         $http({
             method: 'POST',
             url: url,
