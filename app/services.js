@@ -22,7 +22,7 @@ angular.module('chan.services', ['ngResource'])
 }])
 
 .factory('GenericService', function($resource) {
-    var data = $resource(parameters.api_url + '/api/:route/:action/:token/:id/:filter/:page/:pageLimit/:date/:scope/:cache', { },{ 
+    var data = $resource(parameters.api_url + '/api/:route/:action/:token/:id/:filter/:page/:pageLimit/:date/:scope/:op/:reply/:cache', { },{ 
         all: {
             method:'GET',
             params:{action: 'all'},

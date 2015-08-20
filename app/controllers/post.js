@@ -1,15 +1,18 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
+.controller('PostController', function($scope, $rootScope, $filter, $interval, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
 {
 
-    $scope.post = [];
-    $scope.board = {};
+    $scope.post             = [];
+    $scope.board            = {};
 
-    $scope.setReply = false;
-    $scope.addReply = Function;
+    $scope.setReply         = false;
+    $scope.addReply         = Function;
+    $anchorScroll.yOffset   = 75;
 
-    var newPost = false;
+    var newPost             = false;
+    var autoUpdateInterval  = 0;
+    var intervalTime        = 1000*10; // 10 segundos
 
     $rootScope.$watch('boards', function(){
 
@@ -21,10 +24,70 @@ angular.module('chan.controllers')
     });
 
 
-    $anchorScroll.yOffset = 75;
+    $scope.UpdateNext = function(silentMode)
+    {
+        
+        silentMode    = (typeof silentMode !== 'undefined') ? silentMode : true;
+
+        if(!silentMode)
+            $rootScope.loading = true;
+        //
+
+        var op          = $scope.post.id;
+        var lastReply   = $scope.post.replies[$scope.post.replies.length-1].id;
 
 
-    // atualiza
+        // pega os posts
+        GenericService.get({
+            route:'post',
+            action:'next',
+            op:op,
+            reply:lastReply
+        }, function(response){
+
+            if(!silentMode)
+                $rootScope.loading = false;
+            //
+
+            if(response.status == 1)
+            {
+
+                // add os novos posts, mas antes verifica se já não foi add (no caso da chamada ainda ter retornado ou retornar ao ~mesmo tempo)
+                var exist = false;
+                for (var i = $scope.post.replies.length - 1; i >= 0; i--)
+                {
+                    for (var j = response.data.length - 1; j >= 0; j--)
+                    {
+                        if($scope.post.replies[i].id == response.data[j].id)
+                        {
+                            exist = true;
+                            break;
+                        }
+                    }
+                };
+
+
+                for (var j = response.data.length - 1; j >= 0; j--)
+                    response.data[j].isNew = true; // marca como novos
+                //
+
+                if(!exist)
+                    $scope.post.replies = $scope.post.replies.concat(response.data);
+                //
+
+                // se for um novo post, joga pro final da pagina
+                newPost ? $scope.ScrollReset(true) : false;
+            }
+
+            newPost = false;
+
+        }, $rootScope.ResponseFail);
+    }
+
+
+
+
+    // atualiza tudo
     $scope.Update = function(reset)
     {
         $rootScope.loading = true;
@@ -71,6 +134,10 @@ angular.module('chan.controllers')
             }, 100); // mais eficiente que o apply
 
             newPost = false;
+
+            // reinicia a contagem do auto update
+            clearInterval(autoUpdateInterval);   
+            autoUpdateInterval = setInterval($scope.UpdateNext, intervalTime);
             
 
         }, $rootScope.ResponseFail);
@@ -91,7 +158,7 @@ angular.module('chan.controllers')
         if(toBot)
         {
             $timeout(function () {
-                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+                $("html, body").animate({ scrollTop: $(document).height() }, "fast");
             }, 1000); // mais eficiente que o apply
         }
     }
@@ -166,7 +233,8 @@ angular.module('chan.controllers')
 
         $stateParams.scrollto = false; // reseta o scroll
         newPost = true;
-        $scope.Update();
+        // $scope.Update();
+        $scope.UpdateNext(false);
         
     });
 
