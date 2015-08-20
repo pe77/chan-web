@@ -174,8 +174,8 @@ angular.module('chan.controllers')
     // marca o post 'to' com oo quotados
     $scope.AddQuoteReply = function(from, to)
     {
-        for (var i = $scope.post.replies_from.length - 1; i >= 0; i--) {
-            var post = $scope.post.replies_from[i].r_from;
+        for (var i = $scope.post.replies.length - 1; i >= 0; i--) {
+            var post = $scope.post.replies[i];
             if(post.id == to)
             {
                 post.quotes = post.quotes == undefined ? [] : post.quotes;
@@ -198,11 +198,11 @@ angular.module('chan.controllers')
         //
 
         // procura nas respostas
-        for (var i = $scope.post.replies_from.length - 1; i >= 0; i--) 
+        for (var i = $scope.post.replies.length - 1; i >= 0; i--) 
         {
             // console.log('=');
-            if($scope.post.replies_from[i].r_from.id == id)
-                return $scope.post.replies_from[i].r_from;
+            if($scope.post.replies[i].id == id)
+                return $scope.post.replies[i];
             //
         };
 
