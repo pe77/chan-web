@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $state, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 
 	$scope.posts = [];
@@ -8,6 +8,9 @@ angular.module('chan.controllers')
 
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
+	$anchorScroll.yOffset   = 275;
+
+	var newPost = false;
 
 	$rootScope.$watch('boards', function(){
 
@@ -19,15 +22,11 @@ angular.module('chan.controllers')
 	});
 	
 	// atualiza
-	$scope.Update = function(reset, clearCache)
+	$scope.Update = function(reset)
 	{
 		$rootScope.loading = true;
 
 		reset 	= (typeof reset !== 'undefined') ? reset : false;
-		clearCache 	= (typeof clearCache !== 'undefined') ? clearCache : false;
-
-		clearCache = clearCache ? '?c=' + Math.random() : '';
-
 		if(reset)
 			$scope.page = 1;
 		//
@@ -39,7 +38,6 @@ angular.module('chan.controllers')
 			id:$stateParams.board,
 			page:$scope.page,
 			pageLimit:$scope.pageLimit
-			// cache:clearCache
 		}, function(response){
 
 			$rootScope.loading = false;
@@ -51,6 +49,14 @@ angular.module('chan.controllers')
 			if(!response.data.length)
 				$rootScope.Alert('Não existem mais posts para essa board / seleção.');
 			//
+
+
+			$timeout(function () {
+
+				if(newPost)
+                	$scope.ScrollTo('post-' + newPost);
+                //
+            }, 100); // mais eficiente que o apply
 
 		}, $rootScope.ResponseFail);
 	}
@@ -65,16 +71,28 @@ angular.module('chan.controllers')
 	$scope.OpenPost = function(post)
 	{
 		$state.go('post', {board:$stateParams.board, post:post.id});
-
 	}
+
+	$scope.ScrollTo = function(anchor)
+    {
+    	$('#' + anchor).addClass('blink');
+        $location.hash(anchor);
+        $anchorScroll();
+    }
 
 	// atualiza a pagina TODA
 	$scope.Update();
 
-
 	// se algum post for criado, recarrega a pagina
-	$rootScope.$on("onPostCreate", function () {
-		$scope.Update(true, true);
+	$rootScope.$on("onPostCreate", function (event, id) {
+
+        if($state.current.name != 'board')
+            return;
+        //
+
+        newPost = id;
+
+		$scope.Update(true);
 	});
 
 })

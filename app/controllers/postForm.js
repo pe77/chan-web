@@ -116,7 +116,7 @@ angular.module('chan.controllers')
             //
 
             // $rootScope.Alert(data.message);
-            $rootScope.$emit('onPostCreate');
+            $rootScope.$emit('onPostCreate', data.data);
 
             // reseta as variavais
             $scope.files = [];
