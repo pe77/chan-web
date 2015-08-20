@@ -26,7 +26,7 @@ angular.module('chan.controllers')
 
     $scope.addReply = function(post)
     {
-        $scope.postForm.content += ($scope.postForm.content == "" ? "#" : "\n#") + post.id;
+        $scope.postForm.content += ($scope.postForm.content == "" ? "#" : "\n#") + post.id + ' ';
         // console.log($scope.postForm);
         // $scope.$apply();
     }

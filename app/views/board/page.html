@@ -11,7 +11,7 @@
 	<button type="submit" class="btn btn-primary" ng-click="Update(true)"><i class="fa fa-refresh"></i> Recarregar (mais rápido que F5)</button>	
 </div>
 
-<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}">
+<div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}" ng-controller="PostFormController" ng-init="setReply(post)">
 	<div class="panel panel-default timeline-block">
 
 	    <div class="panel-heading">
@@ -44,7 +44,7 @@
 
 		<div class="view-all-comments">
 			<a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
-			<span style="cursor: pointer" ng-click="OpenPost(post)" ng-if="post.replies.length">Últimas respostas:</span>
+			<span style="cursor: pointer" ng-click="OpenPost(post)" ng-if="post.replies.length">({{post.total_replies}} respostas)</span>
         </div>
 
 		<ul class="comments replies">
@@ -77,7 +77,7 @@
 
 			</li>
 
-			<li class="comment-form reply-dae" ng-controller="PostFormController" class="panel-body" ng-if="user.name" ng-init="setReply(post)">
+			<li class="comment-form reply-dae" class="panel-body" ng-if="user.name">
 				<input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
                 <div class="input-group">
                 	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
