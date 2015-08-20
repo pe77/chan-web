@@ -12,7 +12,7 @@ angular.module('chan.controllers')
 
     var newPost             = false;
     var autoUpdateInterval  = 0;
-    var intervalTime        = 1000*10; // 10 segundos
+    var intervalTime        = $rootScope.parameters.auto_update_time;
 
     $rootScope.$watch('boards', function(){
 
@@ -236,6 +236,13 @@ angular.module('chan.controllers')
         // $scope.Update();
         $scope.UpdateNext(false);
         
+    });
+
+
+    // quando sair da pagina para o auto update
+    $rootScope.$on('$stateChangeStart', function()
+    {
+        clearInterval(autoUpdateInterval);   
     });
 
     // testando o evento de procura por tags
