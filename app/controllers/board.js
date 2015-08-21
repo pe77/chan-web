@@ -54,7 +54,10 @@ angular.module('chan.controllers')
 			$timeout(function () {
 
 				if(newPost)
-                	$scope.ScrollTo('post-' + newPost);
+				{
+                	$rootScope.ScrollTo('post-' + newPost);
+                	$('#' + 'post-' + newPost).addClass('blink');
+				}
                 //
             }, 100); // mais eficiente que o apply
 
@@ -72,13 +75,6 @@ angular.module('chan.controllers')
 	{
 		$state.go('post', {board:$stateParams.board, post:post.id});
 	}
-
-	$scope.ScrollTo = function(anchor)
-    {
-    	$('#' + anchor).addClass('blink');
-        $location.hash(anchor);
-        $anchorScroll();
-    }
 
 	// atualiza a pagina TODA
 	$scope.Update();

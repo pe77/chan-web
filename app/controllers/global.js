@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $filter, $rootScope, $alert, $localstorage, GenericService) 
+.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, GenericService) 
 {
 
 	$rootScope.base_url 	      = base_url;
@@ -19,6 +19,8 @@ angular.module('chan.controllers')
 		hideDelay	= hideDelay || 5;
 
 		hideDelay = autoHide ? hideDelay : false;
+
+		console.log(type)
 
 		var myAlert = $alert(
 			{
@@ -151,4 +153,24 @@ angular.module('chan.controllers')
 	if($localstorage.get('access_token', false))
 		$rootScope.Login($localstorage.get('access_token'));
 	//
+
+
+
+
+	$rootScope.ScrollTo = function(anchor)
+    {
+        $location.hash(anchor);
+        $anchorScroll();
+    }
+
+    $rootScope.Report = function(reportedPost)
+    {
+    	$scope.reportedPost = reportedPost;
+
+    	// Pre-fetch an external template populated with a custom scope
+		var reportModal = $modal({backdrop:'static', title:'Denunciar post #' + reportedPost.id, scope: $scope, template: base_url + '/app/views/report/modal.html', show: false});
+		// Show when some event occurs (use $promise property to ensure the template has been loaded)
+		reportModal.$promise.then(reportModal.show);
+    }
+
 });

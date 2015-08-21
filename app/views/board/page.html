@@ -1,4 +1,4 @@
-<h1 class="text-headline page-section-heading">{{board.title}}/{{board.shortcut_name}} - {{board.description}}</h1>
+<h1 class="text-headline page-section-heading board-title">{{board.title}}</h1>
 
 
 
@@ -44,7 +44,8 @@
 
 		<div class="view-all-comments">
 			<a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
-			<span style="cursor: pointer" ng-click="OpenPost(post)" ng-if="post.replies.length">({{post.total_replies}} respostas)</span>
+			<span style="cursor: pointer" ng-click="OpenPost(post)" ng-if="post.replies.length">({{post.total_replies}} respostas)</span> 
+			<span class="report-button" ng-click="Report(post)"><i class="fa fa-exclamation-circle"></i></span>
         </div>
 
 		<ul class="comments replies">
@@ -69,6 +70,10 @@
 						</div>
 
 						<span ng-click="addReply(reply)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.id}}</span>
+
+						<span class="report-button" ng-click="Report(reply)"><i class="fa fa-exclamation-circle"></i></span>
+
+
 						
 					</div>
 

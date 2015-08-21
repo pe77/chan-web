@@ -30,7 +30,6 @@ angular.module('chan.services', ['ngResource'])
         },
         get: {
             method:'GET',
-            headers:{'cache-control': 'private, max-age=0, no-cache'},
             params:{action: 'get'}
         },
         save: {
