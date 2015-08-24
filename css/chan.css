@@ -475,3 +475,18 @@ body {
     color: #FF0000;
     opacity: 0.25;
 }
+
+.link
+{
+    cursor:pointer;
+}
+
+.main-admin-btn
+{
+    margin-top:-5px;
+}
+
+.remove-button i
+{
+    color: #AF5B5B
+}

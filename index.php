@@ -76,7 +76,8 @@
   	<script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $timestamp?>"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $timestamp?>"></script>
+	<script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $timestamp?>"></script>
 
 
 </head>

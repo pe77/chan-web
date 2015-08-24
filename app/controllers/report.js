@@ -30,8 +30,5 @@ angular.module('chan.controllers')
 
         }, $rootScope.ResponseFail)
     }
-
-    // console.log('ReportController foi!');
-    // console.log($scope.reportedPost)
     
 })

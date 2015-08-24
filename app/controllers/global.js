@@ -12,39 +12,19 @@ angular.module('chan.controllers')
  	$rootScope.user				  = $localstorage.getObject('user');
  	
 
-	$rootScope.Alert = function(message, type, autoHide, hideDelay)
-	{
-		type 		= type || 'info';
-		autoHide 	= (typeof autoHide !== 'undefined') ? autoHide : true;
-		hideDelay	= hideDelay || 5;
-
-		hideDelay = autoHide ? hideDelay : false;
-
-		console.log(type)
-
-		var myAlert = $alert(
-			{
-				title: '', 
-				container:'body', 
-				content: message, 
-				placement: 'top-right', 
-				type: type, 
-				duration:hideDelay, 
-				show: true
-			}
-		);
-
-		return;
-	}
+	
+	// GENERIC RESPONSE
 
 	$rootScope.ResponseFail = function(response)
 	{
+		$rootScope.loading			  = false;
+		
 		if($rootScope.errorMessageSend)
 			return;
 		//
 
 		$rootScope.errorMessageSend = false;
-		$rootScope.loading			  = false;
+		
 
 		// mensagem de erro de conexção generica
 		alert('Erro ao tentar se conectar, tente novamente.');
@@ -80,14 +60,11 @@ angular.module('chan.controllers')
 	}
 
 
-	$rootScope.isUndefinedOrNull = function(variavel, str)
-	{
-		if(!variavel)
-			return str;
-		//
+	
 
-		return variavel;
-	}
+
+
+	// LOGIN / AUTH
 
 	$scope.$on('event:google-plus-signin-success', function (event,authResult) {
 
@@ -156,6 +133,17 @@ angular.module('chan.controllers')
 
 
 
+	// UTILS
+
+	$rootScope.isUndefinedOrNull = function(variavel, str)
+	{
+		if(!variavel)
+			return str;
+		//
+
+		return variavel;
+	}
+
 
 	$rootScope.ScrollTo = function(anchor)
     {
@@ -163,13 +151,60 @@ angular.module('chan.controllers')
         $anchorScroll();
     }
 
-    $rootScope.Report = function(reportedPost)
+    $rootScope.Alert = function(message, type, autoHide, hideDelay)
+	{
+		type 		= type || 'info';
+		autoHide 	= (typeof autoHide !== 'undefined') ? autoHide : true;
+		hideDelay	= hideDelay || 5;
+
+		hideDelay = autoHide ? hideDelay : false;
+
+		console.log(type)
+
+		var myAlert = $alert(
+			{
+				title: '', 
+				container:'body', 
+				content: message, 
+				placement: 'top-right', 
+				type: type, 
+				duration:hideDelay, 
+				show: true
+			}
+		);
+
+		return;
+	}
+
+
+
+
+
+
+
+
+
+
+	// GLOBAL 
+
+    $rootScope.Report = function(post)
     {
-    	$scope.reportedPost = reportedPost;
+    	$rootScope.Ban(post);
+    	return;
+    	$scope.reportedPost = post;
 
     	// Pre-fetch an external template populated with a custom scope
-		var reportModal = $modal({backdrop:'static', title:'Denunciar post #' + reportedPost.id, scope: $scope, template: base_url + '/app/views/report/modal.html', show: false});
+		var reportModal = $modal({backdrop:'static', title:'Denunciar post #' + post.id, scope: $scope, template: base_url + '/app/views/report/modal.html', show: false});
 		// Show when some event occurs (use $promise property to ensure the template has been loaded)
+		reportModal.$promise.then(reportModal.show);
+    }
+
+    // não adianta querer usar essa função se não estiver logado na API como adminsitrador, espertão
+    $rootScope.Ban = function(post)
+    {
+    	$scope.reportedPost = post;
+
+		var reportModal = $modal({backdrop:'static', title:'Administrar Post #' + post.id, scope: $scope, template: base_url + '/app/views/ban/modal.html', show: false});		
 		reportModal.$promise.then(reportModal.show);
     }
 

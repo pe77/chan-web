@@ -19,7 +19,6 @@
 	    <div class="panel-heading" id="post-{{post.id}}">
 	          <div class="media">
 	            <div class="media-body">
-	              <a href="#" class="pull-right text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
 	              	<span class="text-title"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
 	            </div>
 	          </div>
@@ -30,7 +29,7 @@
 				
 				<carousel interval="999915000" no-wrap="false" >
 				<slide ng-repeat="file in post.files" active="slide.active">
-						<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
 						</a>
 					</slide>
 				</carousel>
@@ -47,7 +46,10 @@
 
 		<div class="view-all-comments">
 	      <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
-	      <span class="report-button" ng-click="Report(post)"><i class="fa fa-exclamation-circle"></i></span>
+	      
+	      <span class="report-button" ng-if="user.level == 0" ng-click="Report(post)"><i class="fa fa-exclamation-circle"></i></span>
+
+	      <span class="report-button" ng-if="user.level > 0" ng-click="Ban(post)"><i class="fa fa-exclamation-circle"></i></span>
 	    </div>
 
 		<ul class="comments replies">
@@ -57,7 +59,7 @@
 
 					<carousel interval="999915000" no-wrap="false" >
 					<slide ng-repeat="file in reply.files" active="slide.active">
-							<a href="{{parameters.file_path +'/'+ file.image_path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.image_path_preview}}" style="margin:auto;">
+							<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
 							</a>
 						</slide>
 					</carousel>
@@ -74,7 +76,9 @@
 
 						<span ng-click="addReply(reply)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.id}}</span>
 
-						<span class="report-button" ng-click="Report(reply)"><i class="fa fa-exclamation-circle"></i></span>
+						<span class="report-button" ng-if="user.level == 0" ng-click="Report(reply)"><i class="fa fa-exclamation-circle"></i></span>
+
+						<span class="report-button" ng-if="user.level > 0" ng-click="Ban(reply)"><i class="fa fa-exclamation-circle"></i></span>
 						
 					</div>
 
