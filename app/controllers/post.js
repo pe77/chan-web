@@ -152,7 +152,6 @@ angular.module('chan.controllers')
                 {
                     if($scope.post.id != response.data.id)
                     {
-                        alert('aqui');
                         $scope.post = response.data;
                     }
                 }
