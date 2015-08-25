@@ -188,8 +188,6 @@ angular.module('chan.controllers')
 
     $rootScope.Report = function(post)
     {
-    	$rootScope.Ban(post);
-    	return;
     	$scope.reportedPost = post;
 
     	// Pre-fetch an external template populated with a custom scope
