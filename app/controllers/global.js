@@ -34,7 +34,6 @@ angular.module('chan.controllers')
 
 	$rootScope.ResponseErrorHandler = function(response, status, showError)	
 	{
-
 		// status de erro padrão 0' zero
 		status 			= status || [0];
 		showError 		= (typeof showError !== 'undefined') ? showError : true;

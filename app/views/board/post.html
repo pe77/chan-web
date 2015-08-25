@@ -2,7 +2,7 @@
 
 
 
-<div ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
+<div ng-if="post.id" ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
 
 <hr/>
 
@@ -12,7 +12,7 @@
 </div>
 
 
-<div class="item col-md-12 col-xs-12 post-item post-page post-id-{{post.id}}" >
+<div ng-if="post.id" class="item col-md-12 col-xs-12 post-item post-page post-id-{{post.id}}" >
 
 	<div class="panel panel-default timeline-block">
 

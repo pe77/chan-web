@@ -26,12 +26,23 @@ angular.module('chan.controllers')
 
     $scope.UpdateNext = function(silentMode)
     {
+        if(!$scope.post.replies)
+            return;
+        //
         
         silentMode    = (typeof silentMode !== 'undefined') ? silentMode : true;
 
         if(!silentMode)
             $rootScope.loading = true;
         //
+
+        // se ainda não houver respostas, (post novo), recarrega a pagina toda
+        if(!$scope.post.replies.length)
+        {
+            $scope.Update(false, silentMode);
+            return;
+        }
+
 
         var op          = $scope.post.id;
         var lastReply   = $scope.post.replies[$scope.post.replies.length-1].id;
@@ -48,6 +59,7 @@ angular.module('chan.controllers')
             if(!silentMode)
                 $rootScope.loading = false;
             //
+
 
             if(response.status == 1)
             {
@@ -88,10 +100,15 @@ angular.module('chan.controllers')
 
 
     // atualiza tudo
-    $scope.Update = function(reset)
+    $scope.Update = function(reset, silentMode)
     {
-        $rootScope.loading = true;
         reset       = (typeof reset !== 'undefined') ? reset : false;
+        silentMode    = (typeof silentMode !== 'undefined') ? silentMode : false;
+
+
+        if(!silentMode)
+            $rootScope.loading = true;
+        //
 
         if(reset)
         {
@@ -114,10 +131,34 @@ angular.module('chan.controllers')
         // pega os posts
         GenericService.get(data, function(response){
 
-            $rootScope.loading = false;
+            if(!silentMode)
+                $rootScope.loading = false;
+            //
+
+            // exibe erro se houver
+            if(!$rootScope.ResponseErrorHandler(response, [0], true))
+            {
+                return;
+            }
+            //
 
             if(response.status == 1)
-                $scope.post = response.data;
+            {
+                if(response.data.replies.length)
+                {
+                    $scope.post = response.data;
+                }
+                else
+                {
+                    if($scope.post.id != response.data.id)
+                    {
+                        alert('aqui');
+                        $scope.post = response.data;
+                    }
+                }
+                //
+                
+            }
             //
 
             if($scope.setReply)
@@ -222,7 +263,7 @@ angular.module('chan.controllers')
 
 
     // se algum post for criado, recarrega a pagina
-    $rootScope.$on("onPostCreate", function (event, id) {
+    var postCreateListener = $rootScope.$on("onPostCreate", function (event, id) {
 
 
         // bugfix: se não for a pagina do post, não recarrega e nem joga pro final
@@ -242,7 +283,11 @@ angular.module('chan.controllers')
     // quando sair da pagina para o auto update
     $rootScope.$on('$stateChangeStart', function()
     {
+        // para o auto update
         clearInterval(autoUpdateInterval);   
+
+        // remove o escutador
+        $scope.$on('$destroy', postCreateListener); 
     });
 
     // testando o evento de procura por tags
