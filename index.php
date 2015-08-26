@@ -50,8 +50,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
 
-	
-	
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
   
   
@@ -71,13 +69,14 @@
 
 	<!-- Controles -->
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
-  	<script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
-    <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
-  	<script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $timestamp?>"></script>
   <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $timestamp?>"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $timestamp?>"></script>
+	<script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $timestamp?>"></script>
 
 
 </head>
@@ -127,11 +126,11 @@
 
         <ul class="nav navbar-nav">
           <li>
-            <form class="navbar-form margin-none navbar-left">
+            <form class="navbar-form margin-none navbar-left" ng-controller="SearchFormController" ng-submit="Search()">
               <div class="search-1">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="icon-search"></i></span>
-                  <input type="text" class="form-control form-control-w-150" placeholder="Procurar ..">
+                  <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Procurar ...">
                 </div>
               </div>
             </form>

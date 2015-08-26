@@ -1,8 +1,8 @@
-<h1 class="text-headline page-section-heading board-title">{{board.title}}</h1>
+<h1 class="text-headline page-section-heading board-title">{{title}}</h1>
 
 
 
-<div ng-if="post.id" ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
+<div ng-if="hasPost" ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
 
 <hr/>
 

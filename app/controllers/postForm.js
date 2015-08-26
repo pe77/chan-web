@@ -3,7 +3,8 @@ angular.module('chan.controllers')
 .controller('PostFormController', function($scope, $http, $rootScope, $filter, $stateParams, GenericService) 
 {
     $scope.postForm = {
-        content:''
+        content:'',
+        tags:''
     };
     
     $scope.files = [];
@@ -15,8 +16,16 @@ angular.module('chan.controllers')
             return;
         //
 
-        $scope.postForm.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
+        if($stateParams.board)
+        {
+            $scope.postForm.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
+        }
+
     });
+
+    if($stateParams.tags)
+        $scope.postForm.tags = $stateParams.tags;
+    //
 
     $scope.setReply = function(post)
     {
@@ -79,8 +88,6 @@ angular.module('chan.controllers')
     $scope.Send = function()
     {
         $rootScope.loading = true;
-
-        console.log($scope.postForm);
 
         $http({
             method: 'POST',

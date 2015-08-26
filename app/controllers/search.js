@@ -1,10 +1,10 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
+.controller('SearchController', function($scope, $rootScope, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 	$scope.posts = [];
 	$scope.board = {};
-	$scope.title = '';
+	$scope.title = 'Search';
 
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
@@ -12,16 +12,6 @@ angular.module('chan.controllers')
 
 	var newPost = false;
 
-	$rootScope.$watch('boards', function(){
-
-		if(!$rootScope.boards.length)
-			return;
-		//
-
-		$scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
-		$scope.title = $scope.board.title;
-
-	});
 	
 	// atualiza
 	$scope.Update = function(reset)
@@ -36,8 +26,8 @@ angular.module('chan.controllers')
 		// pega os posts
 		GenericService.get({
 			route:'post',
-			action:'getByBoard',
-			id:$stateParams.board,
+			action:'getByTags',
+			id:$stateParams.tags,
 			page:$scope.page,
 			pageLimit:$scope.pageLimit
 		}, function(response){
@@ -48,7 +38,7 @@ angular.module('chan.controllers')
 				$scope.posts = reset ? response.data : $scope.posts.concat(response.data);
 			//
 
-			if(!response.data.length)
+			if(!response.data)
 				$rootScope.Alert('Não existem mais posts para essa board / seleção.');
 			//
 
@@ -84,7 +74,7 @@ angular.module('chan.controllers')
 	// se algum post for criado, recarrega a pagina
 	var postCreateListener = $rootScope.$on("onPostCreate", function (event, id) {
 
-        if($state.current.name != 'board')
+        if($state.current.name != 'search')
             return;
         //
 
@@ -93,8 +83,7 @@ angular.module('chan.controllers')
 		$scope.Update(true);
 	});
 
-
-	// quando sair da pagina 
+    // quando sair da pagina 
     $rootScope.$on('$stateChangeStart', function()
     {
 
@@ -102,4 +91,35 @@ angular.module('chan.controllers')
         $scope.$on('$destroy', postCreateListener); 
     });
 
+})
+
+
+.controller('SearchFormController', function($scope, $rootScope, $state, $location, $stateParams) 
+{
+	$scope.search = '';
+
+
+	$scope.Search = function()
+	{
+		if($scope.search == '')
+			return;
+		//
+
+		$state.go('search', {tags:$scope.search});
+	}
+
+	// testando o evento de procura por tags
+    var searchListener =  $rootScope.$on("onSearchTag", function (event, tag, search) {
+        search = search || false;
+        
+        if(search)
+        {
+        	$scope.search = tag;
+        	$state.go('search', {tags:tag});
+        }else{
+        	$scope.search = $scope.search == '' ? tag : $scope.search + ' ' + tag;
+        }
+
+        console.log('onSearchTag: '+ tag+ '|' + search);
+    }); 
 })

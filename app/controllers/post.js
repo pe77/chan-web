@@ -4,7 +4,8 @@ angular.module('chan.controllers')
 {
 
     $scope.post             = [];
-    $scope.board            = {};
+    $scope.title            = '';
+    $scope.hasPost          = true;
 
     $scope.setReply         = false;
     $scope.addReply         = Function;
@@ -14,14 +15,6 @@ angular.module('chan.controllers')
     var autoUpdateInterval  = 0;
     var intervalTime        = $rootScope.parameters.auto_update_time;
 
-    $rootScope.$watch('boards', function(){
-
-        if(!$rootScope.boards.length)
-            return;
-        //
-
-        $scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
-    });
 
 
     $scope.UpdateNext = function(silentMode)
@@ -138,6 +131,7 @@ angular.module('chan.controllers')
             // exibe erro se houver
             if(!$rootScope.ResponseErrorHandler(response, [0], true))
             {
+                $scope.hasPost = false;
                 return;
             }
             //
@@ -188,8 +182,6 @@ angular.module('chan.controllers')
 
     $scope.ScrollReset = function(toBot)
     {
-        // console.log('ScrollReset: ' + toBot);
-
         $location.hash('');
         $anchorScroll();
 
@@ -205,7 +197,6 @@ angular.module('chan.controllers')
 
     $scope.ScrollTo = function(id)
     {
-        // console.log('ScrollTo: ' + id)
         var anchor = 'post-' + id;
         $location.hash(anchor);
         $anchorScroll();
@@ -240,7 +231,6 @@ angular.module('chan.controllers')
         // procura nas respostas
         for (var i = $scope.post.replies.length - 1; i >= 0; i--) 
         {
-            // console.log('=');
             if($scope.post.replies[i].id == id)
                 return $scope.post.replies[i];
             //
@@ -256,9 +246,11 @@ angular.module('chan.controllers')
         $scope.addReply = AddReply;
     }
 
-
     // atualiza a pagina TODA
     $scope.Update();
+
+
+    
 
 
     // se algum post for criado, recarrega a pagina
@@ -288,14 +280,4 @@ angular.module('chan.controllers')
         // remove o escutador
         $scope.$on('$destroy', postCreateListener); 
     });
-
-    // testando o evento de procura por tags
-    /*
-    $rootScope.$on("onSearchTag", function (event, tag, search) {
-        search = search || false;
-        
-        console.log('onSearchTag: '+ tag+ '|' + search);
-    }); 
-    */
-
 })

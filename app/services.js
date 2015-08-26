@@ -65,7 +65,7 @@ angular.module('chan.services', ['ngResource'])
           if(post.files[i].is_image)
           {
             
-            image = parameters.file_path + '/' + post.files[i].image_path_preview;
+            image = parameters.file_path + '/' + post.files[i].path_preview;
             break;
           }
         };

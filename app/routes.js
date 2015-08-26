@@ -11,23 +11,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/",
       templateUrl: base_url + '/app/views/home/home.html',
       controller: 'HomeController'
-    })
+  })
 	
-
-
-	// rota evento
 	.state('board', {
-        url: '/board/:board',
-		controller: 'BoardController',
-        templateUrl: base_url + '/app/views/board/page.html'
-    })
+      url: '/board/:board',
+	    controller: 'BoardController',
+      templateUrl: base_url + '/app/views/board/page.html'
+  })
 
-    .state('post', {
-        url: '/board/:board/:post/:scrollto',
-		controller: 'PostController',
-        templateUrl: base_url + '/app/views/board/post.html'
-    })
+  .state('post', {
+      url: '/post/:post/:scrollto',
+	controller: 'PostController',
+      templateUrl: base_url + '/app/views/board/post.html'
+  })
 
+  
+  .state('search', {
+      url: '/search/:tags',
+      controller: 'SearchController',
+      templateUrl: base_url + '/app/views/board/page.html'
+  })
+  // */
 
 	;
 });
