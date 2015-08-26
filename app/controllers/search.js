@@ -119,7 +119,5 @@ angular.module('chan.controllers')
         }else{
         	$scope.search = $scope.search == '' ? tag : $scope.search + ' ' + tag;
         }
-
-        console.log('onSearchTag: '+ tag+ '|' + search);
     }); 
 })
