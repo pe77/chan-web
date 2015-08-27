@@ -32,55 +32,7 @@
   <link href="css/app/app.css" rel="stylesheet">
   <link href="css/chan.css??<?php echo $sourceVersion?>" rel="stylesheet">
   <link rel="shortcut icon" href="icon.png" />
-  <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-
-<!-- Bibliotecas -->
-	<script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
   
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
-  
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
-  <script src="//cdn.jsdelivr.net/angularjs/1.4.2/angular-animate.min.js" data-semver="1.4.2"></script>
-  
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
-
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
-  
-  
-	<script type="text/javascript">
-    	var base_url = '<?php echo $baseUrl?>';
-    </script>
-
-    <!-- Aplicação -->
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js"></script>
-	<script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js"></script>
-
-
-	<!-- Controles -->
-	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $sourceVersion?>"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $sourceVersion?>"></script>
-
-
 </head>
 
 <body id="bbodyy" ng-app="chan" ng-controller="GlobalController">
@@ -278,6 +230,60 @@
 
   <script src="js/vendor/all.js"></script>
   <script src="js/app/app.js"></script>
+
+
+
+
+
+
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+<!-- Bibliotecas -->
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+  
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
+  
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
+  <script src="//cdn.jsdelivr.net/angularjs/1.4.2/angular-animate.min.js" data-semver="1.4.2"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
+
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
+  
+  
+  <script type="text/javascript">
+      var base_url = '<?php echo $baseUrl?>';
+    </script>
+
+    <!-- Aplicação -->
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js"></script>
+
+
+  <!-- Controles -->
+  <script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $sourceVersion?>"></script>
 
 </body>
 
