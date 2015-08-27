@@ -12,6 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
+  $sourceVersion = 'v1.0';
 ?>
 <!DOCTYPE html>
 
@@ -29,7 +30,7 @@
   <link href="css/vendor/all.css" rel="stylesheet">
   <link href="css/vendor/angular-carousel.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
-  <link href="css/chan.css?v1.2" rel="stylesheet">
+  <link href="css/chan.css??<?php echo $sourceVersion?>" rel="stylesheet">
   <link rel="shortcut icon" href="icon.png" />
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -70,14 +71,14 @@
 
 	<!-- Controles -->
 	<script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $timestamp?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $timestamp?>"></script>
-	<script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $timestamp?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $sourceVersion?>"></script>
+  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $sourceVersion?>"></script>
+	<script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $sourceVersion?>"></script>
 
 
 </head>
