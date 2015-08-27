@@ -7,11 +7,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 
+  // staticas
 	.state('home', {
       url: "/",
-      templateUrl: base_url + '/app/views/home/home.html',
-      controller: 'HomeController'
+      templateUrl: base_url + '/app/views/home/index.html'
   })
+
+  .state('rules', {
+      url: "/rules",
+      templateUrl: base_url + '/app/views/rules/index.html'
+  })
+
+
+
+
+
 	
 	.state('board', {
       url: '/board/:board',

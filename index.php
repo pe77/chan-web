@@ -30,6 +30,7 @@
   <link href="css/vendor/angular-carousel.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
   <link href="css/chan.css?v1.2" rel="stylesheet">
+  <link rel="shortcut icon" href="icon.png" />
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -107,13 +108,16 @@
 
 
   <!-- MENU DE TOPO -->
-  <div ng-controller="MenuControllerTop" class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+  <div ng-controller="MenuControllerTop" class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="#" data-toggle="sidebar-menu" class="toggle pull-left visible-xs">
           <i class="fa fa-bars"></i>
         </a>
-        <a class="navbar-brand" href="#">77Chan</a>
+
+        <a class="navbar-brand" ng-href="#/"><i class="fa fa-fw fa-slack"></i>77Chan</a>
+
+        
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -126,14 +130,18 @@
 
         <ul class="nav navbar-nav">
           <li>
-            <form class="navbar-form margin-none navbar-left" ng-controller="SearchFormController" ng-submit="Search()">
-              <div class="search-1">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="icon-search"></i></span>
-                  <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Procurar ...">
+
+            <form class="navbar-form navbar-left" ng-controller="SearchFormController" ng-submit="Search()">
+                    <div class="search-2">
+                      <div class="input-group">
+                        <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Procurar ..">
+                        <span class="input-group-btn">
+                    <button class="btn btn-inverse" type="button" ng-submit="Search()"><i class="fa fa-search"></i></button>
+                  </span>
                 </div>
               </div>
             </form>
+
           </li>
         </ul>
 
@@ -169,7 +177,6 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#"><i class="fa fa-user"></i>Perfil</a></li>
-                <li><a href="#"><i class="fa fa-wrench"></i>Config</a></li>
                 <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
               </ul>
             </li>
@@ -186,11 +193,7 @@
     <div data-scrollable>
 
       <ul class="sidebar-menu sm-icons-right">
-        <li><a href=""><i class="fa fa-home"></i> <span>Home</span></a></li>
-
-        
-
-        <li><a href=""><i class="fa fa-newspaper-o"></i> <span>Notícias</span></a></li>
+        <li><a href="#/"><i class="fa fa-home"></i> <span>Home</span></a></li>
 
         
         <li class="hasSubmenu">
@@ -201,7 +204,7 @@
         </li>
 
         <li ng-if="user.name"><a href="#"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
-        <li><a href=""><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
+        <li><a href="#/rules"><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
 
       </ul>
 
