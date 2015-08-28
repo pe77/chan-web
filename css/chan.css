@@ -520,6 +520,11 @@ body {
     border-color: #28502D;
 }
 
+a
+{
+    color:#27402A;
+}
+
 .navbar-primary .navbar-brand {
     border-right-color: #28502D;
 }
@@ -590,3 +595,4 @@ body {
     color: #981515 !important;
     font-weight: 600;
 }
+

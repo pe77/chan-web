@@ -168,6 +168,9 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
       pre:function(scope, element, isolatedScope)
       {
         var tagRegex = /(.?|^|\s)#([A-Za-z_]+)([A-Za-z_0-9]*)/mg;
+        var linkRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
+
         // paradinha de recolher textos grandes
         $timeout(function () {
             var h = $(element).find('.post-direct-content > div').height();
@@ -182,6 +185,28 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
 
         // add os backquotes
         scope.$watch('post', function(post){
+
+          // links
+          if(post.content)
+          {
+            var matches = post.content.match(linkRegex);
+            if(matches)
+            {
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+                var link    = matches[i];
+                var content = 
+                  post.content.replace(
+                    new RegExp(link,"g"), 
+                    '<a href="' + link + '" target="_blank" class="post-link"><i class="fa fa-fw fa-link"></i>' + link + '</a>'
+                  );
+
+                  scope.onBackQuote({from:post.id, to:postId});
+                
+                  post.content = content;
+              }
+            }
+          }
 
           if(post.content && post.content.indexOf('#') > -1)
           {
