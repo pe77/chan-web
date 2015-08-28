@@ -166,7 +166,7 @@ function checkLinks(messages)
 				if(link)
 				{
 					link = link.split('|');
-					messages[i].link = '#/board/post/' + link[0] + '/' + link[1];
+					messages[i].link = '#/post/' + link[0] + '/' + link[1];
 				}else{
 					messages[i].link = '#'
 				}
