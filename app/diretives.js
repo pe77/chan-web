@@ -238,10 +238,11 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
           // popver dos quotes dentro do post
           $('.post-content-quote').each(function(){
 
-
+              /*
               if($(this).data('hasquote')) // bugfix | multiplos popovers
                 return
               // 
+              */
 
               // remove os não numericos e extrai o ID
               var postId = $(this).html().replace(/\D/g, "");
