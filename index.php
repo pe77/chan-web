@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.0';
+  $sourceVersion = 'v1.1';
 ?>
 <!DOCTYPE html>
 
@@ -30,7 +30,7 @@
   <link href="css/vendor/all.css" rel="stylesheet">
   <link href="css/vendor/angular-carousel.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
-  <link href="css/chan.css??<?php echo $sourceVersion?>" rel="stylesheet">
+  <link href="css/chan.css?<?php echo $sourceVersion?>" rel="stylesheet">
   <link rel="shortcut icon" href="icon.png" />
   
 </head>

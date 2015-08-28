@@ -24,7 +24,7 @@
 	          </div>
 	    </div>
 
-		<div class="panel-body">
+		<div class="panel-body double-level-{{post.double_level}}">
 			<div class="media-left" ng-if="post.files.length" >
 				
 				<carousel interval="999915000" no-wrap="false" >
@@ -53,7 +53,7 @@
 	    </div>
 
 		<ul class="comments replies">
-			<li ng-repeat="reply in post.replies" ng-class="{blink:reply.isNew}" class="comment-form reply" id="post-{{reply.id}}">
+			<li ng-repeat="reply in post.replies" ng-class="{blink:reply.isNew}" class="comment-form reply double-level-{{reply.double_level}}" id="post-{{reply.id}}">
 
 				<div class="media-left" ng-if="reply.files.length" >
 

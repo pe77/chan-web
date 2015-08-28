@@ -540,3 +540,18 @@ body {
 .navbar-primary .navbar-nav .open > a, .navbar-primary .navbar-nav > .active > a, .navbar-primary .navbar-nav .open > a:focus, .navbar-primary .navbar-nav > .active > a:focus, .navbar-primary .navbar-nav .open > a:hover, .navbar-primary .navbar-nav > .active > a:hover {
     background: #22958b;
 }
+
+.double-level-1
+{
+    background-color: rgba(127, 251, 159, 0.2) !important;
+}
+
+.double-level-2
+{
+    background-color: rgba(127, 233, 251, 0.23) !important;
+}
+
+.double-level-3 
+{
+    background-color: rgba(251, 127, 127, 0.27) !important;
+}
