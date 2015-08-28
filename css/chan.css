@@ -566,3 +566,17 @@ body {
 {
     background-color: rgba(251, 127, 127, 0.27) !important;
 }
+
+
+.tuto-image img
+{
+    max-width: 550px;
+}
+
+.tuto-image p
+{
+    color: #7D7D7D;
+    font-style: italic;
+    font-size: 12px;
+}
+
