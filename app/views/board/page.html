@@ -93,7 +93,10 @@
 			<li class="comment-form reply-dae" class="panel-body" ng-if="user.name">
 				<input style="display:none" id="file-select-input" class="image-input" type="file" file-upload multiple/>
                 <div class="input-group">
-                	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
+                	<form ng-submit="Send()">
+	                	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
+                	</form>
+                	
                     <span class="input-group-btn" ng-click="ImageSelect('.post-id-' + post.id + ' .reply-dae .image-input')">
                    		<a href="" class="btn btn-default">{{ (files.length ? '('+files.length+')' : '') }}<i class="fa fa-photo"></i></a>
                 	</span>
@@ -101,6 +104,7 @@
 	            	<span class="input-group-btn" ng-click="Send()">
 	               		<a href="" class="btn btn-primary"><i class="fa fa-check"></i></a>
 	            	</span>
+	            	
                </div>
             </li>
 		</ul>
