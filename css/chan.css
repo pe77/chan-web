@@ -580,3 +580,13 @@ body {
     font-size: 12px;
 }
 
+.view-all-comments a:hover 
+{
+    color: #E1E8E2;
+}
+
+.tag-type-1
+{
+    color: #981515 !important;
+    font-weight: 600;
+}

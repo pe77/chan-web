@@ -45,7 +45,7 @@
 
 
 		<div class="view-all-comments">
-	      <a ng-repeat="tag in post.tags" href="#" > <i class="fa fa-slack"></i> {{tag.name}} </a>
+	      <a ng-repeat="tag in post.tags" href="#" class="tag-type-{{tag.type}}"> <i class="fa fa-slack"></i> {{tag.name}} </a>
 	      
 	      <span class="report-button" ng-if="user.level == 0" ng-click="Report(post)"><i class="fa fa-exclamation-circle"></i></span>
 
