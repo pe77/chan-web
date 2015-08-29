@@ -167,8 +167,10 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
     link: {
       pre:function(scope, element, isolatedScope)
       {
-        var tagRegex = /(.?|^|\s)#([A-Za-z_]+)([A-Za-z_0-9]*)/mg;
-        var linkRegex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+        var tagRegex        = /(.?|^|\s)#([A-Za-z_]+)([A-Za-z_0-9]*)/mg;
+        var linkRegex       = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:;%_\+.~#?&//=]*)?/gi;
+        var commentRegex    = /(^|\s)\/\/.+/img;
+        var greenTextRegex  = /(^|\s)&gt;.+/img;
 
 
         // paradinha de recolher textos grandes
@@ -186,6 +188,55 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
         // add os backquotes
         scope.$watch('post', function(post){
 
+
+          // g text
+          if(post.content)
+          {
+            var matches = post.content.match(greenTextRegex);
+            if(matches)
+            {
+              
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+
+                var m       = matches[i];
+                
+                var content = 
+                  post.content.replace(
+                    new RegExp(escapeRegExp(m),"g"), 
+                    '<span class="post-g-text">' + m + '</span>'
+                  );
+                
+                post.content = content;
+              }
+            }
+          }
+
+
+
+          // comentarios
+          if(post.content)
+          {
+            var matches = post.content.match(commentRegex);
+            if(matches)
+            {
+              
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+                var m       = matches[i];
+
+                var content = 
+                  post.content.replace(
+                    new RegExp(escapeRegExp(m),"g"), 
+                    '<span class="post-comment">' + m + '</span>'
+                  );
+                
+                  post.content = content;
+              }
+            }
+          }
+
+
           // links
           if(post.content)
           {
@@ -197,12 +248,10 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
                 var link    = matches[i];
                 var content = 
                   post.content.replace(
-                    new RegExp(link,"g"), 
+                    new RegExp(escapeRegExp(link),"g"), 
                     '<a href="' + link + '" target="_blank" class="post-link"><i class="fa fa-fw fa-link"></i>' + link + '</a>'
                   );
 
-                  scope.onBackQuote({from:post.id, to:postId});
-                
                   post.content = content;
               }
             }

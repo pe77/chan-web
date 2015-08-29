@@ -29,6 +29,9 @@ function searchArrayRecursive(needle, haystack, strict) {
     return constructPath(needle, haystack, [], strict);
 }
 
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
 
 var getSubMenuItem = function (subMenuItems, id) {
     if (subMenuItems) {
