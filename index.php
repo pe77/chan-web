@@ -129,7 +129,6 @@
                 <img ng-src="{{user.picture_link}}?sz=50" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><i class="fa fa-user"></i>Perfil</a></li>
                 <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
               </ul>
             </li>
@@ -147,6 +146,8 @@
 
       <ul class="sidebar-menu sm-icons-right">
         <li><a href="#/"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="#/rules"><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
+        <li ng-if="user.level > 0"><a href="#/reports"><i class="fa fa-ban"></i> <span>Reports</span></a></li>
 
         
         <li class="hasSubmenu">
@@ -155,9 +156,6 @@
             <li ng-repeat="board in boards"><a href="#/board/{{board.shortcut_name}}"><i class="fa {{board.icon}}"></i><span>{{board.title}}</span></a></li>
           </ul>
         </li>
-
-        <li ng-if="user.name"><a href="#"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
-        <li><a href="#/rules"><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
 
       </ul>
 

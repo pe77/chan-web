@@ -41,6 +41,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: 'SearchController',
       templateUrl: base_url + '/app/views/board/page.html'
   })
+
+
+  .state('report', {
+      url: '/reports',
+      controller: 'ReportController',
+      templateUrl: base_url + '/app/views/report/page.html'
+  })
   // */
 
 	;

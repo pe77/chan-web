@@ -36,6 +36,8 @@ angular.module('chan.controllers')
 
             $rootScope.Alert(response.message, 'success');
 
+            $rootScope.$emit('onBanAction');
+
         }, $rootScope.ResponseFail)
     }
 
@@ -57,6 +59,8 @@ angular.module('chan.controllers')
             //
 
             $rootScope.Alert(response.message, 'success');
+
+            $rootScope.$emit('onBanAction');
 
         }, $rootScope.ResponseFail)
     }
@@ -84,6 +88,8 @@ angular.module('chan.controllers')
             //
 
             $rootScope.Alert(response.message, 'success');
+
+            $rootScope.$emit('onBanAction');
 
         }, $rootScope.ResponseFail)
     }

@@ -158,8 +158,6 @@ angular.module('chan.controllers')
 
 		hideDelay = autoHide ? hideDelay : false;
 
-		console.log(type)
-
 		var myAlert = $alert(
 			{
 				title: '', 
