@@ -78,8 +78,6 @@ angular.module('chan.controllers')
 
     $scope.RemoveFile = function(index)
     {
-        console.log(index);
-
         $scope.files.splice(index, 1);
         $scope.filesPreview.splice(index, 1);
     }
