@@ -11,7 +11,7 @@
       <div class="col-md-12">
 
         <div class="col-md-6 text-left">
-          <img ng-repeat="filedata in filesPreview" src="{{filedata}}" style="
+          <img ng-repeat="filedata in filesPreview" src="{{filedata}}" ng-click="RemoveFile($index)" class="link {{$index}}" style="
     height: 50px;
     margin-right: 5px;
         max-width: 50px;

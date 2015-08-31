@@ -68,7 +68,6 @@ angular.module('chan.controllers')
             var reader = new FileReader();
             reader.onload = function (e) 
             {
-                
                 $scope.filesPreview.push(e.target.result);
                 $scope.$apply();
             }
@@ -77,7 +76,13 @@ angular.module('chan.controllers')
         }
     });
 
+    $scope.RemoveFile = function(index)
+    {
+        console.log(index);
 
+        $scope.files.splice(index, 1);
+        $scope.filesPreview.splice(index, 1);
+    }
 
     $scope.ImageSelect = function(selector)
     {
