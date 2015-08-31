@@ -605,3 +605,8 @@ a
 {
     color:#563292 !important;
 }
+
+.navbar-nav > li.notifications .dropdown-menu li.media a
+{
+    white-space: normal;
+}
