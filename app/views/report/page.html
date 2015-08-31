@@ -1,0 +1,49 @@
+<h1 class="text-headline page-section-heading board-title">Reports</h1>
+
+
+<hr/>
+
+<div ng-repeat="report in reports" class="item col-md-12 col-xs-12 post-item report-item post-id-{{report.post.id}}">
+	<div class="panel panel-default timeline-block">
+
+	    <div class="panel-heading" id="post-{{report.post.id}}">
+	          <div class="media">
+	            <div class="media-body">
+
+	              <span class="text-title"><i class="fa fa-fw fa-slack"></i> {{report.post.id}}</span>
+
+	            </div>
+	          </div>
+        </div>
+
+		<div class="panel-body">
+
+			<div class="media-left" ng-if="report.post.files.length" >
+				
+				<carousel interval="999915000" no-wrap="false" >
+				<slide ng-repeat="file in report.post.files" active="slide.active">
+						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+						</a>
+					</slide>
+				</carousel>
+			</div>
+			
+
+			<div class="media-body">
+				<postcontent post="report.post"></postcontent>
+			</div>   
+		</div>
+
+
+		<div class="view-all-comments">
+			<span class="report-reason">Motivo: <i>{{report.message}}</i></span> 
+
+			<span class="report-button report-action" ng-click="Ban(report.post)"><i class="fa fa-exclamation-circle"></i>Tomar ação</span>
+
+			<span class="report-button report-action" ng-click="Clear(report)"><i class="fa fa-eye-slash"></i> Ignorar</span>
+        </div>
+
+	</div>
+</div>
+
+<button class="btn btn-primary load-more-button" ng-click="LoadMore()"> <i class="fa fa-plus"></i> Carregar mais</button>
