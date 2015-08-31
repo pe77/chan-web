@@ -3,6 +3,7 @@ angular.module('chan.controllers')
 .controller('MenuControllerTop', function($scope, $rootScope, $filter, $stateParams, $interval, GenericService) 
 {
 	$scope.messages = [];
+	$scope.limit = 5;
 
 	$scope.mark = true;
 	$scope.seen = false;
@@ -31,10 +32,21 @@ angular.module('chan.controllers')
 
 			if(response.status == 1)
 			{
-				$scope.messages = $scope.messages.concat(response.data);
-				$scope.messages.reverse();
+				// só add as novas
+				for (var j = response.data.length - 1; j >= 0; j--) {
+				
+					var exist = false;
+					for (var i = $scope.messages.length - 1; i >= 0; i--) 
+						if($scope.messages[i].id == response.data[j].id)
+							exist = true;
+					//
+					
+					if(!exist)
+						$scope.messages.unshift(response.data[j]);
+					//
+					
+				};
 			}
-			//
 
 			$scope.mark = false;
 

@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.4.1';
+  $sourceVersion = 'v1.4.2';
 ?>
 <!DOCTYPE html>
 
@@ -102,12 +102,12 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li class="dropdown notifications updates" ng-if="user.name">
-                      <a href="#" class="dropdown-toggle" ng-click="Mark()" data-toggle="dropdown" aria-expanded="false">
+                      <a href="#" class="dropdown-toggle" ng-click="Mark()" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         <span ng-if="messages.length && !seen" class="badge badge-primary">{{ (messages | filter:{seen:false}).length }}</span>
                       </a>
                       
-                      <ul ng-if="messages.length" class="dropdown-menu" role="notification">
+                      <ul class="dropdown-menu" role="notification">
                         <li class="dropdown-header">Notificações</li>
 
                         <li class="media" ng-repeat="message in messages">
