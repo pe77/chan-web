@@ -52,7 +52,11 @@
 			<span class="report-button" ng-if="user.level == 0" ng-click="Report(post)"><i class="fa fa-exclamation-circle"></i></span>
 
 			<span class="report-button" ng-if="user.level > 0" ng-click="Ban(post)"><i class="fa fa-exclamation-circle"></i></span>
+
+			<div style="clear:both"></div>
         </div>
+
+
 
 		<ul class="comments replies">
 			<li ng-repeat="reply in post.replies" class="comment-form reply double-level-{{reply.double_level}}" id="post-{{reply.id}}">
