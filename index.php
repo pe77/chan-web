@@ -267,7 +267,7 @@
     </script>
 
     <!-- Aplicação -->
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js?v=2"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js"></script>
