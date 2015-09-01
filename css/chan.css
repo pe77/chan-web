@@ -701,3 +701,8 @@ a
 .sidebar.sidebar-skin-dark .sidebar-feed li:hover .media-object i {
     color: #8A46D4;
 }
+
+body{
+   min-width:420px; 
+   _width: expression( document.body.clientWidth > 420 ? "420px" : "auto" );
+}
