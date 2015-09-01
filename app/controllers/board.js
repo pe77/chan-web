@@ -75,9 +75,17 @@ angular.module('chan.controllers')
 		$scope.Update();
 	}
 
-	$scope.OpenPost = function(post)
+	$scope.OpenPost = function(post, newTab)
 	{
-		$state.go('post', {post:post.id});
+		newTab 		= (typeof newTab !== 'undefined') ? newTab : false;
+
+		if(!newTab)
+		{
+			$state.go('post', {post:post.id});
+		}else{
+			var url = $state.href('post', {post:post.id});
+			window.open(url,'_blank');
+		}
 	}
 
 	// atualiza a pagina TODA

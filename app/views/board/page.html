@@ -21,10 +21,10 @@
 	          <div class="media">
 	            <div class="media-body">
 
-	              <a href="#" ng-click="OpenPost(post)" class="pull-right link text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+	              <a ng-href="#/post/{{post.id}}/" class="pull-right link text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
 
 
-	              <span ng-click="OpenPost(post)" class="text-title link"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
+	              <span ng-click="OpenPost(post, true)" class="text-title link"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
 	            </div>
 	          </div>
         </div>
