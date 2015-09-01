@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.5.3';
+  $sourceVersion = 'v1.5.4';
 ?>
 <!DOCTYPE html>
 
@@ -61,7 +61,7 @@
 
 
   <!-- MENU DE TOPO -->
-  <div ng-controller="MenuControllerTop" class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation">
+  <div ng-controller="MenuControllerTop" ng-cloak class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="#" data-toggle="sidebar-menu" class="toggle pull-left visible-xs">
