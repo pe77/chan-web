@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.5.7';
+  $sourceVersion = 'v1.5.8';
 ?>
 <!DOCTYPE html>
 
@@ -187,8 +187,8 @@
 
       <h4 class="category border top"></h4>
       <div class="sidebar-block">
-        <button ng-click="OpenLink('https://www.facebook.com/cenouro', true)" class="btn btn-block btn-default btn-icon-stacked"><i class="fa fa-2x fa-facebook"></i> <span>Encontre-nos no <br>Facebook</span></button>
-        <button ng-click="OpenLink('https://www.google.com/+77chanc', true)" class="btn btn-block btn-default btn-icon-stacked"><i class="fa fa-2x fa-google"></i> <span>Comunidade no <br>Google+</span></button>
+        <button ng-click="OpenLink('https://www.facebook.com/cenouro', true)" class="btn btn-block btn-default btn-facebook btn-icon-stacked"><i class="fa fa-2x fa-facebook"></i> <span>Encontre-nos no <br>Facebook</span></button>
+        <button ng-click="OpenLink('https://www.google.com/+77chanc', true)" class="btn btn-block btn-default btn-google btn-icon-stacked"><i class="fa fa-2x fa-google"></i> <span>Comunidade no <br>Google+</span></button>
       </div>
 
 

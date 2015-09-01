@@ -650,10 +650,44 @@ a
 }
 
 .sidebar.sidebar-skin-dark .btn-default:hover, .sidebar.sidebar-skin-dark .btn-default:focus, .sidebar.sidebar-skin-dark .btn-default.focus, .sidebar.sidebar-skin-dark .btn-default:active, .sidebar.sidebar-skin-dark .btn-default.active, .open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-default {
-    color: #ffffff;
     background-color: #7030B5;
     border-color: #40126B;
 }
+
+
+/* fabook btn */
+.sidebar.sidebar-skin-dark .btn-facebook {
+    background-color: #3a5795;
+    border-color: #133783;
+}
+
+.sidebar.sidebar-skin-dark .btn-facebook:hover, 
+.sidebar.sidebar-skin-dark .btn-facebook:focus, 
+.sidebar.sidebar-skin-dark .btn-facebook.focus, 
+.sidebar.sidebar-skin-dark .btn-facebook:active, 
+.sidebar.sidebar-skin-dark .btn-facebook.active, 
+.open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-facebook {
+    background-color: #133783;
+    border-color: #133783;
+}
+
+
+/* googl+ btn*/
+.sidebar.sidebar-skin-dark .btn-google {
+    background-color: #DB4437;
+    border-color: #B73A2F;
+}
+
+.sidebar.sidebar-skin-dark .btn-google:hover, 
+.sidebar.sidebar-skin-dark .btn-google:focus, 
+.sidebar.sidebar-skin-dark .btn-google.focus, 
+.sidebar.sidebar-skin-dark .btn-google:active, 
+.sidebar.sidebar-skin-dark .btn-google.active, 
+.open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-google {
+    background-color: #B73A2F;
+    border-color: #B73A2F;
+}
+
 
 .sidebar.sidebar-skin-dark .category {
     color: #CACACA;
