@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, GenericService) 
+.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService) 
 {
 
 	$rootScope.base_url 	      = base_url;
