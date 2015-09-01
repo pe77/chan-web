@@ -639,3 +639,27 @@ a
 {
     color:#26a69a;
 }
+
+.sidebar.sidebar-skin-dark .btn-default {
+    background-color: #481E75;
+    border-color: #260A40;
+}
+
+.sidebar.sidebar-skin-dark .btn-default:hover, .sidebar.sidebar-skin-dark .btn-default:focus, .sidebar.sidebar-skin-dark .btn-default.focus, .sidebar.sidebar-skin-dark .btn-default:active, .sidebar.sidebar-skin-dark .btn-default.active, .open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-default {
+    color: #ffffff;
+    background-color: #7030B5;
+    border-color: #40126B;
+}
+
+.sidebar.sidebar-skin-dark .category {
+    color: #CACACA;
+}
+
+.sidebar-feed a {
+    color: #A2A2A2;
+    text-decoration: inherit;
+}
+
+.sidebar.sidebar-skin-dark .sidebar-feed li:hover .media-object i {
+    color: #8A46D4;
+}

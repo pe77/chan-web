@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.5.4';
+  $sourceVersion = 'v1.5.5';
 ?>
 <!DOCTYPE html>
 
@@ -158,6 +158,14 @@
         </li>
 
       </ul>
+
+
+      <h4 class="category border top"></h4>
+      <div class="sidebar-block">
+        <button ng-click="OpenLink('https://www.facebook.com/cenouro', true)" class="btn btn-block btn-default btn-icon-stacked"><i class="fa fa-2x fa-facebook"></i> <span>Encontre-nos no <br>Facebook</span></button>
+      </div>
+
+
 
 
 

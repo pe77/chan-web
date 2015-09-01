@@ -174,6 +174,18 @@ angular.module('chan.controllers')
 	}
 
 
+	$rootScope.OpenLink = function(url, newTab)
+    {
+        newTab 		= (typeof newTab !== 'undefined') ? newTab : false;
+
+        if(newTab)
+        	window.open(url,'_blank');
+        else
+        	window.open(url);
+        //
+    }
+
+
 
 
 
