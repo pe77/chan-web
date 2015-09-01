@@ -5,6 +5,7 @@ angular.module('chan.controllers')
 	$scope.posts = [];
 	$scope.board = {};
 	$scope.title = 'Search';
+	$scope.description = $stateParams.tags;
 
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;

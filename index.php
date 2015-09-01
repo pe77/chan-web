@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.5.1';
+  $sourceVersion = 'v1.5.2';
 ?>
 <!DOCTYPE html>
 
@@ -89,7 +89,7 @@
                       <div class="input-group">
                         <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Procurar ..">
                         <span class="input-group-btn">
-                    <button class="btn btn-inverse" type="button" ng-submit="Search()"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-inverse" type="button" ng-click="Search()"><i class="fa fa-search"></i></button>
                   </span>
                 </div>
               </div>

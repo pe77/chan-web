@@ -5,6 +5,7 @@ angular.module('chan.controllers')
 	$scope.posts = [];
 	$scope.board = {};
 	$scope.title = '';
+	$scope.description = '';
 
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
@@ -20,6 +21,7 @@ angular.module('chan.controllers')
 
 		$scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
 		$scope.title = $scope.board.title;
+		$scope.description = $scope.board.description;
 
 	});
 	
