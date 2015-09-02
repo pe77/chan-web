@@ -38,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   
   .state('search', {
       url: '/search/:tags',
-      controller: 'SearchController',
+      controller: 'BoardController',
       templateUrl: base_url + '/app/views/board/page.html'
   })
 

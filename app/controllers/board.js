@@ -2,10 +2,15 @@ angular.module('chan.controllers')
 
 .controller('BoardController', function($scope, $rootScope, $createPopover, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
+	$scope.isSearch = $stateParams.tags ? true : false;
+
+
 	$scope.posts = [];
 	$scope.board = {};
-	$scope.title = '';
-	$scope.description = '';
+	$scope.title = $scope.isSearch ? 'Search' : '';
+	$scope.description = $scope.isSearch ? $stateParams.tags : '';
+
+
 
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
@@ -14,17 +19,20 @@ angular.module('chan.controllers')
 	var newPost 			= false;
 	var postsCache 			= [];
 
-	$rootScope.$watch('boards', function(){
+	if(!$scope.isSearch)
+	{
+		$rootScope.$watch('boards', function(){
 
-		if(!$rootScope.boards.length)
-			return;
-		//
+			if(!$rootScope.boards.length)
+				return;
+			//
 
-		$scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
-		$scope.title = $scope.board.title;
-		$scope.description = $scope.board.description;
+			$scope.board = $filter('filter')($rootScope.boards, {shortcut_name:$stateParams.board})[0];
+			$scope.title = $scope.board.title;
+			$scope.description = $scope.board.description;
 
-	});
+		});
+	}
 
 	// preview do quote quando passa o dedinho e/ou clica, retorna o post, se houver
     $scope.SearchPost = function(id)
@@ -116,14 +124,24 @@ angular.module('chan.controllers')
 		}
 		//
 
-		// pega os posts
-		GenericService.get({
+
+		var requestData = {
 			route:'post',
 			action:'getByBoard',
 			id:$stateParams.board,
 			page:$scope.page,
 			pageLimit:$scope.pageLimit
-		}, function(response){
+		};
+
+
+		if($scope.isSearch)
+		{
+			requestData.action = 'getByTags';
+			requestData.id = $stateParams.tags;
+		}
+
+		// pega os posts
+		GenericService.get(requestData, function(response){
 
 			$rootScope.loading = false;
 
