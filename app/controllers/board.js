@@ -32,7 +32,9 @@ angular.module('chan.controllers')
 
 		reset 	= (typeof reset !== 'undefined') ? reset : false;
 		if(reset)
+		{
 			$scope.page = 1;
+		}
 		//
 
 		// pega os posts
@@ -61,6 +63,8 @@ angular.module('chan.controllers')
 				{
                 	$rootScope.ScrollTo('post-' + newPost);
                 	$('#' + 'post-' + newPost).addClass('blink');
+
+                	newPost = false;
 				}
                 //
             }, 100); // mais eficiente que o apply
