@@ -268,12 +268,12 @@
 
     <!-- Aplicação -->
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js?v=2"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js?<?php echo $sourceVersion?>"></script>
 
 
   <!-- Controles -->
