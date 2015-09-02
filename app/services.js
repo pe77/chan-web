@@ -159,7 +159,7 @@ angular.module('chan.services', ['ngResource'])
       if(image)
         content = '<img src="' + image + '">' + content;
       // 
-      
+
       var popOver = $popover(elem, {
           content: content, 
           html:true,
