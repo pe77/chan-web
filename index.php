@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.1.70';
+  $sourceVersion = 'v1.1.71';
 ?>
 <!DOCTYPE html>
 

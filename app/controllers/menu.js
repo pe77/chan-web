@@ -131,7 +131,9 @@ angular.module('chan.controllers')
 		// pega as ultimas 15
 		GenericService.get({
 			route:'message',
-			action:'all'
+			action:'all',
+			page:1,
+			pageLimit:5
 		}, function(response){
 	
 			// da uma tratada no s links
