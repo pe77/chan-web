@@ -318,11 +318,13 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
               // 
               */
 
+
+
               // remove os não numericos e extrai o ID
               var postId = $(this).html().replace(/\D/g, "");
 
-              var postQuote = scope.searchPost({id:postId});
               var elem = angular.element(this);
+              var postQuote = scope.searchPost({id:postId});
 
               if(postQuote)
                 $createPopover.create(postQuote, elem, false, 'right');

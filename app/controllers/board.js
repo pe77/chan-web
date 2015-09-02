@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $createPopover, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 	$scope.posts = [];
 	$scope.board = {};
@@ -11,7 +11,8 @@ angular.module('chan.controllers')
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
 	$anchorScroll.yOffset   = 275;
 
-	var newPost = false;
+	var newPost 			= false;
+	var postsCache 			= [];
 
 	$rootScope.$watch('boards', function(){
 
@@ -24,6 +25,84 @@ angular.module('chan.controllers')
 		$scope.description = $scope.board.description;
 
 	});
+
+	// preview do quote quando passa o dedinho e/ou clica, retorna o post, se houver
+    $scope.SearchPost = function(id)
+    {
+    	for (var j = $scope.posts.length - 1; j >= 0; j--)
+    	{
+    		var post = $scope.posts[j];
+
+    		// verifica se é o post principal
+	        if(post.id == id)
+	            return post;
+	        //
+
+    		// procura nas respostas
+	        for (var i in post.replies)
+	        {
+	            if(post.replies[i].id == id)
+	                return post.replies[i];
+	            //
+	        };
+
+    	};
+
+    	// garante que não faça mais de uma requisição por quotepost omitido
+    	if(postsCache.indexOf(id) > -1)
+    		return false;
+    	//
+
+    	postsCache.push(id);
+
+    	// se não achou em nenhum dos já carregados, carrega via ajax
+		quotePreviewRequest = GenericService.get({
+			route:'post',
+			id:id,
+			scope:'TextFile'
+		}, function(response){
+			
+
+			$('.quote-post-' + id).each(function(){
+
+				var elem = angular.element(this);
+				var post = response.data;
+
+				$createPopover.create(post, elem, false, 'right');
+
+    		});
+
+		});
+
+
+        return false;
+        
+    }
+
+
+    // marca o post 'to' como os quotados
+    $scope.AddQuoteReply = function(from, to)
+    {
+    	for (var k = $scope.posts.length - 1; k >= 0; k--)
+    	{
+    		var post = $scope.posts[k];
+
+    		for (var i in post.replies)
+    		{
+	            var reply = post.replies[i];
+
+	            if(reply.id == to)
+	            {
+	                reply.quotes = reply.quotes == undefined ? [] : reply.quotes;
+
+	                // garante que não add duplicados
+	                if(reply.quotes.indexOf(from) < 0)
+	                    reply.quotes.push(from);
+	                //
+	            }
+	        };
+    	};
+    }
 	
 	// atualiza
 	$scope.Update = function(reset)
@@ -106,7 +185,6 @@ angular.module('chan.controllers')
 
 		$scope.Update(true);
 	});
-
 
 	// quando sair da pagina 
     $rootScope.$on('$stateChangeStart', function()

@@ -79,7 +79,7 @@
 					<div class="info">
 
 						<div class="quotes" ng-if="reply.quotes">
-							<span class="quote" ng-repeat="quote in reply.quotes track by $index" ><i class="fa fa-reply"></i>{{quote}}</span>
+							<span class="quote" ng-repeat="quote in reply.quotes track by $index" quotepreview quote="quote" search-post="SearchPost(id)"><i class="fa fa-reply"></i>{{quote}}</span>
 						</div>
 
 						<span ng-click="addReply(reply)" class="text-title"><i class="fa fa-fw fa-slack"></i> {{reply.id}}</span>
@@ -87,12 +87,9 @@
 						<span class="report-button" ng-if="user.level == 0" ng-click="Report(reply)"><i class="fa fa-exclamation-circle"></i></span>
 
 						<span class="report-button" ng-if="user.level > 0" ng-click="Ban(reply)"><i class="fa fa-exclamation-circle"></i></span>
-
-
-						
 					</div>
 
-					<postcontent post="reply"></postcontent>
+					<postcontent post="reply" search-post="SearchPost(id)" on-back-quote="AddQuoteReply(from, to)"></postcontent>
 				</div>   
 
 			</li>
