@@ -168,7 +168,7 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
       pre:function(scope, element, isolatedScope)
       {
         var tagRegex        = /(.?|^|\s)#([A-Za-z_]+)([A-Za-z_0-9]*)/mg;
-        var linkRegex       = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:;%_\+.~#?&//=]*)?/gi;
+        var linkRegex       = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:;%_\+.~#?&//=]*)?/gi;
         var commentRegex    = /(^|\s)\/\/.+/img;
         var greenTextRegex  = /(^|\s)&gt;.+/img;
 
