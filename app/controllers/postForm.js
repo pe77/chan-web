@@ -68,7 +68,9 @@ angular.module('chan.controllers')
             var reader = new FileReader();
             reader.onload = function (e) 
             {
-                $scope.filesPreview.push(e.target.result);
+                var blobData = e.target.result;
+                
+                $scope.filesPreview.push(blobData);
                 $scope.$apply();
             }
 
@@ -80,6 +82,12 @@ angular.module('chan.controllers')
     {
         $scope.files.splice(index, 1);
         $scope.filesPreview.splice(index, 1);
+    }
+
+
+    $scope.isVideo = function(dataFile)
+    {
+        return dataFile.indexOf('video') > -1;
     }
 
     $scope.ImageSelect = function(selector)

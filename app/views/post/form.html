@@ -11,11 +11,12 @@
       <div class="col-md-12">
 
         <div class="col-md-6 text-left">
-          <img ng-repeat="filedata in filesPreview" src="{{filedata}}" ng-click="RemoveFile($index)" class="link {{$index}}" style="
-    height: 50px;
-    margin-right: 5px;
-        max-width: 50px;
-">
+          <div ng-repeat="filedata in filesPreview" ng-click="RemoveFile($index)"  class="link form-file-preview">
+            <img ng-if="!isVideo(filedata)" src="{{filedata}}">  
+            <img ng-if="isVideo(filedata)" src="{{base_url}}/images/videopreview.png">
+            
+          </div>
+          
         </div>
 
         <div class="col-md-6 text-right">

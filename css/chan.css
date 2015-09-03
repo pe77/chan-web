@@ -723,3 +723,15 @@ img.view-preview
 {
     opacity: 0.5;
 }
+
+.form-file-preview
+{
+    display: inline;
+}
+.form-file-preview img,
+.form-file-preview video
+{
+    height: 50px;
+    margin-right: 5px;
+    max-width: 50px;
+}
