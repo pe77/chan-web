@@ -613,7 +613,8 @@ a
     font-weight: 600;
 }
 
-.page-header .description
+.page-header .description,
+.post-page-footer-message
 {
     color: #666;
     margin-left: 15px;
