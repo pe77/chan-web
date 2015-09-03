@@ -706,3 +706,20 @@ body{
    min-width:420px; 
    _width: expression( document.body.clientWidth > 420 ? "420px" : "auto" );
 }
+
+.carousel-inner .video-icon
+{
+    color: #212121;
+    font-size: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    /* text-shadow: 2px 2px 5px #000000; */
+}
+
+img.view-preview
+{
+    opacity: 0.5;
+}

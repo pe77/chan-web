@@ -31,8 +31,13 @@
 				
 				<carousel interval="999915000" no-wrap="false" >
 				<slide ng-repeat="file in post.files" active="slide.active">
-						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
-						</a>
+						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
+
+							<img ng-class="{'view-preview':!file.is_image}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+
+							<i ng-if="!file.is_image" class="video-icon fa fa-fw fa-play"></i>
+
+							</a>
 					</slide>
 				</carousel>
 
@@ -61,7 +66,12 @@
 
 					<carousel interval="999915000" no-wrap="false" >
 					<slide ng-repeat="file in reply.files" active="slide.active">
-							<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank"><img ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+							<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
+
+							<img ng-class="{'view-preview':!file.is_image}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+
+							<i ng-if="!file.is_image" class="video-icon fa fa-fw fa-play"></i>
+
 							</a>
 						</slide>
 					</carousel>
