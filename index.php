@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.3.30';
+  $sourceVersion = 'v1.3.33';
 ?>
 <!DOCTYPE html>
 
@@ -150,9 +150,9 @@
         <li ng-if="user.level > 0"><a href="#/reports"><i class="fa fa-ban"></i> <span>Reports</span></a></li>
 
         
-        <li class="hasSubmenu">
-          <a href="#submenu"><i class="fa fa-list"></i><span>Boards</span></a>
-          <ul id="submenu">
+        <li class="hasSubmenu open">
+          <a href="#submenu" data-toggle="collapse" class="" aria-expanded="true"><i class="fa fa-list"></i><span>Boards</span></a>
+          <ul id="submenu" class="collapse in" aria-expanded="true">
             <li ng-repeat="board in boards"><a href="#/board/{{board.shortcut_name}}"><i class="fa {{board.icon}}"></i><span>{{board.title}}</span></a></li>
           </ul>
         </li>
