@@ -1,12 +1,7 @@
-<div class="page-header">
+<div class="page-header" ng-if="title != ''">
 	<h1 class="text-headline page-section-heading title">{{title}}</h1>
 </div>
 
-
-
-<div ng-if="hasPost" ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
-
-<hr/>
 
 <div class="item col-md-12 col-xs-12 text-right page-utils" style="display:none">
 	<i class="text-muted">AutoUpdate em</i>
@@ -114,3 +109,6 @@
 <div class="post-page-footer-message">
 	// Essa página irá se atualizar sozinha quando houver uma nova resposta
 </div>
+
+
+<div ng-if="hasPost" ng-include="base_url + '/app/views/post/form.html'" ng-controller="PostFormController" onload="onLoadPostForm(setReply, addReply)"></div>
