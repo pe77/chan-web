@@ -1,12 +1,13 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService) 
+.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService, Facebook) 
 {
 
 	$rootScope.base_url 	      = base_url;
 	$rootScope.parameters 	      = parameters;
 	$rootScope.loading			  = false;
 	$rootScope.signedIn		  	  = false;
+	$rootScope.facebookReady	  = false;
 	$rootScope.errorMessageSend	  = false;
  	$rootScope.boards			  = [];
  	$rootScope.user				  = $localstorage.getObject('user');
@@ -65,10 +66,20 @@ angular.module('chan.controllers')
 
 	// LOGIN / AUTH
 
+	// google
 	$scope.$on('event:google-plus-signin-success', function (event,authResult) {
 
 	    $rootScope.Login(authResult['access_token']);
 	    $rootScope.$apply();
+	});
+
+	// facebook
+	Facebook.getLoginStatus(function(response) {
+		console.log(response);
+		
+		if(response.status === 'connected') 
+			$rootScope.Login(response.authResponse.accessToken);
+		//
 	});
 
 
@@ -93,7 +104,7 @@ angular.module('chan.controllers')
 	    			break;
 
     			case 0:
-    				$rootScope.Alert(response.message);
+    				$rootScope.Alert(response.message, 'warning');
     				$rootScope.Logout();
     				break;
 
@@ -122,6 +133,10 @@ angular.module('chan.controllers')
 			$rootScope.loading = false;
 
 	    }, $rootScope.ResponseFail);
+
+	    Facebook.logout(function(response){
+	    	// puff!
+	    });
 	}
 
 
@@ -129,6 +144,32 @@ angular.module('chan.controllers')
 	if($localstorage.get('access_token', false))
 		$rootScope.Login($localstorage.get('access_token'));
 	//
+
+	$rootScope.$watch(function() {
+	  return Facebook.isReady();
+	}, function(newVal) {
+	  $rootScope.facebookReady = true;
+	});
+
+
+	$rootScope.FacebookLogin = function()
+	{
+		if($rootScope.signedIn)
+			return;
+		//
+
+		Facebook.login(function(response) {
+			if(response.status === 'connected') 
+				$rootScope.Login(response.authResponse.accessToken);
+			//
+		}, {scope: 'email'});
+	}
+
+	
+	
+
+
+
 
 
 
@@ -142,6 +183,15 @@ angular.module('chan.controllers')
 
 		return variavel;
 	}
+
+
+	$rootScope.getUserPic = function(url)
+    {
+    	if(url.indexOf('google') > -1)
+    		return url + '?sz=50';
+    	else
+        	return url;
+    }
 
 
 	$rootScope.ScrollTo = function(anchor)

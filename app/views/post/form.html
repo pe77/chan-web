@@ -37,6 +37,9 @@
 </div>
 
 <div class="panel-body text-center" ng-if="!user.name">
+  <button ng-if="!signedIn && facebookReady" class="btn btn-default btn-facebook btn-facebook-main-login" ng-click="FacebookLogin()"><i class="fa fa-facebook"></i> Fazer login com o Facebook</button>
+  
 	<google-plus-signin ng-if="!signedIn" language="pt-BR" clientid="{{parameters.google_api_key}}"></google-plus-signin>
-  <div class="text-muted">Para postar de outras funções, clique aqui</div>
+
+  <div class="text-muted">Para postar e outras funções, faça seu login.</div>
 </div>

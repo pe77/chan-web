@@ -8,12 +8,16 @@ var app = angular.module('chan',
 		'directive.g+signin',
 		'ngSanitize',
 		// 'ngAnimate',
-		'mgcrea.ngStrap'
+		'mgcrea.ngStrap',
+		'facebook'
 	]
 );
 
-app.config(['$httpProvider', function($httpProvider) {
+app.config(['$httpProvider', 'FacebookProvider', function($httpProvider, FacebookProvider) {
+	
 	// $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+	// https://github.com/Ciul/angular-facebook
+	FacebookProvider.init(parameters.facebook_api_key);
 }]);
 
 angular.module('chan.controllers', []);

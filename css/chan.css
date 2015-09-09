@@ -657,9 +657,13 @@ a
 
 
 /* fabook btn */
-.sidebar.sidebar-skin-dark .btn-facebook {
+.sidebar.sidebar-skin-dark .btn-facebook,
+.btn-facebook
+{
+    color:white;
     background-color: #3a5795;
-    border-color: #133783;
+    border:none;
+    /* border-color: #133783; */
 }
 
 .sidebar.sidebar-skin-dark .btn-facebook:hover, 
@@ -667,9 +671,23 @@ a
 .sidebar.sidebar-skin-dark .btn-facebook.focus, 
 .sidebar.sidebar-skin-dark .btn-facebook:active, 
 .sidebar.sidebar-skin-dark .btn-facebook.active, 
-.open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-facebook {
+.open > .dropdown-toggle.sidebar.sidebar-skin-dark .btn-facebook, 
+.btn-facebook:hover, 
+.btn-facebook:focus, 
+.btn-facebook.focus, 
+.btn-facebook:active, 
+.btn-facebook.active
+{
     background-color: #133783;
     border-color: #133783;
+    color:white;
+}
+
+.btn-facebook-main-login
+{
+    margin-bottom: 34px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 

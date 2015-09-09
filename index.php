@@ -12,7 +12,7 @@
 
 	$baseUrl = url();
 	$timestamp = time();
-  $sourceVersion = 'v1.3.33';
+  $sourceVersion = 'v1.4.00';
 ?>
 <!DOCTYPE html>
 
@@ -126,7 +126,7 @@
 
             <li class="dropdown user" ng-if="user.name">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img ng-src="{{user.picture_link}}?sz=50" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
+                <img ng-src="{{getUserPic(user.picture_link)}}" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
@@ -245,7 +245,7 @@
 <![endif]-->
 
 
-<!-- Bibliotecas -->
+  <!-- Bibliotecas -->
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
   
@@ -260,13 +260,14 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
 
   <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
+  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/bower_components/angular-facebook/lib/angular-facebook.js"></script>
   
   
   <script type="text/javascript">
-      var base_url = '<?php echo $baseUrl?>';
-    </script>
+    var base_url = '<?php echo $baseUrl?>';
+  </script>
 
-    <!-- Aplicação -->
+  <!-- Aplicação -->
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js?v=2"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js?<?php echo $sourceVersion?>"></script>
   <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js?<?php echo $sourceVersion?>"></script>
