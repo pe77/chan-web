@@ -567,6 +567,12 @@ a
 .tuto-image img
 {
     max-width: 550px;
+    width: 100%;
+}
+
+.how-use p
+{
+    clear:both;
 }
 
 .tuto-image p
