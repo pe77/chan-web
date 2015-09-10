@@ -1,19 +1,3 @@
-<?php
-
-	function url(){
-	    if(isset($_SERVER['HTTPS'])){
-	        $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
-	    }
-	    else{
-	        $protocol = 'http';
-	    }
-	    return $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-	}
-
-	$baseUrl = url();
-	$timestamp = time();
-  $sourceVersion = 'v1.4.00';
-?>
 <!DOCTYPE html>
 
 <html class="ls-top-navbar show-sidebar sidebar-l1 sidebar-r1" lang="en">
@@ -22,15 +6,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Anonymous Social Network">
+  <meta name="author" content="P.">
+  <meta name="keywords" content="Anonymous,Social,Network,Forum">
   <title>77chan</title>
 
 
   <link href="css/vendor/all.css" rel="stylesheet">
   <link href="css/vendor/angular-carousel.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
-  <link href="css/chan.css?<?php echo $sourceVersion?>" rel="stylesheet">
+  <link href="css/chan.css" rel="stylesheet">
   <link rel="shortcut icon" href="icon.png" />
   
 </head>
@@ -246,47 +231,47 @@
 
 
   <!-- Bibliotecas -->
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-resource.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular-resource.js"></script>
   
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-touch.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular-touch.js"></script>
   
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-router.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-sanitize.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/google-plus-signin.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular-ui-router.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular-sanitize.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/google-plus-signin.js"></script>
   <script src="//cdn.jsdelivr.net/angularjs/1.4.2/angular-animate.min.js" data-semver="1.4.2"></script>
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.1.2/angular-strap.tpl.min.js"></script>
 
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/vendor/angular/angular-ui-bootstrap.js"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/lib/bower_components/angular-facebook/lib/angular-facebook.js"></script>
+  <script type="text/javascript" src="lib/vendor/angular/angular-ui-bootstrap.js"></script>
+  <script type="text/javascript" src="lib/bower_components/angular-facebook/lib/angular-facebook.js"></script>
   
   
   <script type="text/javascript">
-    var base_url = '<?php echo $baseUrl?>';
+    var base_url = document.location.href.match(/(^[^#]*)/)[0];
   </script>
 
   <!-- Aplicação -->
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/config.js?v=2"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/app.js?<?php echo $sourceVersion?>"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/routes.js?<?php echo $sourceVersion?>"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/helpers.js?<?php echo $sourceVersion?>"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/diretives.js?<?php echo $sourceVersion?>"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/filters.js?<?php echo $sourceVersion?>"></script>
-  <script type="text/javascript" src="<?php echo $baseUrl?>/app/services.js?<?php echo $sourceVersion?>"></script>
+  <script type="text/javascript" src="app/config.js"></script>
+  <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="app/routes.js"></script>
+  <script type="text/javascript" src="app/helpers.js"></script>
+  <script type="text/javascript" src="app/diretives.js"></script>
+  <script type="text/javascript" src="app/filters.js"></script>
+  <script type="text/javascript" src="app/services.js"></script>
 
 
   <!-- Controles -->
-  <script src="<?php echo $baseUrl?>/app/controllers/global.js"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/post.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/board.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/home.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/menu.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/postForm.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/report.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/ban.js?<?php echo $sourceVersion?>"></script>
-  <script src="<?php echo $baseUrl?>/app/controllers/search.js?<?php echo $sourceVersion?>"></script>
+  <script src="app/controllers/global.js"></script>
+  <script src="app/controllers/post.js"></script>
+  <script src="app/controllers/board.js"></script>
+  <script src="app/controllers/home.js"></script>
+  <script src="app/controllers/menu.js"></script>
+  <script src="app/controllers/postForm.js"></script>
+  <script src="app/controllers/report.js"></script>
+  <script src="app/controllers/ban.js"></script>
+  <script src="app/controllers/search.js"></script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
