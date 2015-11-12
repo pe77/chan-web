@@ -17,16 +17,16 @@
 <div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}" ng-controller="PostFormController" ng-init="setReply(post)">
 	<div class="panel panel-default timeline-block">
 
-	    <div class="panel-heading" id="post-{{post.id}}">
-	          <div class="media">
-	            <div class="media-body">
+	    <div class="panel-heading link" id="post-{{post.id}}">
+			<div class="media">
+				
+					<div class="media-body">
 
-	              <a ng-href="#/post/{{post.id}}/" class="pull-right link text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
-
-
-	              <span ng-click="OpenPost(post, true)" class="text-title link"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
-	            </div>
-	          </div>
+						<a class="pull-right link text-muted" href=""><i class="icon-reply-all-fill fa fa-2x "></i></a>
+						<span class="text-title link"><i class="fa fa-fw fa-slack"></i> {{post.id}}</span>
+					</div>
+				
+			</div>
         </div>
 
 		<div class="panel-body double-level-{{post.double_level}}">

@@ -760,3 +760,8 @@ img.view-preview
     margin-right: 5px;
     max-width: 50px;
 }
+
+.ul.dropdown-menu {
+    overflow-y: auto;
+    height: 300px;
+}
