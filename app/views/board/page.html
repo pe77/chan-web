@@ -17,7 +17,7 @@
 <div ng-repeat="post in posts" class="item col-md-12 col-xs-12 post-item post-id-{{post.id}}" ng-controller="PostFormController" ng-init="setReply(post)">
 	<div class="panel panel-default timeline-block">
 
-	    <div class="panel-heading link" id="post-{{post.id}}">
+	    <div class="panel-heading link" id="post-{{post.id}}" ng-click="OpenPost(post)">
 			<div class="media">
 				
 					<div class="media-body">
