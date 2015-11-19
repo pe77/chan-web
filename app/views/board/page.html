@@ -37,9 +37,9 @@
 					<slide ng-repeat="file in post.files" active="slide.active">
 						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
 
-						<img ng-class="{'view-preview':!file.is_image}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+						<img ng-class="{'view-preview':file.type == 1}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
 
-						<i ng-if="!file.is_image" class="video-icon fa fa-fw fa-play"></i>
+						<i ng-if="file.type == 1" class="video-icon fa fa-fw fa-play"></i>
 						</a>
 					</slide>
 				</carousel>
@@ -73,9 +73,9 @@
 					<slide ng-repeat="file in reply.files" active="slide.active">
 							<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
 
-							<img ng-class="{'view-preview':!file.is_image}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+							<img ng-class="{'view-preview':file.type == 1}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
 
-							<i ng-if="!file.is_image" class="video-icon fa fa-fw fa-play"></i>
+							<i ng-if="file.type == 1" class="video-icon fa fa-fw fa-play"></i>
 
 							</a>
 						</slide>
