@@ -109,6 +109,29 @@
                 	<form ng-submit="Send()">
 	                	<input type="text" ng-model="postForm.content" class="form-control" placeholder="Resposta rápida">
                 	</form>
+
+                	<ng-audio-recorder id='audioInput' class="input-group-btn" audio-model='audioModel' on-record-complete="RecComplete()">
+	            		<span 
+			            ng-click="recorder.status.isRecording === false ? recorder.startRecord() : recorder.stopRecord()" 
+			            ng-if="recorder.isAvailable" 
+			            class="input-group-btn">
+			            	<a 
+			            	href="" 
+			            	ng-class="{'btn-primary':recorder.status.isRecording, 'btn-default':!recorder.status.isRecording}" 
+			            	class="btn">
+			            		{{recorder.status.isRecording === false ? '' : 'Gravando...'}} 
+			            	<i class="fa fa-microphone"></i>
+			            	</a>
+
+			            	
+			            	
+			            </span>
+
+			            <span ng-if="!recorder.isAvailable" class="input-group-btn">
+			            <a href="" class="btn btn-default"><i class="fa fa-microphone-slash"></i></a>
+			            </span>
+
+		            </ng-audio-recorder>
                 	
                     <span class="input-group-btn" ng-click="ImageSelect('.post-id-' + post.id + ' .reply-dae .image-input')">
                    		<a href="" class="btn btn-default">{{ (files.length ? '('+files.length+')' : '') }}<i class="fa fa-photo"></i></a>
