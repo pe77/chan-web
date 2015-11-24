@@ -9,15 +9,24 @@ var app = angular.module('chan',
 		'ngSanitize',
 		// 'ngAnimate',
 		'mgcrea.ngStrap',
-		'facebook'
+		'facebook',
+		'angularAudioRecorder'
 	]
 );
 
-app.config(['$httpProvider', 'FacebookProvider', function($httpProvider, FacebookProvider) {
+app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', function($httpProvider, FacebookProvider, recorderServiceProvider) {
 	
 	// $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	// https://github.com/Ciul/angular-facebook
 	FacebookProvider.init(parameters.facebook_api_key);
+
+
+	recorderServiceProvider
+        .setSwfUrl('lib/angular-recorder/recorder.swf')
+        .withMp3Conversion(false, {
+        	lameJsUrl:'lib/angular-recorder/lame.min.js'
+        })
+      ;
 }]);
 
 angular.module('chan.controllers', []);

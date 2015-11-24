@@ -765,3 +765,8 @@ img.view-preview
     overflow-y: auto;
     height: 300px;
 }
+
+.audioRecorder
+{
+    display: inline;
+}

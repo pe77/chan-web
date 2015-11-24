@@ -12,16 +12,41 @@
 
         <div class="col-md-6 text-left">
           <div ng-repeat="filedata in filesPreview" ng-click="RemoveFile($index)"  class="link form-file-preview">
-            <img ng-if="!isVideo(filedata)" src="{{filedata}}">  
-            <img ng-if="isVideo(filedata)" src="{{base_url}}/images/videopreview.png">
+            <img ng-if="GetType(filedata) == 0" src="{{filedata}}">  
+            <img ng-if="GetType(filedata) == 1" src="{{base_url}}/images/videopreview.png">
+            <img ng-if="GetType(filedata) == 2" src="{{base_url}}/images/sound.png">
+            <img ng-if="GetType(filedata) > 2" src="{{base_url}}/images/videopreview.png">
             
           </div>
           
         </div>
 
         <div class="col-md-6 text-right">
-          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> Adicionar Imagem {{ (files.length ? '('+files.length+')' : '') }} </button> 
-          <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Submeter</button>
+
+          <ng-audio-recorder id='audioInput' audio-model='audioModel' on-record-complete="RecComplete()">
+
+            <button 
+            ng-click="recorder.status.isRecording === false ? recorder.startRecord() : recorder.stopRecord()" 
+            ng-if="recorder.isAvailable" 
+            ng-class="{'btn-primary':recorder.status.isRecording, 'btn-default':!recorder.status.isRecording}" 
+            class="btn "><i class="fa fa-microphone"></i> {{recorder.status.isRecording === false ? 'Enviar Audio' : 'Gravando...'}} </button>
+
+            <button ng-if="!recorder.isAvailable" class="btn btn-default"><i class="fa fa-microphone-slash"></i> </button>
+            
+
+            <span ng-if="!recorder.isAvailable">
+              Message for users when recording is not possible.
+            </span>
+            <!-- End controls-->
+          </ng-audio-recorder>
+
+
+
+          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> Imagem/Video(mp4) {{ (files.length ? '('+files.length+')' : '') }} </button> 
+
+          <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Enviar</button>
+
+
         </div>
 
 
