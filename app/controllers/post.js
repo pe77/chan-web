@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $cacheFactory, $filter, $interval, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
+.controller('PostController', function($scope, $rootScope, $cacheFactory, CacheFactory, $filter, $interval, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
 {
 
     $scope.post             = [];
@@ -265,6 +265,9 @@ angular.module('chan.controllers')
         if($state.current.name != 'post')
             return;
         //
+
+        // limpa o cache da pagina de board
+        CacheFactory.get('BoardCache').removeAll();
 
 
         $stateParams.scrollto = false; // reseta o scroll
