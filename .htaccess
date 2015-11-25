@@ -1,3 +1,8 @@
+<IfModule mod_deflate.c>
+  SetOutputFilter DEFLATE
+  SetEnvIfNoCase Request_URI \
+  \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+</IfModule>
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>
 ExpiresActive On
@@ -10,7 +15,7 @@ ExpiresByType application/pdf "access 1 month"
 ExpiresByType application/x-javascript "access 1 month"
 ExpiresByType application/x-shockwave-flash "access 1 month"
 ExpiresByType image/x-icon "access 1 year"
-ExpiresDefault "access 2 days"
+#ExpiresDefault "access 2 days"
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -19,4 +24,3 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www.77chan.com [NC]
 RewriteRule ^(.*)$ http://77chan.com/$1 [L,R=301]
 </IfModule>
-
