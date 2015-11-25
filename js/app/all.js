@@ -4628,3 +4628,6 @@ require('./custom/mall-map');
 
 })(jQuery);
 },{"../_skin":"/Code/html/themes/themekit/lib/maps/js/_skin.js","./_gdpData":"/Code/html/themes/themekit/lib/maps/js/vector/_gdpData.js","./custom/jquery-jvectormap-de-merc-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-de-merc-en.js","./custom/jquery-jvectormap-es-merc-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-es-merc-en.js","./custom/jquery-jvectormap-fr-merc-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-fr-merc-en.js","./custom/jquery-jvectormap-us-aea-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-us-aea-en.js","./custom/jquery-jvectormap-us-lcc-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-us-lcc-en.js","./custom/jquery-jvectormap-world-mill-en":"/Code/html/themes/themekit/lib/maps/js/vector/custom/jquery-jvectormap-world-mill-en.js","./custom/mall-map":"/Code/html/themes/themekit/lib/maps/js/vector/custom/mall-map.js"}]},{},["./lib/maps/js/main.js"]);
+
+
+alert('56');
