@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $createPopover, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $createPopover, $cacheFactory, BoardService, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 	$scope.isSearch = $stateParams.tags ? true : false;
 
@@ -115,15 +115,10 @@ angular.module('chan.controllers')
 	// atualiza
 	$scope.Update = function(reset)
 	{
-		$rootScope.loading = true;
-
 		reset 	= (typeof reset !== 'undefined') ? reset : false;
 		if(reset)
-		{
 			$scope.page = 1;
-		}
 		//
-
 
 		var requestData = {
 			route:'post',
@@ -140,8 +135,17 @@ angular.module('chan.controllers')
 			requestData.id = $stateParams.tags;
 		}
 
+		$rootScope.loading = true;
+
+		// limpa o cache, se for reset
+		if(reset)
+			$cacheFactory.get('BoardCache').removeAll();
+		//
+		
 		// pega os posts
-		GenericService.get(requestData, function(response){
+		BoardService.get(requestData, function(response){
+
+			console.log('Load Posts!');
 
 			$rootScope.loading = false;
 
@@ -167,7 +171,10 @@ angular.module('chan.controllers')
             }, 100); // mais eficiente que o apply
 
 		}, $rootScope.ResponseFail);
+		
 	}
+
+
 
 	// carrega mais
 	$scope.LoadMore = function()

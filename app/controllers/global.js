@@ -9,8 +9,10 @@ angular.module('chan.controllers')
 	$rootScope.signedIn		  	  = false;
 	$rootScope.facebookReady	  = false;
 	$rootScope.errorMessageSend	  = false;
+	$rootScope.cacheRequest	  	  = true;
  	$rootScope.boards			  = [];
  	$rootScope.user				  = $localstorage.getObject('user');
+
  	
 
 	

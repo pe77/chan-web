@@ -62,12 +62,27 @@ angular.module('chan.services', ['ngResource'])
 
                 resource[action] = function() {
                     var deferred = $q.defer(),
+
+
                     promise = method.apply(null, arguments).$promise;
 
                     abortablePromiseWrap(promise, deferred, outstanding);
 
-                    return {
+
+                    var data = {
                         $promise: deferred.promise,
+
+                        url:url,
+                        deferred:deferred,
+                        promise:promise,
+                        actions:actions,
+                        action:action,
+                        options:options,
+                        resource:resource,
+                        outstanding:outstanding,
+                        method:method,
+                        arguments:arguments,
+                        
 
                         abort: function() {
                             deferred.reject('Aborted');
@@ -81,6 +96,11 @@ angular.module('chan.services', ['ngResource'])
                             actions[action].Canceller = canceller;
                         }
                     };
+
+
+                    // console.log('AQUI', data);
+
+                    return data;
                 };
             });
 
@@ -106,8 +126,45 @@ angular.module('chan.services', ['ngResource'])
     }
 ])
 
-.factory('GenericService', ['ResourceFactory', function(ResourceFactory) {
-    var data = ResourceFactory.createResource(parameters.api_url + '/api/:route/:action/:token/:id/:filter/:page/:pageLimit/:date/:scope/:op/:reply/:cache', { },{ 
+
+.factory('BoardService', ['ResourceFactory', '$resource', '$cacheFactory', function(ResourceFactory, $resource, $cacheFactory) {
+
+    
+    var cache = $cacheFactory('BoardCache');
+
+    var interceptor = {
+      response: function (response) {
+        cache.remove(response.config.url);
+        console.log('cache removed', response.config.url);
+        return response;
+      }
+    };
+
+
+    var data = ResourceFactory.createResource(parameters.api_url + '/api/:route/:action/:token/:id/:filter/:page/:pageLimit/:date/:scope/:op/:reply', 
+    {
+    },{ 
+        all: {
+            method:'GET',
+            params:{action: 'all'},
+            cache:cache,
+            isArray:true
+        },
+        get: {
+            method:'GET',
+            cache:cache,
+            params:{action: 'get'}
+        }
+    });
+
+    return data;
+}])
+
+.factory('GenericService', ['ResourceFactory', '$resource', '$cacheFactory', function(ResourceFactory, $resource, $cacheFactory) {
+
+    var data = ResourceFactory.createResource(parameters.api_url + '/api/:route/:action/:token/:id/:filter/:page/:pageLimit/:date/:scope/:op/:reply', 
+    {
+    },{ 
         all: {
             method:'GET',
             params:{action: 'all'},

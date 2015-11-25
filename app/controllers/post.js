@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('PostController', function($scope, $rootScope, $filter, $interval, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
+.controller('PostController', function($scope, $rootScope, $cacheFactory, $filter, $interval, $timeout, $state, $anchorScroll, $stateParams, $location, GenericService) 
 {
 
     $scope.post             = [];
@@ -41,13 +41,17 @@ angular.module('chan.controllers')
         var lastReply   = $scope.post.replies[$scope.post.replies.length-1].id;
 
 
-        // pega os posts
-        GenericService.get({
+        var requestData = {
             route:'post',
             action:'next',
             op:op,
             reply:lastReply
-        }, function(response){
+        };
+
+        // pega os posts
+        GenericService.get(requestData, function(response){
+
+            console.log('UpdateNext 2');
 
             if(!silentMode)
                 $rootScope.loading = false;
