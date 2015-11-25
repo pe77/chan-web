@@ -127,10 +127,10 @@ angular.module('chan.services', ['ngResource'])
 ])
 
 
-.factory('BoardService', ['ResourceFactory', '$resource', '$cacheFactory', function(ResourceFactory, $resource, $cacheFactory) {
+.factory('BoardService', ['ResourceFactory', '$resource', 'CacheFactory', function(ResourceFactory, $resource, CacheFactory) {
 
-    
-    var cache = $cacheFactory('BoardCache');
+    // guarda o cache na memoria
+    var cache = CacheFactory('BoardCache', { storageMode: parameters.cache_mode });
 
     var interceptor = {
       response: function (response) {

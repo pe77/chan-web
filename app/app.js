@@ -10,11 +10,12 @@ var app = angular.module('chan',
 		// 'ngAnimate',
 		'mgcrea.ngStrap',
 		'facebook',
-		'angularAudioRecorder'
+		'angularAudioRecorder',
+		'angular-cache'
 	]
 );
 
-app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', function($httpProvider, FacebookProvider, recorderServiceProvider) {
+app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', 'CacheFactoryProvider', function($httpProvider, FacebookProvider, recorderServiceProvider, CacheFactoryProvider) {
 	
 	// $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	// https://github.com/Ciul/angular-facebook
@@ -27,6 +28,13 @@ app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', func
         	lameJsUrl:'lib/angular-recorder/lame.min.js'
         })
       ;
+
+
+    angular.extend(CacheFactoryProvider.defaults, { 
+	    maxAge: parameters.cache_time, // tempo de cache default
+	    deleteOnExpire: 'aggressive', 
+	    storageMode: 'localStorage'
+	}); 
 }]);
 
 angular.module('chan.controllers', []);

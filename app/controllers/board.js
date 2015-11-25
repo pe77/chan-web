@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $createPopover, $cacheFactory, BoardService, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, $createPopover, CacheFactory, $cacheFactory, BoardService, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 	$scope.isSearch = $stateParams.tags ? true : false;
 
@@ -139,8 +139,9 @@ angular.module('chan.controllers')
 
 		// limpa o cache, se for reset
 		if(reset)
-			$cacheFactory.get('BoardCache').removeAll();
+			CacheFactory.get('BoardCache').removeAll();
 		//
+		
 		
 		// pega os posts
 		BoardService.get(requestData, function(response){
