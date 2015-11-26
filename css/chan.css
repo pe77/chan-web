@@ -732,7 +732,8 @@ body{
    _width: expression( document.body.clientWidth > 420 ? "420px" : "auto" );
 }
 
-.carousel-inner .video-icon
+.carousel-inner .video-icon,
+.carousel-inner .over-icon
 {
     color: #212121;
     font-size: 35px;

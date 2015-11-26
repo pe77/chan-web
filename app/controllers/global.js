@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $modal, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService, Facebook) 
+.controller('GlobalController', function($scope, $modal, ngAudio, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService, Facebook) 
 {
 
 	$rootScope.base_url 	      = base_url;
@@ -12,9 +12,8 @@ angular.module('chan.controllers')
 	$rootScope.cacheRequest	  	  = true;
  	$rootScope.boards			  = [];
  	$rootScope.user				  = $localstorage.getObject('user');
-
+ 	$scope.audio 				  = false;
  	
-
 	
 	// GENERIC RESPONSE
 
@@ -275,5 +274,17 @@ angular.module('chan.controllers')
 		var reportModal = $modal({backdrop:'static', title:'Administrar Post #' + post.id, scope: $scope, template: base_url + '/app/views/ban/modal.html', show: false});		
 		reportModal.$promise.then(reportModal.show);
     }
+
+
+
+    // audio play
+    $rootScope.AudioPlayer = function(url)	
+	{
+		var audio = ngAudio.load(url);
+
+		console.log(audio)
+ 		
+ 		return audio;
+	}
 
 });

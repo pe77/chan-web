@@ -31,19 +31,8 @@
 
 		<div class="panel-body double-level-{{post.double_level}}">
 
-			<div class="media-left" ng-if="post.files.length" >
-				
-				<carousel interval="999915000" no-wrap="false" >
-					<slide ng-repeat="file in post.files" active="slide.active">
-						<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
-
-						<img ng-class="{'view-preview':file.type == 1}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
-
-						<i ng-if="file.type == 1" class="video-icon fa fa-fw fa-play"></i>
-						</a>
-					</slide>
-				</carousel>
-			</div>
+			<!-- media box -->
+			<div class="media-left" ng-if="post.files.length" ng-init="files = post.files" ng-include="base_url + '/app/views/post/media.html'"></div>
 			
 
 			<div class="media-body">
@@ -66,20 +55,10 @@
 
 
 		<ul class="comments replies">
-			<li ng-repeat="reply in post.replies" class="comment-form reply double-level-{{reply.double_level}}" id="post-{{reply.id}}">
-				<div class="media-left" ng-if="reply.files.length" >
-				
-					<carousel interval="999915000" no-wrap="false" >
-					<slide ng-repeat="file in reply.files" active="slide.active">
-							<a href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
+			<li ng-repeat="reply in post.replies" class="comment-form reply double-level-{{reply.double_level}}" id="post-{{reply.id}}" >
 
-							<img ng-class="{'view-preview':file.type == 1}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
-
-							<i ng-if="file.type == 1" class="video-icon fa fa-fw fa-play"></i>
-
-							</a>
-						</slide>
-					</carousel>
+				<!-- media box -->
+				<div class="media-left" ng-if="reply.files.length" ng-init="files = reply.files" ng-include="base_url + '/app/views/post/media.html'">
 				</div>
 					
 

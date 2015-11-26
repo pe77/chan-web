@@ -5,13 +5,14 @@ var app = angular.module('chan',
 		'ui.router',
 		"ui.bootstrap.tpls",
 		'ui.bootstrap.carousel',
-		'directive.g+signin',
+		'directive.g+signin', // sign
 		'ngSanitize',
 		// 'ngAnimate',
-		'mgcrea.ngStrap',
-		'facebook',
-		'angularAudioRecorder',
-		'angular-cache'
+		'mgcrea.ngStrap', 
+		'facebook', // sign
+		'angularAudioRecorder', // voice rec
+		'angular-cache', // cache control
+		'ngAudio' // audio player
 	]
 );
 

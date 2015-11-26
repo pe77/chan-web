@@ -1,0 +1,34 @@
+<carousel interval="999915000" no-wrap="false" >
+<slide ng-repeat="file in files" active="slide.active" >
+
+
+		<a ng-if="file.type != 2" href="{{parameters.file_path +'/'+ file.path_original}}" target="_blank">
+
+			<img ng-class="{'view-preview':file.type == 1}" ng-src="{{parameters.file_path +'/'+ file.path_preview}}" style="margin:auto;">
+
+			<i ng-if="file.type == 1" class="video-icon fa fa-fw fa-play"></i>
+
+		</a>
+
+
+		<!-- Audio Player -->
+		<a href="" 
+		ng-if="file.type == 2" 
+		ng-init="player = AudioPlayer(parameters.file_path +'/'+ file.path_original)"
+		ng-click="player.paused ? player.play() : player.pause()"
+		>
+			
+			<img 
+			class="view-preview" 
+			ng-class="{'paused':player.paused}" 
+			ng-src="{{base_url}}/images/sound.png" 
+			style="margin:auto;">
+
+			<i ng-if="player.paused" class="over-icon fa fa-fw fa-play"></i>
+			<i ng-if="!player.paused" class="over-icon fa fa-fw fa-pause"></i>
+
+		</a>
+		
+
+	</slide>
+</carousel>

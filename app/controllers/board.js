@@ -10,8 +10,6 @@ angular.module('chan.controllers')
 	$scope.title = $scope.isSearch ? 'Search' : '';
 	$scope.description = $scope.isSearch ? $stateParams.tags : '';
 
-
-
 	$scope.page 		= 1;
 	$scope.pageLimit 	= $rootScope.parameters.page_limit;
 	$anchorScroll.yOffset   = 275;

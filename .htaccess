@@ -5,7 +5,7 @@
 </IfModule>
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>
-ExpiresActive On
+ExpiresActive Off
 ExpiresByType image/jpg "access 1 year"
 ExpiresByType image/jpeg "access 1 year"
 ExpiresByType image/gif "access 1 year"
