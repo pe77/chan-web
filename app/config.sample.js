@@ -7,5 +7,6 @@ var parameters = {
 	page_limit : 15, // 15 posts por pagina
 	auto_update_time: 1000*15, // 10 segundos
 	cache_time: 60 * 1000 * 5, // 5 minutos (milissegundo)
-	cache_mode: 'memory' // localStorage (guarda mesmo se refrescar a pagina) | memory (quando der F5 limpa)
+	cache_mode: 'memory', // localStorage (guarda mesmo se refrescar a pagina) | memory (quando der F5 limpa)
+	suported_langs : ['pt-BR'] // en-US é o padrão
 };
