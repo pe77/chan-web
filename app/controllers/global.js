@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('GlobalController', function($scope, $modal, ngAudio, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService, Facebook) 
+.controller('GlobalController', function($scope, $modal, localize, ngAudio, $location, $anchorScroll, $filter, $rootScope, $alert, $localstorage, $window, GenericService, Facebook) 
 {
 
 	$rootScope.base_url 	      = base_url;
@@ -29,7 +29,7 @@ angular.module('chan.controllers')
 		
 
 		// mensagem de erro de conexção generica
-		alert('Erro ao tentar se conectar, tente novamente.');
+		alert(localize('An Unexpected Error Has Occurred. Check your connection and try again.'));
 
 		$rootScope.errorMessageSend = true;
 	}
@@ -45,7 +45,7 @@ angular.module('chan.controllers')
 			if(!response.message)
 			{
 				// erro generico de servidor
-				$rootScope.Alert('Ocorreu um erro inesperado, por favor, tente novamente em alguns minutos.', 'error');
+				$rootScope.Alert(localize('An Unexpected Error Has Occurred. Check your connection and try again.'), 'error');
 				return false;
 			}
 
@@ -261,7 +261,7 @@ angular.module('chan.controllers')
     	$scope.reportedPost = post;
 
     	// Pre-fetch an external template populated with a custom scope
-		var reportModal = $modal({backdrop:'static', title:'Denunciar post #' + post.id, scope: $scope, template: base_url + '/app/views/report/modal.html', show: false});
+		var reportModal = $modal({backdrop:'static', title:localize('Denunciar post') + '#' + post.id, scope: $scope, template: base_url + '/app/views/report/modal.html', show: false});
 		// Show when some event occurs (use $promise property to ensure the template has been loaded)
 		reportModal.$promise.then(reportModal.show);
     }
@@ -271,7 +271,7 @@ angular.module('chan.controllers')
     {
     	$scope.reportedPost = post;
 
-		var reportModal = $modal({backdrop:'static', title:'Administrar Post #' + post.id, scope: $scope, template: base_url + '/app/views/ban/modal.html', show: false});		
+		var reportModal = $modal({backdrop:'static', title:localize('Administrar post') + '#' + post.id, scope: $scope, template: base_url + '/app/views/ban/modal.html', show: false});		
 		reportModal.$promise.then(reportModal.show);
     }
 
@@ -282,8 +282,6 @@ angular.module('chan.controllers')
 	{
 		var audio = ngAudio.load(url);
 
-		console.log(audio)
- 		
  		return audio;
 	}
 

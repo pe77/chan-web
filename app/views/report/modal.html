@@ -6,11 +6,11 @@
         <h4 class="modal-title" ng-bind="title"></h4>
       </div>
       <div class="modal-body">
-      	<input type="text" ng-model="form.content" class="form-control" placeholder="Motivo">
+      	<input type="text" ng-model="form.content" class="form-control" placeholder="Reason">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="$hide()">Fechar</button>
-        <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Enviar</button>
+        <button type="button" class="btn btn-default" ng-click="$hide()" localize>Close</button>
+        <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> <span localize>Send</span></button>
       </div>
     </div>
   </div>

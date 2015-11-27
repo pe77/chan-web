@@ -1,6 +1,6 @@
 angular.module('chan.controllers')
 
-.controller('BoardController', function($scope, $rootScope, $createPopover, CacheFactory, $cacheFactory, BoardService, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
+.controller('BoardController', function($scope, $rootScope, localize, $createPopover, CacheFactory, $cacheFactory, BoardService, $state, $location, $timeout, $anchorScroll, $filter, $stateParams, GenericService) 
 {
 	$scope.isSearch = $stateParams.tags ? true : false;
 
@@ -153,7 +153,7 @@ angular.module('chan.controllers')
 			//
 
 			if(!response.data.length)
-				$rootScope.Alert('Não existem mais posts para essa board / seleção.');
+				$rootScope.Alert(localize('There are no more posts to this board / selection'));
 			//
 
 

@@ -1,6 +1,16 @@
 app.config(function($stateProvider, $urlRouterProvider) {	
 
-	
+
+  var lang_template = '';
+
+  // verifica se a ligua do usuario é suportada e carrega o template referente | só aplica nas paginas estaticas
+  if(userLang)
+    for (var i = parameters.suported_langs.length - 1; i >= 0; i--) 
+      if(parameters.suported_langs[i] == userLang)  
+        lang_template = '.' + userLang;
+  //
+
+
 	// rota padrão
   $urlRouterProvider.otherwise("/board/all");
 
@@ -9,12 +19,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // staticas
 	.state('home', {
       url: "/",
-      templateUrl: base_url + '/app/views/home/index.html'
+      templateUrl: base_url + '/app/views/home/index'+lang_template+'.html'
   })
 
   .state('rules', {
       url: "/rules",
-      templateUrl: base_url + '/app/views/rules/index.html'
+      templateUrl: base_url + '/app/views/rules/index'+lang_template+'.html'
   })
 
 

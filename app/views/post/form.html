@@ -3,7 +3,7 @@
 
       <div class="col-md-12 text-left">
         <div class="form-group form-control-default">
-          <label for="exampleInputFirstName">Mensagem</label>
+          <label for="exampleInputFirstName" localize>Message</label>
           <textarea ng-model="postForm.content" class="form-control" rows="5"></textarea>
         </div>
       </div>
@@ -29,7 +29,10 @@
             ng-click="recorder.status.isRecording === false ? recorder.startRecord() : recorder.stopRecord()" 
             ng-if="recorder.isAvailable" 
             ng-class="{'btn-primary':recorder.status.isRecording, 'btn-default':!recorder.status.isRecording}" 
-            class="btn "><i class="fa fa-microphone"></i> {{recorder.status.isRecording === false ? 'Enviar Audio' : 'Gravando...'}} </button>
+            class="btn "><i class="fa fa-microphone"></i> 
+              <span ng-if="recorder.status.isRecording === false" localize>REC</span>
+              <span ng-if="recorder.status.isRecording !== false" localize>Recording...</span>
+            </button>
 
             <button ng-if="!recorder.isAvailable" class="btn btn-default"><i class="fa fa-microphone-slash"></i> </button>
             
@@ -38,9 +41,9 @@
 
 
 
-          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> Imagem/Video(mp4) {{ (files.length ? '('+files.length+')' : '') }} </button> 
+          <button class="btn btn-default" ng-click="ImageSelect('.main-post-box .image-input')"><i class="fa fa-picture-o"></i> <span localize>Image/Video(mp4)</span> {{ (files.length ? '('+files.length+')' : '') }} </button> 
 
-          <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i> Enviar</button>
+          <button type="submit" class="btn btn-primary" ng-click="Send()"><i class="fa fa-check"></i><span localize>Send</span></button>
 
 
         </div>
@@ -58,9 +61,9 @@
 </div>
 
 <div class="panel-body text-center" ng-if="!user.name">
-  <button ng-if="!signedIn && facebookReady" class="btn btn-default btn-facebook btn-facebook-main-login" ng-click="FacebookLogin()"><i class="fa fa-facebook"></i> Fazer login com o Facebook</button>
+  <button ng-if="!signedIn && facebookReady" class="btn btn-default btn-facebook btn-facebook-main-login" ng-click="FacebookLogin()"><i class="fa fa-facebook"></i> Login Facebook</button>
   
 	<google-plus-signin ng-if="!signedIn" language="pt-BR" clientid="{{parameters.google_api_key}}"></google-plus-signin>
 
-  <div class="text-muted">Para postar e outras funções, faça seu login.</div>
+  <div class="text-muted" localize>To create a new topic, sign in</div>
 </div>

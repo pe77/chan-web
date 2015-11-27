@@ -17,7 +17,7 @@
   <link href="css/app/app.css" rel="stylesheet">
   <link href="css/chan.css" rel="stylesheet">
   <link rel="shortcut icon" href="icon.png" />
-  
+
 </head>
 
 <body id="bbodyy" ng-app="chan" ng-controller="GlobalController">
@@ -72,7 +72,7 @@
             <form class="navbar-form navbar-left" ng-controller="SearchFormController" ng-submit="Search()">
                     <div class="search-2">
                       <div class="input-group">
-                        <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Procurar ..">
+                        <input ng-model="search" type="text" class="form-control form-control-w-150" placeholder="Search ..">
                         <span class="input-group-btn">
                     <button class="btn btn-inverse" type="button" ng-click="Search()"><i class="fa fa-search"></i></button>
                   </span>
@@ -93,7 +93,7 @@
                       </a>
                       
                       <ul class="dropdown-menu" role="notification">
-                        <li class="dropdown-header">Notificações</li>
+                        <li class="dropdown-header" localize>Notifications</li>
 
                         <li class="media" ng-repeat="message in messages">
 
@@ -114,7 +114,7 @@
                 <img ng-src="{{getUserPic(user.picture_link)}}" alt="" class="img-circle" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"> {{user.first_name}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i>Sair</a></li>
+                <li><a href="#" ng-click="Logout()"><i class="fa fa-sign-out"></i><span localize>Logout</span></a></li>
               </ul>
             </li>
           </ul>
@@ -130,13 +130,13 @@
     <div data-scrollable>
 
       <ul class="sidebar-menu sm-icons-right">
-        <li><a href="#/"><i class="fa fa-home"></i> <span>Home</span></a></li>
-        <li><a href="#/rules"><i class="fa fa-exclamation-triangle"></i> <span>Regras</span></a></li>
-        <li ng-if="user.level > 0"><a href="#/reports"><i class="fa fa-ban"></i> <span>Reports</span></a></li>
+        <li><a href="#/"><i class="fa fa-question"></i> <span localize>About</span></a></li>
+        <li><a href="#/rules"><i class="fa fa-exclamation-triangle"></i> <span localize>Rules</span></a></li>
+        <li ng-if="user.level > 0"><a href="#/reports"><i class="fa fa-ban"></i> <span localize>Reports</span></a></li>
 
         
         <li class="hasSubmenu open">
-          <a href="#submenu" data-toggle="collapse" class="" aria-expanded="true"><i class="fa fa-list"></i><span>Boards</span></a>
+          <a href="#submenu" data-toggle="collapse" class="" aria-expanded="true"><i class="fa fa-list"></i><span localize>Boards</span></a>
           <ul id="submenu" class="collapse in" aria-expanded="true">
             <li ng-repeat="board in boards"><a href="#/board/{{board.shortcut_name}}"><i class="fa {{board.icon}}"></i><span>{{board.title}}</span></a></li>
           </ul>
@@ -145,7 +145,7 @@
       </ul>
 
 
-      <h4 class="category border top" ng-if="user.name">Últimas Mensagens</h4>
+      <h4 class="category border top" ng-if="user.name" localize>Last Messages</h4>
       <div class="sidebar-block" ng-if="user.name">
         <ul class="sidebar-feed">
           
@@ -172,8 +172,8 @@
 
       <h4 class="category border top"></h4>
       <div class="sidebar-block">
-        <button ng-click="OpenLink('https://www.facebook.com/cenouro', true)" class="btn btn-block btn-default btn-facebook btn-icon-stacked"><i class="fa fa-2x fa-facebook"></i> <span>Encontre-nos no <br>Facebook</span></button>
-        <button ng-click="OpenLink('https://www.google.com/+77chanc', true)" class="btn btn-block btn-default btn-google btn-icon-stacked"><i class="fa fa-2x fa-google"></i> <span>Comunidade no <br>Google+</span></button>
+        <button ng-click="OpenLink('https://www.facebook.com/cenouro', true)" class="btn btn-block btn-default btn-facebook btn-icon-stacked"><i class="fa fa-2x fa-facebook"></i> <span><span localize>Find us on</span><br>Facebook</span></button>
+        <button ng-click="OpenLink('https://www.google.com/+77chanc', true)" class="btn btn-block btn-default btn-google btn-icon-stacked"><i class="fa fa-2x fa-google"></i> <span><span localize>Find us on</span><br>Google+</span></button>
       </div>
 
 
@@ -234,8 +234,13 @@
   <script type="text/javascript" src="lib/vendor/angular/angular.js"></script>
   <script type="text/javascript" src="lib/vendor/angular/angular-resource.js"></script>
 
+
+  <!-- Languages Pack | Follow: http://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx -->
+  <script type="text/javascript" src="js/languages/pt-BR.js"></script>
+
   <script type="text/javascript" src="lib/angular-cache/dist/angular-cache.js"></script>
   <script type="text/javascript" src="lib/vendor/angular-audio/angular.audio.js"></script>
+  
   
   <script type="text/javascript" src="lib/vendor/angular/angular-touch.js"></script>
 
@@ -247,6 +252,8 @@
   
   <script type="text/javascript" src="lib/vendor/angular/angular-ui-router.js"></script>
   <script type="text/javascript" src="lib/vendor/angular/angular-sanitize.js"></script>
+  <script type="text/javascript" src="lib/angular-localize/angular-localize.min.js"></script>
+
   <script type="text/javascript" src="lib/vendor/angular/google-plus-signin.js"></script>
   <script src="lib/vendor/angular/angular-animate.min.js" data-semver="1.4.2"></script>
   

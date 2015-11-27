@@ -7,6 +7,7 @@ var app = angular.module('chan',
 		'ui.bootstrap.carousel',
 		'directive.g+signin', // sign
 		'ngSanitize',
+		'localize',
 		// 'ngAnimate',
 		'mgcrea.ngStrap', 
 		'facebook', // sign
@@ -16,7 +17,7 @@ var app = angular.module('chan',
 	]
 );
 
-app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', 'CacheFactoryProvider', function($httpProvider, FacebookProvider, recorderServiceProvider, CacheFactoryProvider) {
+app.config(['$provide', '$httpProvider', 'FacebookProvider', 'recorderServiceProvider', 'CacheFactoryProvider', function($provide, $httpProvider, FacebookProvider, recorderServiceProvider, CacheFactoryProvider) {
 	
 	// $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 	// https://github.com/Ciul/angular-facebook
@@ -36,6 +37,7 @@ app.config(['$httpProvider', 'FacebookProvider', 'recorderServiceProvider', 'Cac
 	    deleteOnExpire: 'aggressive', 
 	    storageMode: 'localStorage'
 	}); 
+
 }]);
 
 angular.module('chan.controllers', []);
