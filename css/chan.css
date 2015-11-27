@@ -728,8 +728,10 @@ a
 }
 
 body{
+    /*
    min-width:420px; 
    _width: expression( document.body.clientWidth > 420 ? "420px" : "auto" );
+   */
 }
 
 .carousel-inner .video-icon,
