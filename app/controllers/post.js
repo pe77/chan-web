@@ -267,7 +267,9 @@ angular.module('chan.controllers')
         //
 
         // limpa o cache da pagina de board
-        CacheFactory.get('BoardCache').removeAll();
+        if(CacheFactory.get('BoardCache'))
+            CacheFactory.get('BoardCache').removeAll();
+        //
 
 
         $stateParams.scrollto = false; // reseta o scroll

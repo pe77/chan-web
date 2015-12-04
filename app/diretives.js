@@ -154,7 +154,7 @@ app.directive('mask', ['$interval', 'dateFilter', function($interval, dateFilter
 }]);
 
 
-app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',function($timeout, $createPopover, $rootScope) {
+app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope', '$http',function($timeout, $createPopover, $rootScope, $http) {
   return {
     restrict: 'E',
     terminal : true,
@@ -172,6 +172,9 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
         var commentRegex    = /(^|\s)\/\/.+/img;
         var greenTextRegex  = /(^|\s)&gt;.+/img;
 
+        // modulos
+        var crRegex  = /(^|\s)#cr.+\?$/img;
+
 
         // paradinha de recolher textos grandes
         $timeout(function () {
@@ -187,6 +190,30 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
 
         // add os backquotes
         scope.$watch('post', function(post){
+
+
+          // cr
+          if(post.content && parameters.modules.cr.active)
+          {
+            var matches = post.content.match(crRegex);
+            if(matches)
+            {
+              
+              for (var i = matches.length - 1; i >= 0; i--) 
+              {
+
+                var m       = matches[i];
+                
+                var content = 
+                  post.content.replace(
+                    new RegExp(escapeRegExp(m),"g"), 
+                    '<span class="post-m-cr">' + m + '</span>'
+                  );
+                
+                post.content = content;
+              }
+            }
+          }
 
 
           // g text
@@ -333,8 +360,50 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope',functio
               $(this).data('hasquote', true);
           });
 
-          
 
+          // vai buscar a resposta do cenouro
+          if(parameters.modules.cr.active)
+          {
+            $('.post-m-cr').each(function(){
+
+              if($(this).data('send-cr')) // só pra garantir que não vai chamar varias vezes
+                return
+              // 
+
+              var elem      = angular.element(this);
+              var question  = $(this).text();
+              var url_cr    = parameters.modules.cr.url + $rootScope.lang.toLowerCase() + '/get/seed/' + question;
+
+              
+              $http({
+                method: 'GET',
+                url: url_cr
+              }).then(function successCallback(httpResponse) {
+                
+                if(httpResponse.status == 200)
+                {
+
+                  var responseJson = httpResponse.data;
+                  if(responseJson.status == 1)
+                  {
+                    var template = $('<div class="module-cr"></div>');
+                    template.append($('<img class="module-cr-image" src="' + responseJson.data.image + '"/>'));
+                    template.append($('<span class="module-cr-response">' + responseJson.data.message + '</span>'));
+
+                    elem.append(template);
+                  }
+                }
+              }, function errorCallback(response) {
+                // blablabla foda-se
+              });
+
+              
+
+
+              $(this).data('send-cr', true);
+            });
+          }
+          
 
           // quando clica no quote
           $('.post-content-quote').unbind().click(function(){

@@ -8,5 +8,16 @@ var parameters = {
 	auto_update_time: 1000*15, // 10 segundos
 	cache_time: 60 * 1000 * 5, // 5 minutos (milissegundo)
 	cache_mode: 'memory', // localStorage (guarda mesmo se refrescar a pagina) | memory (quando der F5 limpa)
-	suported_langs : ['pt-BR'] // en-US é o padrão
+	suported_langs : ['pt-BR'], // en-US é o padrão
+
+	
+	// modules
+	modules:
+	{
+		cr:
+		{
+			active: true,
+			url: 'http://77chan.com/modules/cr/'
+		}
+	}
 };

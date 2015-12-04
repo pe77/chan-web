@@ -12,8 +12,9 @@ angular.module('chan.controllers')
 	$rootScope.cacheRequest	  	  = true;
  	$rootScope.boards			  = [];
  	$rootScope.user				  = $localstorage.getObject('user');
+ 	$rootScope.lang 			  = $window.navigator.language || $window.navigator.userLanguage;
  	$scope.audio 				  = false;
- 	
+
 	
 	// GENERIC RESPONSE
 
