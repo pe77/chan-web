@@ -377,6 +377,7 @@ app.directive('postcontent', ['$timeout', '$createPopover', '$rootScope', '$http
               
               $http({
                 method: 'GET',
+                cache:true,
                 url: url_cr
               }).then(function successCallback(httpResponse) {
                 
